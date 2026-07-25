@@ -9,6 +9,10 @@
       href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700;900&display=swap"
       rel="stylesheet"
     />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.css"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -244,32 +248,27 @@
     </section>
     <section class="fall" id="fall">
       <div class="fall-inner">
-        <h2>سقوط الإنسان</h2>
-        <p class="fall-intro">
+        <div class="fall-eyebrow" data-aos="fade-up">سقوط الإنسان</div>
+        <h2 data-aos="fade-up" data-aos-delay="100">سقوط الإنسان</h2>
+        <p class="fall-intro" data-aos="fade-up" data-aos-delay="200">
           وصية واحدة في جنة عدن، وحية ماكرة بدأت الحوار مع حواء بسؤال يزرع الشك.
         </p>
       </div>
 
-      <div class="fall-video-wrap">
-        <video
-          controls
-          loop
-          preload="auto"
-        >
+      <div class="fall-video-wrap" data-aos="fade-up" data-aos-delay="300">
+        <video controls loop preload="auto">
           <source src="assets/Download.mp4" type="video/mp4" />
         </video>
       </div>
     </section>
 
     <section class="story">
-      <p class="story-eyebrow">الختام</p>
-      <h2>كيف نستردّ صورة الله فينا؟</h2>
-      <p>
-        "أعطوا ما لقيصر لقيصر وما لله لله" - اتركوا صورة الإنسان الترابي،
-        لتتقبلوا الصورة السماوية التي دفع المسيح ثمن ردّها إلينا.
+      <p class="story-eyebrow" data-aos="fade-up">الختام</p>
+      <h2 data-aos="fade-up">كيف نستردّ صورة الله فينا؟</h2>
+      <p data-aos="fade-up" data-aos-delay="100">
+        "أعطوا ما لقيصر لقيصر وما لله لله" - اتركوا صورة الإنسان الترابي...
       </p>
-
-      <p class="story-tagline">
+      <p class="story-tagline" data-aos="zoom-in" data-aos-delay="200">
         مهرجان <span class="story-tagline-highlight">مسرحي فيك</span> ٢٠٢٦
       </p>
     </section>
@@ -277,7 +276,6 @@
     <footer>صُنع بمحبة — <span>حكاية حب</span> © 2026</footer>
 
     <script>
-      // some browsers/embedded contexts need an explicit play() call for autoplay to actually start
       (function () {
         const v = document.getElementById("heroVideo");
         if (v) {
@@ -289,7 +287,15 @@
         }
       })();
     </script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 900,
+        easing: "ease-out-cubic",
+        once: false,
+        offset: 80,
+      });
+    </script>
     <script>
       // reveal the constellation (lines draw in, nodes pop in staggered) once it scrolls into view
       const constellation = document.getElementById("constellation");

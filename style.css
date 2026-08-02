@@ -1046,3 +1046,445 @@ footer span {
         animation: none !important;
     }
 }
+
+/* ============================================================
+   نتائج السقوط وعقوباته — consequences section
+   يُلصق هذا الكود في نهاية ملف style.css الحالي
+   بيستخدم نفس متغيرات الألوان الموجودة في :root
+   ============================================================ */
+ 
+.consq {
+  position: relative;
+  overflow: hidden;
+  padding: 100px 6% 110px;
+  border-top: 1px solid var(--border-gold);
+  background: var(--deep);
+  text-align: center;
+}
+ 
+.consq-aura {
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  top: 50%;
+  left: 50%;
+  width: 1300px;
+  height: 1300px;
+  margin: -650px 0 0 -650px;
+  background: radial-gradient(
+    circle,
+    rgba(201, 160, 92, 0.1) 0%,
+    rgba(138, 155, 176, 0.08) 45%,
+    transparent 70%
+  );
+  border-radius: 50%;
+  animation: ray-spin 140s linear infinite;
+}
+ 
+.consq-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1160px;
+  margin: 0 auto;
+}
+ 
+.consq-eyebrow {
+  font-family: "Amiri", serif;
+  color: var(--gold);
+  letter-spacing: 3px;
+  font-size: 13px;
+  margin-bottom: 14px;
+}
+ 
+.consq h2 {
+  font-family: "Amiri", serif;
+  font-weight: 700;
+  font-size: clamp(28px, 3.8vw, 46px);
+  color: var(--ink);
+  text-align: center;
+  background: linear-gradient(
+    95deg,
+    var(--ink) 0%,
+    var(--gold) 50%,
+    var(--ink) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 18px;
+}
+ 
+.consq-intro {
+  max-width: 620px;
+  margin: 0 auto 56px;
+  color: var(--ink-dim);
+  line-height: 1.9;
+  font-size: 16px;
+}
+ 
+/* ---------- Tabs ---------- */
+.consq-tabs {
+  position: relative;
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  padding: 6px;
+  margin-bottom: 56px;
+  border-radius: 999px;
+  border: 1px solid var(--border-gold);
+  background: var(--bg-alt);
+  box-shadow: inset 0 0 20px rgba(201, 160, 92, 0.06);
+}
+ 
+.consq-tab {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 12px 26px;
+  border-radius: 999px;
+  font-family: "Tajawal", sans-serif;
+  font-weight: 700;
+  font-size: 14.5px;
+  color: var(--ink-dim);
+  transition: color 0.35s ease;
+}
+ 
+.consq-tab-num {
+  font-family: "Amiri", serif;
+  font-weight: 700;
+  font-size: 12px;
+  color: var(--gold);
+  opacity: 0.8;
+  transition: opacity 0.35s ease;
+}
+ 
+.consq-tab.active {
+  color: var(--ink);
+}
+ 
+.consq-tab.active .consq-tab-num {
+  opacity: 1;
+}
+ 
+.consq-tab-glider {
+  position: absolute;
+  z-index: 1;
+  top: 6px;
+  bottom: 6px;
+  left: 6px;
+  width: 0;
+  border-radius: 999px;
+  background: linear-gradient(100deg, var(--gold-soft), var(--gold));
+  box-shadow: 0 0 20px 2px rgba(201, 160, 92, 0.45);
+  transition: transform 0.45s cubic-bezier(0.65, 0, 0.35, 1),
+    width 0.45s cubic-bezier(0.65, 0, 0.35, 1);
+}
+ 
+@media (max-width: 700px) {
+  .consq-tabs {
+    flex-direction: column;
+    border-radius: 22px;
+    width: 100%;
+  }
+  .consq-tab {
+    justify-content: center;
+  }
+  .consq-tab-glider {
+    border-radius: 16px;
+  }
+}
+ 
+/* ---------- Panels ---------- */
+.consq-panel {
+  display: none;
+}
+ 
+.consq-panel.active {
+  display: block;
+  animation: panel-in 0.6s ease both;
+}
+ 
+@keyframes panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+ 
+.consq-panel-head {
+  max-width: 760px;
+  margin: 0 auto 44px;
+}
+ 
+.consq-panel-head h3 {
+  font-family: "Amiri", serif;
+  font-weight: 700;
+  font-size: clamp(22px, 2.6vw, 30px);
+  color: var(--ink);
+  margin-bottom: 18px;
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.3em;
+  cursor: pointer;
+}
+
+.consq-panel-head h3 .h3-word {
+  position: relative;
+  display: inline-block;
+  top: 0;
+  transition: 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.consq-panel-head h3:hover .h3-word:nth-child(odd) {
+  top: -6px;
+}
+
+.consq-panel-head h3:hover .h3-word:nth-child(even) {
+  top: 6px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .consq-panel-head h3 .h3-word {
+    transition: none;
+  }
+}
+ 
+.consq-panel-head p {
+  color: var(--ink-dim);
+  line-height: 2;
+  font-size: 15.5px;
+  margin-bottom: 20px;
+}
+ 
+.consq-panel-head blockquote {
+  position: relative;
+  margin: 0 auto;
+  max-width: 620px;
+  padding: 20px 26px;
+  font-family: "Amiri", serif;
+  font-style: italic;
+  font-size: 15.5px;
+  line-height: 1.95;
+  color: var(--ink);
+  background: var(--bg-alt);
+  border-inline-start: 3px solid var(--gold);
+  border-radius: 4px;
+  text-align: right;
+}
+ 
+.consq-panel-head blockquote cite {
+  display: block;
+  margin-top: 10px;
+  font-style: normal;
+  font-family: "Tajawal", sans-serif;
+  font-weight: 700;
+  font-size: 12.5px;
+  color: var(--gold);
+}
+ 
+.consq-sub {
+  font-family: "Amiri", serif;
+  font-weight: 700;
+  font-size: 19px;
+  color: var(--gold);
+  margin-bottom: 30px;
+  position: relative;
+  display: inline-block;
+}
+ 
+.consq-sub::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 46px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+ 
+.consq-closing {
+  max-width: 720px;
+  margin: 46px auto 0;
+  padding-top: 30px;
+  border-top: 1px solid var(--border-gold);
+  color: var(--ink);
+  font-family: "Amiri", serif;
+  font-size: 17px;
+  line-height: 2;
+}
+ 
+/* ---------- Cards grid ---------- */
+.consq-grid {
+  display: grid;
+  gap: 26px;
+  text-align: right;
+  perspective: 1200px;
+}
+ 
+.consq-grid-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+ 
+.consq-grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+ 
+@media (max-width: 980px) {
+  .consq-grid-4,
+  .consq-grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+ 
+@media (max-width: 620px) {
+  .consq-grid-4,
+  .consq-grid-3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- card: 3D flip (image front / info back) ---------- */
+
+/* الحاوية: بس بتدي المنظور والأبعاد */
+.c-card {
+  position: relative; 
+  height: 360px;          
+  perspective: 1400px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  border-radius: 18px;
+  overflow: visible;
+}
+.consq-grid-3 .c-card {
+  height: 460px;
+}
+/* اللي بتعمل الـ flip فعليًا */
+.c-card-flip {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.c-card:hover .c-card-flip {
+  transform: rotateY(180deg);
+}
+
+/* الوشين، فوق بعض بالظبط */
+.c-card-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 18px;
+  border: 1px solid var(--border-gold);
+  overflow: hidden;
+}
+
+/* ===== الوش الأول: الصورة ===== */
+.c-card-front {
+  background: var(--bg-alt);
+}
+
+.c-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.c-card-front-title {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  padding: 16px 20px;
+  background: linear-gradient(to top, rgba(0,0,0,.65), transparent);
+  color: #fff;
+  font-family: "Amiri", serif;
+  font-weight: 700;
+  font-size: 16px;
+  text-align: right;
+}
+
+/* ===== الوش التاني: المعلومات ===== */
+.c-card-back {
+  background: var(--bg-alt);
+  transform: rotateY(180deg);
+  padding: 30px 24px 26px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; 
+}
+
+.c-card-wide { padding: 34px 28px 30px; }
+
+.c-card-icon {
+  position: relative;
+  z-index: 1;
+  width: 58px;
+  height: 58px;
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #fff, var(--bg-alt) 60%);
+  border: 1.5px solid var(--border-gold);
+  color: var(--gold);
+}
+
+.c-card-icon svg { width: 30px; height: 30px; }
+
+.c-card-back h5 {
+  font-family: "Amiri", serif;
+  font-weight: 700;
+  font-size: 17.5px;
+  color: var(--ink);
+  margin-bottom: 10px;
+}
+
+.c-card-back p {
+  color: var(--ink-dim);
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.c-card-back p cite {
+  display: block;
+  margin-top: 8px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  color: var(--gold);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .c-card-flip { transition: none; }
+}
+
+/* stagger-safe fallback for browsers where AOS hasn't fired yet */
+.consq [data-aos] {
+  will-change: transform, opacity;
+}
+ 
+@media (prefers-reduced-motion: reduce) {
+  .consq-aura,
+  .consq-panel.active {
+    animation: none !important;
+  }
+}

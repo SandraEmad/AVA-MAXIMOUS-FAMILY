@@ -49,7 +49,6 @@ body {
     overflow: hidden;
 }
 
-/* background video, slow ken-burns breathing on top of native motion */
 .bg-wrap {
     position: absolute;
     inset: 0;
@@ -78,7 +77,6 @@ body {
     }
 }
 
-/* darkening + color-grade overlays for legibility (تبقى غامقة شوية عشان النص الفاتح يبان فوق الفيديو) */
 .grade {
     position: absolute;
     inset: 0;
@@ -90,7 +88,6 @@ body {
             rgba(23, 23, 23, 0.455) 100%);
 }
 
-/* rotating divine light rays behind the figure */
 .rays {
     position: absolute;
     z-index: 1;
@@ -134,7 +131,6 @@ body {
     }
 }
 
-/* soft pulsing halo glow around the figure's head area */
 .halo-glow {
     position: absolute;
     z-index: 1;
@@ -166,7 +162,6 @@ body {
     }
 }
 
-/* floating golden dust particles rising */
 .particles {
     position: absolute;
     inset: 0;
@@ -211,114 +206,18 @@ body {
     }
 }
 
-/* individual particle timings/positions */
-.p1 {
-    left: 6%;
-    width: 4px;
-    height: 4px;
-    animation-duration: 14s;
-    animation-delay: 0s;
-    --drift: 24px;
-}
-
-.p2 {
-    left: 14%;
-    width: 6px;
-    height: 6px;
-    animation-duration: 18s;
-    animation-delay: 2s;
-    --drift: -18px;
-}
-
-.p3 {
-    left: 22%;
-    width: 3px;
-    height: 3px;
-    animation-duration: 12s;
-    animation-delay: 4s;
-    --drift: 14px;
-}
-
-.p4 {
-    left: 31%;
-    width: 5px;
-    height: 5px;
-    animation-duration: 20s;
-    animation-delay: 1s;
-    --drift: -26px;
-}
-
-.p5 {
-    left: 40%;
-    width: 4px;
-    height: 4px;
-    animation-duration: 16s;
-    animation-delay: 6s;
-    --drift: 20px;
-}
-
-.p6 {
-    left: 58%;
-    width: 5px;
-    height: 5px;
-    animation-duration: 15s;
-    animation-delay: 3s;
-    --drift: -16px;
-}
-
-.p7 {
-    left: 67%;
-    width: 3px;
-    height: 3px;
-    animation-duration: 19s;
-    animation-delay: 5s;
-    --drift: 22px;
-}
-
-.p8 {
-    left: 75%;
-    width: 6px;
-    height: 6px;
-    animation-duration: 13s;
-    animation-delay: 7s;
-    --drift: -30px;
-}
-
-.p9 {
-    left: 84%;
-    width: 4px;
-    height: 4px;
-    animation-duration: 17s;
-    animation-delay: 2.5s;
-    --drift: 18px;
-}
-
-.p10 {
-    left: 91%;
-    width: 5px;
-    height: 5px;
-    animation-duration: 21s;
-    animation-delay: 8s;
-    --drift: -14px;
-}
-
-.p11 {
-    left: 49%;
-    width: 3px;
-    height: 3px;
-    animation-duration: 11s;
-    animation-delay: 4.5s;
-    --drift: 12px;
-}
-
-.p12 {
-    left: 9%;
-    width: 3px;
-    height: 3px;
-    animation-duration: 22s;
-    animation-delay: 9s;
-    --drift: -20px;
-}
+.p1 { left: 6%; width: 4px; height: 4px; animation-duration: 14s; animation-delay: 0s; --drift: 24px; }
+.p2 { left: 14%; width: 6px; height: 6px; animation-duration: 18s; animation-delay: 2s; --drift: -18px; }
+.p3 { left: 22%; width: 3px; height: 3px; animation-duration: 12s; animation-delay: 4s; --drift: 14px; }
+.p4 { left: 31%; width: 5px; height: 5px; animation-duration: 20s; animation-delay: 1s; --drift: -26px; }
+.p5 { left: 40%; width: 4px; height: 4px; animation-duration: 16s; animation-delay: 6s; --drift: 20px; }
+.p6 { left: 58%; width: 5px; height: 5px; animation-duration: 15s; animation-delay: 3s; --drift: -16px; }
+.p7 { left: 67%; width: 3px; height: 3px; animation-duration: 19s; animation-delay: 5s; --drift: 22px; }
+.p8 { left: 75%; width: 6px; height: 6px; animation-duration: 13s; animation-delay: 7s; --drift: -30px; }
+.p9 { left: 84%; width: 4px; height: 4px; animation-duration: 17s; animation-delay: 2.5s; --drift: 18px; }
+.p10 { left: 91%; width: 5px; height: 5px; animation-duration: 21s; animation-delay: 8s; --drift: -14px; }
+.p11 { left: 49%; width: 3px; height: 3px; animation-duration: 11s; animation-delay: 4.5s; --drift: 12px; }
+.p12 { left: 9%; width: 3px; height: 3px; animation-duration: 22s; animation-delay: 9s; --drift: -20px; }
 
 /* ============ NAV ============ */
 header {
@@ -335,12 +234,10 @@ header {
     display: flex;
     align-items: center;
     justify-self: start;
-    /* يمين في RTL */
 }
 
 .logo-family {
     justify-self: end;
-    /* شمال في RTL */
 }
 
 .logo img {
@@ -355,9 +252,22 @@ header {
     display: block;
 }
 
+@media (max-width: 700px) {
+    .logo img {
+        height: 70px;
+    }
+
+    .logo-family img {
+        height: 48px;
+    }
+
+    header {
+        padding: 14px 4%;
+    }
+}
+
 nav {
     justify-self: center;
-    /* النص في المنتصف بالظبط */
 }
 
 nav ul {
@@ -530,7 +440,6 @@ h1 {
     }
 }
 
-/* scroll cue */
 .scroll-cue {
     position: absolute;
     bottom: 3.5vh;
@@ -656,6 +565,7 @@ h1 {
     font-weight: 600;
     font-size: 15px;
 }
+
 .story-tagline {
     margin-top: 48px;
     font-family: "Amiri", serif;
@@ -676,8 +586,7 @@ footer {
     font-size: 13px;
     border-top: 1px solid var(--border-gold);
     background: var(--ink-dim);
-    color: var(--FBF5E9); 
-
+    color: var(--FBF5E9);
 }
 
 footer span {
@@ -687,18 +596,20 @@ footer span {
 /* ============================================================
      خِلقة الإنسان — traits constellation section
      ============================================================ */
-.traits  {
+
+.traits {
     position: relative;
     overflow: hidden;
-    padding:50px;
+    padding: 50px;
     border-top: 1px solid var(--border-gold);
     background: var(--bg-alt);
     text-align: center;
 }
-.fall  {
+
+.fall {
     position: relative;
     overflow: hidden;
-  padding-top: 50px;
+    padding-top: 50px;
     border-top: 1px solid var(--border-gold);
     background: var(--bg-alt);
     text-align: center;
@@ -721,37 +632,38 @@ footer span {
     animation: ray-spin 130s linear infinite;
 }
 
-.traits-inner ,.fall-inner {
+.traits-inner,
+.fall-inner {
     max-width: 1100px;
     margin: 0 auto;
 }
 
-
-.traits h2 ,.fall h2 {
-  font-family: "Amiri", serif;
-  font-weight: 700;
-  font-size: clamp(28px, 3.8vw, 46px);
-  color: var(--ink);
-  text-align: center;
-  background: linear-gradient(
-    95deg,
-    var(--ink) 0%,
-    var(--gold) 50%,
-    var(--ink) 100%
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 18px;
+.traits h2,
+.fall h2 {
+    font-family: "Amiri", serif;
+    font-weight: 700;
+    font-size: clamp(28px, 3.8vw, 46px);
+    color: var(--ink);
+    text-align: center;
+    background: linear-gradient(95deg,
+            var(--ink) 0%,
+            var(--gold) 50%,
+            var(--ink) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 18px;
 }
 
-.traits-intro,.fall-intro {
+.traits-intro,
+.fall-intro {
     max-width: 560px;
     margin: 0 auto 70px;
     color: var(--ink-dim);
     line-height: 1.9;
     font-size: 16px;
 }
+
 .fall-video-wrap {
     width: 100vw;
     position: relative;
@@ -817,7 +729,6 @@ footer span {
     }
 }
 
-/* center: portrait emblem */
 .center-emblem {
     position: absolute;
     top: 50%;
@@ -858,7 +769,6 @@ footer span {
     display: block;
 }
 
-/* trait nodes: large image circles with numbered badge + hover-reveal text */
 .node {
     position: absolute;
     width: 214px;
@@ -928,7 +838,6 @@ footer span {
     filter: brightness(0.55);
 }
 
-/* number badge */
 .node-badge {
     position: absolute;
     top: -6px;
@@ -962,7 +871,6 @@ footer span {
     left: -6px;
 }
 
-/* hover-reveal text, drawn directly on the circle (على الصورة نفسها فالنص لازم يفضل فاتح) */
 .node-overlay {
     position: absolute;
     inset: 0;
@@ -1035,6 +943,430 @@ footer span {
     }
 }
 
+/* ============================================================
+   نتائج السقوط وعقوباته — consequences section
+   ============================================================ */
+
+.consq {
+    position: relative;
+    overflow: hidden;
+    padding: 100px 6% 110px;
+    border-top: 1px solid var(--border-gold);
+    background: var(--deep);
+    text-align: center;
+}
+
+.consq-aura {
+    position: absolute;
+    z-index: 0;
+    pointer-events: none;
+    top: 50%;
+    left: 50%;
+    width: 1300px;
+    height: 1300px;
+    margin: -650px 0 0 -650px;
+    background: radial-gradient(circle,
+            rgba(201, 160, 92, 0.1) 0%,
+            rgba(138, 155, 176, 0.08) 45%,
+            transparent 70%);
+    border-radius: 50%;
+    animation: ray-spin 140s linear infinite;
+}
+
+.consq-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 1160px;
+    margin: 0 auto;
+}
+
+.consq-eyebrow {
+    font-family: "Amiri", serif;
+    color: var(--gold);
+    letter-spacing: 3px;
+    font-size: 13px;
+    margin-bottom: 14px;
+}
+
+.consq h2 {
+    font-family: "Amiri", serif;
+    font-weight: 700;
+    font-size: clamp(28px, 3.8vw, 46px);
+    color: var(--ink);
+    text-align: center;
+    background: linear-gradient(95deg,
+            var(--ink) 0%,
+            var(--gold) 50%,
+            var(--ink) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 18px;
+}
+
+.consq-intro {
+    max-width: 620px;
+    margin: 0 auto 56px;
+    color: var(--ink-dim);
+    line-height: 1.9;
+    font-size: 16px;
+}
+
+/* ---------- Tabs ---------- */
+.consq-tabs {
+    position: relative;
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+    padding: 6px;
+    margin-bottom: 56px;
+    border-radius: 999px;
+    border: 1px solid var(--border-gold);
+    background: var(--bg-alt);
+    box-shadow: inset 0 0 20px rgba(201, 160, 92, 0.06);
+}
+
+.consq-tab {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    padding: 12px 26px;
+    border-radius: 999px;
+    font-family: "Tajawal", sans-serif;
+    font-weight: 700;
+    font-size: 14.5px;
+    color: var(--ink-dim);
+    transition: color 0.35s ease;
+}
+
+.consq-tab-num {
+    font-family: "Amiri", serif;
+    font-weight: 700;
+    font-size: 12px;
+    color: var(--gold);
+    opacity: 0.8;
+    transition: opacity 0.35s ease;
+}
+
+.consq-tab.active {
+    color: var(--ink);
+}
+
+.consq-tab.active .consq-tab-num {
+    opacity: 1;
+}
+
+.consq-tab-glider {
+    position: absolute;
+    z-index: 1;
+    top: 6px;
+    bottom: 6px;
+    left: 6px;
+    width: 0;
+    border-radius: 999px;
+    background: linear-gradient(100deg, var(--gold-soft), var(--gold));
+    box-shadow: 0 0 20px 2px rgba(201, 160, 92, 0.45);
+    transition: transform 0.45s cubic-bezier(0.65, 0, 0.35, 1),
+        width 0.45s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+@media (max-width: 700px) {
+    .consq-tabs {
+        flex-direction: column;
+        border-radius: 22px;
+        width: 100%;
+    }
+
+    .consq-tab {
+        justify-content: center;
+    }
+
+    .consq-tab-glider {
+        border-radius: 16px;
+    }
+}
+
+/* ---------- Panels ---------- */
+.consq-panel {
+    display: none;
+}
+
+.consq-panel.active {
+    display: block;
+    animation: panel-in 0.6s ease both;
+}
+
+@keyframes panel-in {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.consq-panel-head {
+    max-width: 760px;
+    margin: 0 auto 44px;
+}
+
+.consq-panel-head h3 {
+    font-family: "Amiri", serif;
+    font-weight: 700;
+    font-size: clamp(22px, 2.6vw, 30px);
+    color: var(--ink);
+    margin-bottom: 18px;
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.3em;
+    cursor: pointer;
+}
+
+.consq-panel-head h3 .h3-word {
+    position: relative;
+    display: inline-block;
+    top: 0;
+    transition: 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.consq-panel-head h3:hover .h3-word:nth-child(odd) {
+    top: -6px;
+}
+
+.consq-panel-head h3:hover .h3-word:nth-child(even) {
+    top: 6px;
+}
+
+.consq-panel-head p {
+    color: var(--ink-dim);
+    line-height: 2;
+    font-size: 15.5px;
+    margin-bottom: 20px;
+}
+
+.consq-panel-head blockquote {
+    position: relative;
+    margin: 0 auto;
+    max-width: 620px;
+    padding: 20px 26px;
+    font-family: "Amiri", serif;
+    font-style: italic;
+    font-size: 15.5px;
+    line-height: 1.95;
+    color: var(--ink);
+    background: var(--bg-alt);
+    border-inline-start: 3px solid var(--gold);
+    border-radius: 4px;
+    text-align: right;
+}
+
+.consq-panel-head blockquote cite {
+    display: block;
+    margin-top: 10px;
+    font-style: normal;
+    font-family: "Tajawal", sans-serif;
+    font-weight: 700;
+    font-size: 12.5px;
+    color: var(--gold);
+}
+
+.consq-sub {
+    font-family: "Amiri", serif;
+    font-weight: 700;
+    font-size: 19px;
+    color: var(--gold);
+    margin-bottom: 30px;
+    position: relative;
+    display: inline-block;
+}
+
+.consq-sub::after {
+    content: "";
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 46px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.consq-closing {
+    max-width: 720px;
+    margin: 46px auto 0;
+    padding-top: 30px;
+    border-top: 1px solid var(--border-gold);
+    color: var(--ink);
+    font-family: "Amiri", serif;
+    font-size: 17px;
+    line-height: 2;
+}
+
+/* ---------- Cards grid ---------- */
+.consq-grid {
+    display: grid;
+    gap: 26px;
+    text-align: right;
+    perspective: 1200px;
+}
+
+.consq-grid-4 {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.consq-grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 980px) {
+
+    .consq-grid-4,
+    .consq-grid-3 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 620px) {
+
+    .consq-grid-4,
+    .consq-grid-3 {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ---------- card: 3D flip (image front / info back) ---------- */
+.c-card {
+    position: relative;
+    height: 360px;
+    perspective: 1400px;
+    background: transparent;
+    border: none;
+    padding: 0;
+    border-radius: 18px;
+    overflow: visible;
+}
+
+.consq-grid-3 .c-card {
+    height: 460px;
+}
+
+.c-card-flip {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.c-card:hover .c-card-flip {
+    transform: rotateY(180deg);
+}
+
+.c-card-face {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    border-radius: 18px;
+    border: 1px solid var(--border-gold);
+    overflow: hidden;
+}
+
+.c-card-front {
+    background: var(--bg-alt);
+}
+
+.c-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.c-card-front-title {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    padding: 16px 20px;
+    background: linear-gradient(to top, rgba(0, 0, 0, .65), transparent);
+    color: #fff;
+    font-family: "Amiri", serif;
+    font-weight: 700;
+    font-size: 16px;
+    text-align: right;
+}
+
+.c-card-back {
+    background: var(--bg-alt);
+    transform: rotateY(180deg);
+    padding: 30px 24px 26px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.c-card-wide {
+    padding: 34px 28px 30px;
+}
+
+.c-card-icon {
+    position: relative;
+    z-index: 1;
+    width: 58px;
+    height: 58px;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #fff, var(--bg-alt) 60%);
+    border: 1.5px solid var(--border-gold);
+    color: var(--gold);
+}
+
+.c-card-icon svg {
+    width: 30px;
+    height: 30px;
+}
+
+.c-card-back h5 {
+    font-family: "Amiri", serif;
+    font-weight: 700;
+    font-size: 17.5px;
+    color: var(--ink);
+    margin-bottom: 10px;
+}
+
+.c-card-back p {
+    color: var(--ink-dim);
+    font-size: 14px;
+    line-height: 1.9;
+}
+
+.c-card-back p cite {
+    display: block;
+    margin-top: 8px;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    color: var(--gold);
+}
+
+.consq [data-aos] {
+    will-change: transform, opacity;
+}
+
 @media (prefers-reduced-motion: reduce) {
 
     .traits-aura,
@@ -1042,449 +1374,989 @@ footer span {
     .node-btn,
     .conn-pulse,
     .eden-light,
-    .eden-branch {
+    .eden-branch,
+    .c-card-flip,
+    .consq-aura,
+    .consq-panel.active {
         animation: none !important;
+        transition: none !important;
     }
 }
 
 /* ============================================================
-   نتائج السقوط وعقوباته — consequences section
-   يُلصق هذا الكود في نهاية ملف style.css الحالي
-   بيستخدم نفس متغيرات الألوان الموجودة في :root
+   بعد سقوط الإنسان — gates section
    ============================================================ */
- 
-.consq {
-  position: relative;
-  overflow: hidden;
-  padding: 100px 6% 110px;
-  border-top: 1px solid var(--border-gold);
-  background: var(--deep);
-  text-align: center;
+
+.gates-section {
+    position: relative;
+    overflow: hidden;
+    padding: 90px 5%;
+    border-top: 1px solid var(--border-gold);
+    background: var(--bg-alt);
+    text-align: center;
 }
- 
-.consq-aura {
-  position: absolute;
-  z-index: 0;
-  pointer-events: none;
-  top: 50%;
-  left: 50%;
-  width: 1300px;
-  height: 1300px;
-  margin: -650px 0 0 -650px;
-  background: radial-gradient(
-    circle,
-    rgba(201, 160, 92, 0.1) 0%,
-    rgba(138, 155, 176, 0.08) 45%,
-    transparent 70%
-  );
-  border-radius: 50%;
-  animation: ray-spin 140s linear infinite;
+
+.gates-aura {
+    position: absolute;
+    z-index: 0;
+    pointer-events: none;
+    top: 50%;
+    left: 50%;
+    width: 1200px;
+    height: 1200px;
+    margin: -600px 0 0 -600px;
+    background: radial-gradient(circle,
+            rgba(201, 160, 92, 0.1) 0%,
+            rgba(138, 155, 176, 0.08) 45%,
+            transparent 70%);
+    border-radius: 50%;
+    animation: ray-spin 130s linear infinite;
 }
- 
-.consq-inner {
-  position: relative;
-  z-index: 1;
-  max-width: 1160px;
-  margin: 0 auto;
+
+.gates-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
 }
- 
-.consq-eyebrow {
-  font-family: "Amiri", serif;
-  color: var(--gold);
-  letter-spacing: 3px;
-  font-size: 13px;
-  margin-bottom: 14px;
+
+.gates-section h2 {
+    font-family: "Amiri", serif;
+    font-weight: 700;
+    font-size: clamp(28px, 3.8vw, 46px);
+    background: linear-gradient(95deg,
+            var(--ink) 0%,
+            var(--gold) 50%,
+            var(--ink) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 10px;
 }
- 
-.consq h2 {
-  font-family: "Amiri", serif;
-  font-weight: 700;
-  font-size: clamp(28px, 3.8vw, 46px);
-  color: var(--ink);
-  text-align: center;
-  background: linear-gradient(
-    95deg,
-    var(--ink) 0%,
-    var(--gold) 50%,
-    var(--ink) 100%
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 18px;
+
+.gates-subtitle {
+    font-family: "Amiri", serif;
+    font-style: italic;
+    color: var(--ink-dim);
+    font-size: 16px;
+    margin-bottom: 60px;
 }
- 
-.consq-intro {
-  max-width: 620px;
-  margin: 0 auto 56px;
-  color: var(--ink-dim);
-  line-height: 1.9;
-  font-size: 16px;
-}
- 
-/* ---------- Tabs ---------- */
-.consq-tabs {
-  position: relative;
-  display: inline-flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 6px;
-  padding: 6px;
-  margin-bottom: 56px;
-  border-radius: 999px;
-  border: 1px solid var(--border-gold);
-  background: var(--bg-alt);
-  box-shadow: inset 0 0 20px rgba(201, 160, 92, 0.06);
-}
- 
-.consq-tab {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  padding: 12px 26px;
-  border-radius: 999px;
-  font-family: "Tajawal", sans-serif;
-  font-weight: 700;
-  font-size: 14.5px;
-  color: var(--ink-dim);
-  transition: color 0.35s ease;
-}
- 
-.consq-tab-num {
-  font-family: "Amiri", serif;
-  font-weight: 700;
-  font-size: 12px;
-  color: var(--gold);
-  opacity: 0.8;
-  transition: opacity 0.35s ease;
-}
- 
-.consq-tab.active {
-  color: var(--ink);
-}
- 
-.consq-tab.active .consq-tab-num {
-  opacity: 1;
-}
- 
-.consq-tab-glider {
-  position: absolute;
-  z-index: 1;
-  top: 6px;
-  bottom: 6px;
-  left: 6px;
-  width: 0;
-  border-radius: 999px;
-  background: linear-gradient(100deg, var(--gold-soft), var(--gold));
-  box-shadow: 0 0 20px 2px rgba(201, 160, 92, 0.45);
-  transition: transform 0.45s cubic-bezier(0.65, 0, 0.35, 1),
-    width 0.45s cubic-bezier(0.65, 0, 0.35, 1);
-}
- 
-@media (max-width: 700px) {
-  .consq-tabs {
-    flex-direction: column;
-    border-radius: 22px;
-    width: 100%;
-  }
-  .consq-tab {
+
+.gates {
+    position: relative;
+    z-index: 1;
+    display: flex;
     justify-content: center;
-  }
-  .consq-tab-glider {
-    border-radius: 16px;
-  }
+    gap: 40px;
+    flex-wrap: wrap;
 }
- 
-/* ---------- Panels ---------- */
-.consq-panel {
-  display: none;
+
+/* ---------- Gate ---------- */
+.gate {
+    perspective: 1800px;
 }
- 
-.consq-panel.active {
-  display: block;
-  animation: panel-in 0.6s ease both;
+
+.door-frame {
+    position: relative;
+    width: 240px;
+    height: 360px;
+    border: 10px solid #5b3818;
+    background: #1a120d;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow:
+        0 20px 40px rgba(0, 0, 0, .5),
+        inset 0 0 20px rgba(255, 255, 255, .05);
 }
- 
-@keyframes panel-in {
-  from {
+
+/* ---------- Light ---------- */
+.light {
+    position: absolute;
+    inset: 0;
     opacity: 0;
-    transform: translateY(18px);
-  }
-  to {
+    z-index: 1;
+    background: radial-gradient(circle,
+            rgba(255, 255, 255, .95),
+            rgba(255, 228, 130, .75),
+            transparent 72%);
+    transition: 1s;
+}
+
+.gold {
+    background: radial-gradient(circle,
+            #fff,
+            rgba(255, 240, 150, .95),
+            rgba(255, 200, 0, .55),
+            transparent 72%);
+}
+
+.gate.open .light {
     opacity: 1;
-    transform: translateY(0);
-  }
-}
- 
-.consq-panel-head {
-  max-width: 760px;
-  margin: 0 auto 44px;
-}
- 
-.consq-panel-head h3 {
-  font-family: "Amiri", serif;
-  font-weight: 700;
-  font-size: clamp(22px, 2.6vw, 30px);
-  color: var(--ink);
-  margin-bottom: 18px;
-  display: inline-flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.3em;
-  cursor: pointer;
+    transform: scale(1.35);
 }
 
-.consq-panel-head h3 .h3-word {
-  position: relative;
-  display: inline-block;
-  top: 0;
-  transition: 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+/* ---------- Door Inside ---------- */
+.door-inside {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 18px;
+    opacity: 0;
+    transition: opacity .5s;
+    color: #fff;
 }
 
-.consq-panel-head h3:hover .h3-word:nth-child(odd) {
-  top: -6px;
+.gate.open .door-inside {
+    opacity: 1;
+    transition-delay: .55s;
 }
 
-.consq-panel-head h3:hover .h3-word:nth-child(even) {
-  top: 6px;
+.door-inside h2 {
+    margin-bottom: 8px;
+    font-size: 16px;
+    line-height: 1.4;
+}
+
+.door-inside ul {
+    margin-top: 10px;
+    line-height: 1.55;
+    text-align: right;
+    font-size: 11px;
+    max-width: 100%;
+}
+
+.door-inside ul li {
+    margin-bottom: 4px;
+}
+
+.stamp {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 4px 10px;
+    border: 2px solid #ff3b3b;
+    color: #ff3b3b;
+    font-weight: bold;
+    font-size: 12px;
+    transform: rotate(-10deg);
+}
+
+.success h1 {
+    color: #ffd700;
+    font-size: 20px;
+    text-shadow: 0 0 15px gold;
+    margin-top: 6px;
+}
+
+.success h2 {
+    color: #5dff87;
+    font-size: 15px;
+}
+
+.success p {
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+/* ---------- Gate Door ---------- */
+.gate .door {
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    transform-origin: left center;
+    transform: rotateY(0deg);
+    transform-style: preserve-3d;
+    transition: transform 1.2s ease;
+    background: linear-gradient(90deg,
+            #3b2313,
+            #704421,
+            #3b2313);
+    box-shadow:
+        inset 0 0 25px rgba(255, 255, 255, .08),
+        12px 0 25px rgba(0, 0, 0, .55);
+}
+
+.gate.open .door {
+    transform: rotateY(-115deg);
+}
+
+.gate .door::before {
+    content: "";
+    position: absolute;
+    left: 33%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: rgba(255, 255, 255, .08);
+    box-shadow:
+        60px 0 rgba(255, 255, 255, .08),
+        120px 0 rgba(255, 255, 255, .08);
+}
+
+.door-front {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+    text-align: center;
+    backface-visibility: hidden;
+}
+
+.door-front h2 {
+    font-size: 30px;
+    line-height: 1.6;
+}
+
+.knob {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #ffd700;
+    box-shadow:
+        0 0 10px gold,
+        0 0 20px gold;
+}
+
+.lock {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    font-size: 24px;
+    transition: 1s;
+}
+
+.gate3.open .lock {
+    opacity: 0;
+    transform: translateY(40px) rotate(180deg);
+}
+
+@media (max-width: 900px) {
+
+    .gates {
+        gap: 25px;
+    }
+
+    .door-frame {
+        width: 200px;
+        height: 310px;
+    }
+
+    .door-front h2 {
+        font-size: 24px;
+    }
+
+    .success h1 {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 380px) {
+    .door-frame {
+        width: 165px;
+        height: 270px;
+    }
+
+    .door-inside {
+        padding: 12px;
+    }
+
+    .door-inside h2 {
+        font-size: 13px;
+    }
+
+    .door-inside ul {
+        font-size: 9.5px;
+        line-height: 1.4;
+    }
+
+    .success h1 {
+        font-size: 16px;
+    }
+
+    .success h2 {
+        font-size: 12px;
+    }
+}
+
+/* ============================================================
+   الفداء — redemption section
+   ============================================================ */
+
+.redemption {
+    position: relative;
+    overflow: hidden;
+    padding: 100px 6% 110px;
+    border-top: 1px solid var(--border-gold);
+    background: var(--deep);
+    text-align: center;
+}
+
+.redemption-aura {
+    position: absolute;
+    z-index: 0;
+    pointer-events: none;
+    top: 50%;
+    left: 50%;
+    width: 1300px;
+    height: 1300px;
+    margin: -650px 0 0 -650px;
+    background: radial-gradient(circle,
+            rgba(201, 160, 92, 0.1) 0%,
+            rgba(138, 155, 176, 0.08) 45%,
+            transparent 70%);
+    border-radius: 50%;
+    animation: ray-spin 140s linear infinite;
+}
+
+.redemption-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+.redemption-eyebrow {
+    font-family: "Amiri", serif;
+    color: var(--gold);
+    letter-spacing: 3px;
+    font-size: 13px;
+    margin-bottom: 14px;
+}
+
+.redemption h2 {
+    font-family: "Amiri", serif;
+    font-weight: 700;
+    font-size: clamp(26px, 3.6vw, 42px);
+    line-height: 1.5;
+    background: linear-gradient(95deg, var(--ink) 0%, var(--gold) 50%, var(--ink) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 10px;
+}
+
+.redemption-sub {
+    font-family: "Amiri", serif;
+    font-style: italic;
+    color: var(--ink-dim);
+    font-size: 15px;
+    margin-bottom: 30px;
+}
+
+.redemption-text {
+    color: var(--ink-dim);
+    line-height: 2.1;
+    font-size: 16px;
+    max-width: 480px;
+    margin: 0 auto 34px;
+}
+
+.redemption-text b {
+    color: var(--gold);
+    font-weight: 700;
+}
+
+/* ---------- interactive box ---------- */
+.light-box {
+    position: relative;
+    margin: 0 auto;
+    height: 300px;
+    width: 100%;
+    max-width: 640px;
+    overflow: hidden;
+    border-radius: 22px;
+    border: 1px solid var(--border-gold);
+    background: rgba(21, 13, 5, 0.94);
+    cursor: crosshair;
+    touch-action: none;
+    user-select: none;
+}
+
+.light-box-rays {
+    position: absolute;
+    inset: -40%;
+    background: conic-gradient(from 0deg,
+            transparent 0deg, rgba(201, 160, 92, 0.07) 10deg, transparent 30deg,
+            transparent 90deg, rgba(201, 160, 92, 0.04) 100deg, transparent 120deg,
+            transparent 210deg, rgba(201, 160, 92, 0.06) 220deg, transparent 240deg);
+    animation: ray-spin 60s linear infinite;
+    pointer-events: none;
+}
+
+.light-box-axis {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 3px;
+    height: 3px;
+    margin: -1.5px 0 0 -1.5px;
+    border-radius: 50%;
+    background: rgba(201, 160, 92, 0.55);
+    box-shadow: 0 0 10px 2px rgba(201, 160, 92, 0.3);
+    pointer-events: none;
+}
+
+.light-glow {
+    pointer-events: none;
+    position: absolute;
+    height: 96px;
+    width: 96px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: left 0.25s ease-out, top 0.25s ease-out;
+    background: radial-gradient(circle,
+            rgba(255, 244, 214, 0.92) 0%,
+            rgba(232, 200, 136, 0.5) 45%,
+            rgba(201, 160, 92, 0.15) 70%,
+            transparent 85%);
+    filter: blur(1px);
+}
+
+.dark-void {
+    pointer-events: none;
+    position: absolute;
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: left 0.25s ease-out, top 0.25s ease-out;
+    background: radial-gradient(circle,
+            #000 0%,
+            #0a0608 55%,
+            rgba(10, 6, 8, 0.55) 75%,
+            transparent 90%);
+    box-shadow:
+        0 0 0 1px rgba(138, 155, 176, 0.15),
+        0 0 26px 6px rgba(0, 0, 0, 0.55);
+}
+
+.light-box-hint {
+    pointer-events: none;
+    position: absolute;
+    inset-inline: 0;
+    bottom: 16px;
+    text-align: center;
+    font-size: 12px;
+    color: rgba(243, 233, 214, 0.4);
+}
+
+.redemption-question {
+    margin-top: 34px;
+    font-family: "Amiri", serif;
+    font-weight: 600;
+    font-size: clamp(17px, 2.1vw, 20px);
+    color: var(--ink-dim);
+}
+
+.redemption-question .hl {
+    color: var(--gold);
+    font-weight: 700;
+}
+
+@media (max-width: 560px) {
+    .light-box {
+        height: 260px;
+    }
+
+    .light-glow {
+        height: 72px;
+        width: 72px;
+    }
+
+    .dark-void {
+        height: 60px;
+        width: 60px;
+    }
+}
+
+/* ============================================================
+   باب الحياة — lifeDoor section
+   ============================================================ */
+
+.lifeDoor {
+    position: relative;
+    overflow: hidden;
+    padding: 50px;
+    border-top: 1px solid var(--border-gold);
+    background: var(--bg-alt);
+    text-align: center;
+}
+
+.lifeDoor-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.lifeDoor h2 {
+    font-family: "Amiri", serif;
+    font-weight: 700;
+    font-size: clamp(28px, 3.8vw, 46px);
+    color: var(--ink);
+    text-align: center;
+    background: linear-gradient(95deg,
+            var(--ink) 0%,
+            var(--gold) 50%,
+            var(--ink) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 18px;
+}
+
+.lifeDoor-intro {
+    max-width: 560px;
+    margin: 0 auto 50px;
+    color: var(--ink-dim);
+    line-height: 1.9;
+    font-size: 16px;
+}
+
+/* ---------- characters row above the door ---------- */
+.characters {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+    margin-bottom: 50px;
+}
+
+.card {
+    width: 170px;
+    height: 180px;
+    background: white;
+    color: #222;
+    border-radius: 20px;
+    cursor: grab;
+    text-align: center;
+    transition: .3s;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, .25);
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.emoji {
+    font-size: 70px;
+    margin-top: 25px;
+}
+
+.card h3 {
+    margin-top: 15px;
+}
+
+/* ---------- the door itself, centered ---------- */
+#doorArea {
+    position: relative;
+    width: 320px;
+    height: 500px;
+    margin: 0 auto;
+}
+
+@media (max-width: 380px) {
+    #doorArea {
+        width: 260px;
+        height: 400px;
+    }
+
+    .doorPanel {
+        width: 130px;
+        height: 400px;
+    }
+
+    .leftDoor::after,
+    .rightDoor::after {
+        top: 195px;
+    }
+
+    #doorArea.open .leftDoor {
+        transform: translateX(-135px);
+    }
+
+    #doorArea.open .rightDoor {
+        transform: translateX(135px);
+    }
+
+    #lock {
+        font-size: 42px;
+        top: 22px;
+    }
+
+    .card {
+        width: 130px;
+        height: 145px;
+    }
+
+    .emoji {
+        font-size: 50px;
+        margin-top: 18px;
+    }
+}
+
+.doorPanel {
+    position: absolute;
+    width: 160px;
+    height: 500px;
+    background: linear-gradient(#8b5a2b, #5d3b17);
+    border: 5px solid #4b2d10;
+    transition: 1.2s;
+    z-index: 2;
+}
+
+.leftDoor {
+    left: 0;
+}
+
+.rightDoor {
+    right: 0;
+}
+
+.leftDoor::after,
+.rightDoor::after {
+    content: "";
+    width: 18px;
+    height: 18px;
+    background: gold;
+    border-radius: 50%;
+    position: absolute;
+    top: 250px;
+}
+
+.leftDoor::after {
+    right: 15px;
+}
+
+.rightDoor::after {
+    left: 15px;
+}
+
+#lock {
+    position: absolute;
+    top: 35px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 55px;
+    z-index: 10;
+    transition: .6s;
+}
+
+#doorArea.open .leftDoor {
+    transform: translateX(-165px);
+}
+
+#doorArea.open .rightDoor {
+    transform: translateX(165px);
+}
+
+#doorArea.open #lock {
+    opacity: 0;
+}
+
+#doorArea::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, #fff9c4, #ffe082, #ffffff);
+    opacity: 0;
+    transition: 1.5s;
+    z-index: 1;
+}
+
+#doorArea.open::before {
+    opacity: 1;
+}
+
+/* ---------- shake ---------- */
+.shake {
+    animation: shake .5s;
+}
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    50% { transform: translateX(10px); }
+    75% { transform: translateX(-10px); }
+    100% { transform: translateX(0); }
+}
+
+/* ============================================================
+   Popup (shared by lifeDoor cards)
+   ============================================================ */
+
+#popup {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 15, 15, 0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    z-index: 999;
+}
+
+.popupContent {
+    position: relative;
+    width: 560px;
+    max-width: 100%;
+    max-height: 85vh;
+    overflow-y: auto;
+    background: var(--bg-alt);
+    color: var(--ink);
+    border: 1px solid var(--border-gold);
+    border-radius: 18px;
+    padding: 40px 34px 32px;
+    animation: popup .4s;
+}
+
+.popupContent::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 18px;
+    pointer-events: none;
+    box-shadow: inset 0 0 40px rgba(201, 160, 92, 0.08);
+}
+
+@keyframes popup {
+    from {
+        transform: scale(.92);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+#popupTitle {
+    font-family: "Amiri", serif;
+    font-weight: 700;
+    font-size: clamp(20px, 2.6vw, 26px);
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border-gold);
+    background: linear-gradient(95deg, var(--ink) 0%, var(--gold) 50%, var(--ink) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#popupBody {
+    font-size: 15px;
+    color: var(--ink-dim);
+}
+
+#popupBody h3 {
+    font-family: "Amiri", serif;
+    font-weight: 700;
+    font-size: 19px;
+    color: var(--ink);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#popupBody ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 6px;
+}
+
+#popupBody li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    line-height: 1.7;
+    padding: 10px 14px;
+    background: rgba(201, 160, 92, 0.06);
+    border-radius: 10px;
+    border-inline-start: 3px solid var(--border-gold);
+}
+
+#popupBody li.ok {
+    border-inline-start-color: #4caf7d;
+}
+
+#popupBody li.bad {
+    border-inline-start-color: #d05a5a;
+}
+
+#popupBody li .mark {
+    flex-shrink: 0;
+    font-size: 15px;
+}
+
+#popupBody li .txt {
+    flex: 1;
+}
+
+#popupBody li .txt strong {
+    display: block;
+    color: var(--ink);
+    font-weight: 700;
+    margin-bottom: 2px;
+    font-size: 14.5px;
+}
+
+#popupBody li .txt span {
+    display: block;
+    font-size: 13.5px;
+    color: var(--ink-dim);
+    line-height: 1.6;
+}
+
+#popupBody hr {
+    border: none;
+    border-top: 1px solid var(--border-gold);
+    margin: 22px 0;
+}
+
+#popupBody .result-block {
+    text-align: center;
+    padding-top: 4px;
+}
+
+#popupBody .result-title {
+    font-family: "Amiri", serif;
+    font-weight: 700;
+    font-size: 20px;
+    color: #4a9a6d;
+    margin-bottom: 12px;
+}
+
+#popupBody .result-text {
+    max-width: 420px;
+    margin: 0 auto;
+    line-height: 2;
+    font-size: 15px;
+    color: var(--ink);
+}
+
+#close {
+    position: absolute;
+    top: 18px;
+    left: 20px;
+    float: none;
+    cursor: pointer;
+    font-size: 20px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(201, 160, 92, 0.1);
+    color: var(--gold);
+    transition: .2s;
+}
+
+#close:hover {
+    color: #fff;
+    background: var(--gold);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .consq-panel-head h3 .h3-word {
-    transition: none;
-  }
-}
- 
-.consq-panel-head p {
-  color: var(--ink-dim);
-  line-height: 2;
-  font-size: 15.5px;
-  margin-bottom: 20px;
-}
- 
-.consq-panel-head blockquote {
-  position: relative;
-  margin: 0 auto;
-  max-width: 620px;
-  padding: 20px 26px;
-  font-family: "Amiri", serif;
-  font-style: italic;
-  font-size: 15.5px;
-  line-height: 1.95;
-  color: var(--ink);
-  background: var(--bg-alt);
-  border-inline-start: 3px solid var(--gold);
-  border-radius: 4px;
-  text-align: right;
-}
- 
-.consq-panel-head blockquote cite {
-  display: block;
-  margin-top: 10px;
-  font-style: normal;
-  font-family: "Tajawal", sans-serif;
-  font-weight: 700;
-  font-size: 12.5px;
-  color: var(--gold);
-}
- 
-.consq-sub {
-  font-family: "Amiri", serif;
-  font-weight: 700;
-  font-size: 19px;
-  color: var(--gold);
-  margin-bottom: 30px;
-  position: relative;
-  display: inline-block;
-}
- 
-.consq-sub::after {
-  content: "";
-  position: absolute;
-  bottom: -8px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 46px;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--gold), transparent);
-}
- 
-.consq-closing {
-  max-width: 720px;
-  margin: 46px auto 0;
-  padding-top: 30px;
-  border-top: 1px solid var(--border-gold);
-  color: var(--ink);
-  font-family: "Amiri", serif;
-  font-size: 17px;
-  line-height: 2;
-}
- 
-/* ---------- Cards grid ---------- */
-.consq-grid {
-  display: grid;
-  gap: 26px;
-  text-align: right;
-  perspective: 1200px;
-}
- 
-.consq-grid-4 {
-  grid-template-columns: repeat(4, 1fr);
-}
- 
-.consq-grid-3 {
-  grid-template-columns: repeat(3, 1fr);
-}
- 
-@media (max-width: 980px) {
-  .consq-grid-4,
-  .consq-grid-3 {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
- 
-@media (max-width: 620px) {
-  .consq-grid-4,
-  .consq-grid-3 {
-    grid-template-columns: 1fr;
-  }
+
+    .redemption-aura,
+    .light-box-rays,
+    .light-glow,
+    .dark-void,
+    .gates-aura,
+    .gate .door,
+    .gate .light,
+    .doorPanel,
+    #doorArea::before,
+    #lock {
+        animation: none !important;
+        transition: none !important;
+    }
 }
 
-/* ---------- card: 3D flip (image front / info back) ---------- */
+/* ============================================================
+   Scrollbar — hidden native scrollbar, golden cross indicator only
+   ============================================================ */
 
-/* الحاوية: بس بتدي المنظور والأبعاد */
-.c-card {
-  position: relative; 
-  height: 360px;          
-  perspective: 1400px;
-  background: transparent;
-  border: none;
-  padding: 0;
-  border-radius: 18px;
-  overflow: visible;
-}
-.consq-grid-3 .c-card {
-  height: 460px;
-}
-/* اللي بتعمل الـ flip فعليًا */
-.c-card-flip {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transform-style: preserve-3d;
-  transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+/* hide native scrollbar everywhere but keep scrolling functional */
+html {
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* old Edge/IE */
 }
 
-.c-card:hover .c-card-flip {
-  transform: rotateY(180deg);
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    display: none;
+    /* Chrome, Safari, new Edge */
+    width: 0;
+    height: 0;
 }
 
-/* الوشين، فوق بعض بالظبط */
-.c-card-face {
-  position: absolute;
-  inset: 0;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-  border-radius: 18px;
-  border: 1px solid var(--border-gold);
-  overflow: hidden;
+/* custom fixed track + moving golden cross (requires the markup/JS below) */
+#scrollCross {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 14px;
+    width: 30px;
+    z-index: 1000;
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
 }
 
-/* ===== الوش الأول: الصورة ===== */
-.c-card-front {
-  background: var(--bg-alt);
+#scrollCross .track {
+    position: absolute;
+    top: 4%;
+    bottom: 4%;
+    width: 2px;
+    background: linear-gradient(var(--border-gold), var(--gold), var(--border-gold));
+    opacity: 0.7;
+    border-radius: 2px;
 }
 
-.c-card-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+#scrollCross .cross {
+    position: absolute;
+    top: 0;
+    font-size: 30px;
+    line-height: 1;
+    color: var(--gold);
+    text-shadow: 0 0 12px rgba(201, 160, 92, 0.8);
+    transform: translateY(-50%);
+    transition: top 0.08s linear;
+    will-change: top;
 }
 
-.c-card-front-title {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  padding: 16px 20px;
-  background: linear-gradient(to top, rgba(0,0,0,.65), transparent);
-  color: #fff;
-  font-family: "Amiri", serif;
-  font-weight: 700;
-  font-size: 16px;
-  text-align: right;
-}
+@media (max-width: 700px) {
+    #scrollCross {
+        width: 20px;
+        right: 6px;
+    }
 
-/* ===== الوش التاني: المعلومات ===== */
-.c-card-back {
-  background: var(--bg-alt);
-  transform: rotateY(180deg);
-  padding: 30px 24px 26px;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden; 
-}
-
-.c-card-wide { padding: 34px 28px 30px; }
-
-.c-card-icon {
-  position: relative;
-  z-index: 1;
-  width: 58px;
-  height: 58px;
-  margin-bottom: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, #fff, var(--bg-alt) 60%);
-  border: 1.5px solid var(--border-gold);
-  color: var(--gold);
-}
-
-.c-card-icon svg { width: 30px; height: 30px; }
-
-.c-card-back h5 {
-  font-family: "Amiri", serif;
-  font-weight: 700;
-  font-size: 17.5px;
-  color: var(--ink);
-  margin-bottom: 10px;
-}
-
-.c-card-back p {
-  color: var(--ink-dim);
-  font-size: 14px;
-  line-height: 1.9;
-}
-
-.c-card-back p cite {
-  display: block;
-  margin-top: 8px;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 12px;
-  color: var(--gold);
+    #scrollCross .cross {
+        font-size: 20px;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .c-card-flip { transition: none; }
-}
-
-/* stagger-safe fallback for browsers where AOS hasn't fired yet */
-.consq [data-aos] {
-  will-change: transform, opacity;
-}
- 
-@media (prefers-reduced-motion: reduce) {
-  .consq-aura,
-  .consq-panel.active {
-    animation: none !important;
-  }
+    #scrollCross .cross {
+        transition: none;
+    }
 }

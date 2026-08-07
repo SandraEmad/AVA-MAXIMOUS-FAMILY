@@ -813,6 +813,104 @@
     </div>
 
   </section>
+
+
+
+
+  
+<section class="traits" id="sec-promises">
+  <div class="traits-aura"></div>
+  <div class="traits-inner">
+    <div class="eyebrow">06 — PROPHECIES OF REDEMPTION</div>
+    <h2>وعود الفداء</h2>
+    <div class="subtitle">Promises Fulfilled in Christ</div>
+    <div class="traits-intro">
+      لم تكن حادثة الفداء صدفة، بل كانت في فكر الله منذ الأزل.
+      اضغط على <b>كل دائرة</b> لترى <b>وعدًا من وعود الفداء</b>، ونبوته، وتحقيقها.
+    </div>
+
+    <div class="beam"></div>
+    <div class="timeline-wrap">
+      <svg class="wave" viewBox="0 0 400 120" preserveAspectRatio="none">
+        <path class="wave-path" d="M 10 85 C 70 35, 130 35, 190 70 S 320 105, 390 50"></path>
+        <g id="dotsGroup"></g>
+      </svg>
+    </div>
+
+    <div class="card">
+      <div class="card-kicker"><span id="promiseIndex">وعد ١</span></div>
+      <div id="cardBody">
+        <div class="card-title" id="promiseTitle"></div>
+        <div class="verse-block">
+          <div class="verse-label prophecy">النبوة</div>
+          <div class="verse-text" id="prophecyText"></div>
+          <span class="verse-ref" id="prophecyRef"></span>
+        </div>
+        <div class="divider"></div>
+        <div class="verse-block">
+          <div class="verse-label fulfilled">التحقيق</div>
+          <div class="verse-text" id="fulfillText"></div>
+          <span class="verse-ref" id="fulfillRef"></span>
+        </div>
+      </div>
+      <div class="nav-arrows">
+        <button id="prevBtn" aria-label="السابق">›</button>
+        <button id="nextBtn" aria-label="التالي">‹</button>
+      </div>
+    </div>
+
+    <div class="pager" id="pager"></div>
+
+    <div class="footer-line">
+      فلا يخلو سفر من أسفار الكتاب المقدس إلا ويخبر <b>عن صلب المسيح وفدائه للبشرية</b>.
+    </div>
+  </div>
+</section>
+
+<section class="traits" id="sec-figures">
+  <div class="traits-aura"></div>
+  <div class="traits-inner">
+    <div class="eyebrow">07 — SHADOWS OF CHRIST</div>
+    <h2>شخصيات من العهد القديم</h2>
+    <div class="subtitle">Figures Who Foreshadowed Him</div>
+    <div class="traits-intro">
+      عاشت في العهد القديم شخصيات كانت <b>ترمز من بعض الأوجه</b> لذبيحة المسيح.
+    </div>
+    <div class="figures-grid" id="figuresGrid"></div>
+  </div>
+</section>
+
+<section class="traits" id="sec-relics">
+  <div class="traits-aura"></div>
+  <div class="traits-inner">
+    <div class="eyebrow">08 — SYMBOLS OF REDEMPTION</div>
+    <h2>رموز من العهد القديم</h2>
+    <div class="subtitle">Objects That Foretold the Cross</div>
+    <div class="traits-intro">
+      يوجد في العهد القديم <b>أحداث وأشياء</b> كانت رموزًا للفداء. اضغط على كل رمز لتقرأ معناه.
+    </div>
+    <div class="relics-list" id="relicsList"></div>
+  </div>
+</section>
+
+<section class="traits" id="sec-witnesses">
+  <div class="traits-aura"></div>
+  <div class="traits-inner">
+    <div class="eyebrow">09 — GOD ALONE REDEEMS</div>
+    <h2>الله وحده هو الفادي</h2>
+    <div class="subtitle">One Voice, Two Testaments</div>
+    <div class="traits-intro">
+      أدلة كتابية على <b>تفرّد الله وحده</b> بمهمة فداء الإنسان وخلاصه.
+    </div>
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="ot">العهد القديم</button>
+      <button class="tab-btn" data-tab="nt">العهد الجديد</button>
+    </div>
+    <div id="quotesPane" class="quotes-list"></div>
+  </div>
+</section>
+
+  
   <section class="story">
     <p class="story-eyebrow" data-aos="fade-up">الختام</p>
     <h2 data-aos="fade-up">كيف نستردّ صورة الله فينا؟</h2>
@@ -1272,6 +1370,208 @@ document.addEventListener("keydown", (e) => {
 
 });
 </script>
+
+<script>
+/* ============ PROMISES ============ */
+const promises = [
+  { title: "حاجة العالم للخلاص",
+    prophecyText: "«لَيْتَكَ تَشُقُّ السَّمَاوَاتِ وَتَنْزِلُ»", prophecyRef: "إش ٦٤: ١",
+    fulfillText: "«وَلَيْسَ أَحَدٌ صَعِدَ إِلَى السَّمَاءِ إِلاَّ الَّذِي نَزَلَ مِنَ السَّمَاءِ ابْنُ الإِنْسَانِ»", fulfillRef: "يو ٣: ١٣" },
+  { title: "الوعد بالفداء",
+    prophecyText: "«وَأَضَعُ عَدَاوَةً بَيْنَكَ وَبَيْنَ الْمَرْأَةِ... هُوَ يَسْحَقُ رَأْسَكِ»", prophecyRef: "تك ٣: ١٥",
+    fulfillText: "«ابْنُ الإِنْسَانِ... جَاءَ لِيَبْذِلَ نَفْسَهُ فِدْيَةً عَنْ كَثِيرِينَ»", fulfillRef: "مت ٢٠: ٢٨" },
+  { title: "بيعه بثلاثين من الفضة",
+    prophecyText: "«فَوَزَنُوا أُجْرَتِي ثَلاَثِينَ مِنَ الْفِضَّةِ»", prophecyRef: "زك ١١: ١٢",
+    fulfillText: "«فَجَعَلُوا لَهُ ثَلاَثِينَ مِنَ الْفِضَّةِ»", fulfillRef: "مت ٢٦: ١٤-١٥" },
+  { title: "صلبه بالمسامير",
+    prophecyText: "«ثَقَبُوا يَدَيَّ وَرِجْلَيَّ»", prophecyRef: "مز ٢٢: ١٦",
+    fulfillText: "«لَمَّا مَضَوْا بِهِ إِلَى جُمْجُمَةَ صَلَبُوهُ هُنَاكَ»", fulfillRef: "لو ٢٣: ٣٣" },
+  { title: "الظلمة على الأرض",
+    prophecyText: "«أُغَيِّبُ الشَّمْسَ فِي الظُّهْرِ وَأُقْتِمُ الأَرْضَ فِي يَوْمِ نُورٍ»", prophecyRef: "عا ٨: ٩",
+    fulfillText: "«مِنَ السَّاعَةِ السَّادِسَةِ كَانَتْ ظُلْمَةٌ عَلَى كُلِّ الأَرْضِ»", fulfillRef: "مت ٢٧: ٤٥" },
+  { title: "الخلاص من الموت",
+    prophecyText: "«مِنْ يَدِ الْهَاوِيَةِ أَفْدِيهِمْ... أَيْنَ شَوْكَتُكَ يَا هَاوِيَةُ؟»", prophecyRef: "هو ١٣: ١٤",
+    fulfillText: "«ابْتُلِعَ الْمَوْتُ إِلَى غَلَبَةٍ... شُكْراً لِلَّهِ الَّذِي يُعْطِينَا الْغَلَبَةَ»", fulfillRef: "١كو ١٥: ٥٤-٥٧" }
+];
+const arabicOrdinal = ["١","٢","٣","٤","٥","٦"];
+const positions = [ {x:28,y:78},{x:96,y:44},{x:164,y:55},{x:232,y:78},{x:300,y:92},{x:372,y:52} ];
+
+const dotsGroup = document.getElementById('dotsGroup');
+positions.forEach((p, i) => {
+  const g = document.createElementNS("http://www.w3.org/2000/svg","g");
+  g.setAttribute("class","dot");
+  g.setAttribute("data-i", i);
+  g.innerHTML = `<circle class="dot-hit" cx="${p.x}" cy="${p.y}" r="16"></circle><circle class="dot-core" cx="${p.x}" cy="${p.y}" r="5.5"></circle>`;
+  g.addEventListener('click', () => setActive(i));
+  dotsGroup.appendChild(g);
+});
+const pager = document.getElementById('pager');
+positions.forEach((_, i) => {
+  const d = document.createElement('i');
+  d.addEventListener('click', () => setActive(i));
+  pager.appendChild(d);
+});
+let current = 0;
+function render(i){
+  const p = promises[i];
+  document.getElementById('promiseIndex').textContent = `وعد ${arabicOrdinal[i]}`;
+  document.getElementById('promiseTitle').textContent = p.title;
+  document.getElementById('prophecyText').textContent = p.prophecyText;
+  document.getElementById('prophecyRef').textContent = p.prophecyRef;
+  document.getElementById('fulfillText').textContent = p.fulfillText;
+  document.getElementById('fulfillRef').textContent = p.fulfillRef;
+  document.querySelectorAll('.dot').forEach(d => d.classList.toggle('active', +d.dataset.i === i));
+  document.querySelectorAll('.pager i').forEach((d, idx) => d.classList.toggle('on', idx === i));
+  document.getElementById('prevBtn').disabled = i === 0;
+  document.getElementById('nextBtn').disabled = i === promises.length - 1;
+}
+function setActive(i){
+  if(i === current){ render(i); return; }
+  current = i;
+  const body = document.getElementById('cardBody');
+  body.classList.add('fade');
+  setTimeout(() => { render(i); body.classList.remove('fade'); }, 180);
+}
+document.getElementById('prevBtn').addEventListener('click', () => { if(current > 0) setActive(current - 1); });
+document.getElementById('nextBtn').addEventListener('click', () => { if(current < promises.length - 1) setActive(current + 1); });
+render(0);
+
+/* ============ ICONS ============ */
+const ICONS = {
+  flame: `<path d="M12 2c1 4-3 5-3 9a3 3 0 0 0 6 0c0-2-1-3-1-5 2 1 3 3 3 6a5 5 0 0 1-10 0C7 7 10 6 12 2Z" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linejoin="round"/>`,
+  dove: `<path d="M3 12c3-3 6-3 8-1 1-3 4-5 8-4-2 1-3 2-3 4 2 0 3 1 3 2-3 0-5-1-6-3-1 3-4 4-7 3-1 2-3 3-6 3 1-2 2-3 3-4Z" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linejoin="round"/>`,
+  cup: `<path d="M7 4h10l-1 6a4 4 0 0 1-8 0L7 4Z" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linejoin="round"/><path d="M12 14v4M9 20h6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>`,
+  mountain: `<path d="M3 18 9 8l4 6 2-3 6 7H3Z" stroke="currentColor" stroke-width="1.3" fill="none" stroke-linejoin="round"/>`,
+  star: `<path d="M12 3l2.2 5.6L20 9.3l-4.4 3.8L17 19l-5-3.4L7 19l1.4-5.9L4 9.3l5.8-.7L12 3Z" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linejoin="round"/>`,
+  shield: `<path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3Z" stroke="currentColor" stroke-width="1.3" fill="none" stroke-linejoin="round"/>`,
+  sunrise: `<path d="M4 17h16M6 17a6 6 0 0 1 12 0M12 5v3M6 8l1.5 1.5M18 8l-1.5 1.5" stroke="currentColor" stroke-width="1.3" fill="none" stroke-linecap="round"/>`,
+  fish: `<path d="M3 12c3-4 8-6 12-4-1 1-1 3 0 4 1 1 1 3 0 4-4 2-9 0-12-4Z" stroke="currentColor" stroke-width="1.3" fill="none" stroke-linejoin="round"/><circle cx="7" cy="11" r="0.6" fill="currentColor"/><path d="M15 8l3-2M15 16l3 2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>`,
+  tree: `<path d="M12 3 7 10h2l-3 5h3v6h6v-6h3l-3-5h2L12 3Z" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linejoin="round"/>`,
+  hands: `<path d="M5 6l14 12M19 6 5 18" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>`,
+  wave: `<path d="M3 14c0-4 2-9 2-9M21 14c0-4-2-9-2-9M3 14a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round"/>`,
+  treedrop: `<path d="M12 3 8 10h2l-2 4h3v7h2v-7h3l-2-4h2L12 3Z" stroke="currentColor" stroke-width="1.1" fill="none" stroke-linejoin="round"/>`,
+  rockdrop: `<path d="M4 16c0-3 3-5 8-5s8 2 8 5-3 3-8 3-8 0-8-3Z" stroke="currentColor" stroke-width="1.2" fill="none"/><path d="M12 6c1 2 1 3 0 4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>`,
+  raisedarms: `<path d="M12 4v16M12 4 6 9M12 4l6 5M7 18h10" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" fill="none"/>`,
+  serpent: `<path d="M12 3v3M12 21v-4M9 6c0 2 6 2 6 4s-6 2-6 4 6 2 6 4" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round"/>`
+};
+function iconSVG(key){ return `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">${ICONS[key]}</svg>`; }
+
+/* ============ FIGURES ============ */
+const figures = [
+  { name: "هابيل", ref: "(تك ٤)", icon: "flame" },
+  { name: "نوح", ref: "(تك ٨)", icon: "dove" },
+  { name: "ملكي صادق", ref: "(تك ١٤)", icon: "cup" },
+  { name: "إسحق", ref: "(تك ٢٢)", icon: "mountain" },
+  { name: "يوسف", ref: "(تك ٣٧)", icon: "star" },
+  { name: "يشوع بن نون", ref: "(سفر يشوع)", icon: "shield" },
+  { name: "أيوب", ref: "(سفر أيوب)", icon: "sunrise" },
+  { name: "يونان", ref: "(سفر يونان)", icon: "fish" }
+];
+const figuresGrid = document.getElementById('figuresGrid');
+figures.forEach((f) => {
+  const card = document.createElement('div');
+  card.className = 'figure-card';
+  card.innerHTML = `<div class="figure-glyph">${iconSVG(f.icon)}</div><div class="figure-name">${f.name}</div><div class="figure-ref">${f.ref}</div>`;
+  figuresGrid.appendChild(card);
+});
+
+/* ============ RELICS ============ */
+const relics = [
+  { name: "شجرة الحياة", ref: "(تك ٣)", icon: "tree",
+    desc: "التي من يأكل منها يحيا إلى الأبد، كانت رمزًا إلى ذبيحة المسيح الذي من يأكل جسده ويشرب دمه يحيا إلى الأبد." },
+  { name: "مباركة يعقوب لابنَي يوسف", ref: "(تك ٤٨)", icon: "hands",
+    desc: "وهو واضعٌ يديه على رأسيهما على شكل صليب، كانت رمزًا للبركات والنعم التي ستحل بالصليب المجيد." },
+  { name: "عصا موسى", ref: "(خر ١٤)", icon: "wave",
+    desc: "التي شقّت البحر الأحمر وأنقذت الشعب من فرعون وجنوده، كانت رمزًا لخشبة الصليب الذي به نجونا من الشيطان وكل جنوده." },
+  { name: "شجرة موسى", ref: "(خر ١٥)", icon: "treedrop",
+    desc: "التي طرحها في الماء فتحوّل إلى ماء عذب شرب منه الشعب ونجا من الموت، كانت رمزًا لشجرة الصليب الذي به نجونا من الموت." },
+  { name: "صخرة موسى", ref: "(خر ١٧)", icon: "rockdrop",
+    desc: "التي ضربها بالعصا فجرى منها ماء فشرب الشعب ونجا من الموت، كانت رمزًا إلى السيد المسيح الذي طُعن بالحربة في جنبه على الصليب، فخرج منه دم وماء.",
+    quote: "«لأنهم كانوا يشربون من صخرة روحية تابعتهم، والصخرة كانت المسيح» (١كو ١٠: ٤)" },
+  { name: "موسى رافعًا يديه على شكل صليب", ref: "(خر ١٧: ١١)", icon: "raisedarms",
+    desc: "جعل الشعب ينتصر في حربه مع عماليق، وكان هذا رمزًا للنصرة بعلامة الصليب.",
+    quote: "«وكان إذا رفع موسى يده أن إسرائيل يغلب، وإذا خفض يده أن عماليق يغلب»" },
+  { name: "الحية النحاسية", ref: "(عد ٢١)", icon: "serpent",
+    desc: "كل من لدغته الحية ونظر إلى الحية النحاسية يُشفى ويحيا، وهكذا كانت الحياة والنجاة بصليب السيد المسيح.",
+    quote: "«وكما رفع موسى الحية في البرية هكذا ينبغي أن يُرفع ابن الإنسان» (يو ٣: ١٤-١٥)" }
+];
+const relicsList = document.getElementById('relicsList');
+relics.forEach((r) => {
+  const el = document.createElement('div');
+  el.className = 'relic';
+  el.innerHTML = `
+    <div class="relic-head">
+      <div class="relic-icon">${iconSVG(r.icon)}</div>
+      <div class="relic-title-wrap">
+        <div class="relic-name">${r.name}</div>
+        <div class="relic-ref">${r.ref}</div>
+      </div>
+      <div class="relic-caret">‹</div>
+    </div>
+    <div class="relic-body">
+      <div class="relic-body-inner">
+        <div class="relic-desc">${r.desc}</div>
+        ${r.quote ? `<div class="relic-quote">${r.quote}</div>` : ''}
+      </div>
+    </div>`;
+  const head = el.querySelector('.relic-head');
+  const body = el.querySelector('.relic-body');
+  head.addEventListener('click', () => {
+    const isOpen = el.classList.contains('open');
+    document.querySelectorAll('.relic.open').forEach(other => {
+      if(other !== el){ other.classList.remove('open'); other.querySelector('.relic-body').style.maxHeight = null; }
+    });
+    if(isOpen){ el.classList.remove('open'); body.style.maxHeight = null; }
+    else { el.classList.add('open'); body.style.maxHeight = body.scrollHeight + 'px'; }
+  });
+  relicsList.appendChild(el);
+});
+
+/* ============ WITNESSES ============ */
+const witnesses = {
+  ot: [
+    { text: "فَدَى نَفْسِي مِنَ الْعُبُورِ إِلَى الْحُفْرَةِ فَتَرَى حَيَاتِيَ النُّورَ", speaker: "أيوب", ref: "أى ٣٣: ٢٨" },
+    { text: "الرَّبُّ فَادِي نُفُوسِ عَبِيدِهِ", speaker: "المزامير", ref: "مز ٣٤: ٢٢" },
+    { text: "إِنَّمَا اللهُ يُفَدِي نَفْسِي مِنْ يَدِ الْهَاوِيَةِ", speaker: "المزامير", ref: "مز ٤٩: ١٥" }
+  ],
+  nt: [
+    { text: "تُعَظِّمُ نَفْسِي الرَّبَّ، وَتَبْتَهِجُ رُوحِي بِاللهِ مُخَلِّصِي", speaker: "العذراء مريم", ref: "لو ١: ٤٧-٤٨", note: "قاصدة بذلك أن الله هو المخلّص لها من الخطيئة." },
+    { text: "مُبَارَكٌ الرَّبُّ إِلهُ إِسْرَائِيلَ لأَنَّهُ افْتَقَدَ وَصَنَعَ فِدَاءً لِشَعْبِهِ", speaker: "زكريا الكاهن", ref: "لو ١: ٦٨" },
+    { text: "يَفْدِينَا مِنْ كُلِّ إِثْمٍ", speaker: "بولس الرسول", ref: "تي ٢: ١٤" },
+    { text: "بِمُقْتَضَى رَحْمَتِهِ خَلَّصَنَا", speaker: "بولس الرسول", ref: "تي ٣: ٥" },
+    { text: "وَيُطَهِّرُنَا مِنْ كُلِّ إِثْمٍ", speaker: "يوحنا الرسول", ref: "١يو ١: ٩", note: "والتطهير من كل إثم يتضمّن الخلاص منه." },
+    { text: "الإِلهُ الْحَكِيمُ الْوَحِيدُ مُخَلِّصُنَا", speaker: "يهوذا الرسول", ref: "يه ٢٥" }
+  ]
+};
+const quotesPane = document.getElementById('quotesPane');
+function renderQuotes(tab){
+  quotesPane.innerHTML = '';
+  witnesses[tab].forEach(q => {
+    const card = document.createElement('div');
+    card.className = 'quote-card';
+    card.innerHTML = `
+      <div class="quote-mark">”</div>
+      <div class="quote-text">${q.text}</div>
+      ${q.note ? `<div class="quote-note">${q.note}</div>` : ''}
+      <div class="quote-foot">
+        <span class="quote-speaker">${q.speaker}</span>
+        <span class="quote-sep">•</span>
+        <span class="quote-ref">${q.ref}</span>
+      </div>`;
+    quotesPane.appendChild(card);
+  });
+}
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    quotesPane.style.opacity = 0;
+    setTimeout(() => { renderQuotes(btn.dataset.tab); quotesPane.style.opacity = 1; }, 180);
+  });
+});
+renderQuotes('ot');
+</script>
+
 
 </body>
 

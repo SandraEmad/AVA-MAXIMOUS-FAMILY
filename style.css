@@ -1493,7 +1493,7 @@ footer span {
 
 .door-inside h2 {
     margin-bottom: 8px;
-    font-size: 16px;
+    font-size: 25px;
     line-height: 1.4;
 }
 
@@ -1507,6 +1507,8 @@ footer span {
 
 .door-inside ul li {
     margin-bottom: 4px;
+        color: #000;
+    font-size: 17px;
 }
 
 .stamp {
@@ -1521,9 +1523,9 @@ footer span {
 }
 
 .success h1 {
-    color: #ffd700;
-    font-size: 20px;
-    text-shadow: 0 0 15px gold;
+    color: #000;
+    font-size: 25px;
+    text-shadow: 0 0 15px #000;
     margin-top: 6px;
 }
 
@@ -1531,7 +1533,10 @@ footer span {
     color: #5dff87;
     font-size: 15px;
 }
-
+.success .stamp{
+color: #5dff87;
+border-color: #5dff87;
+}
 .success p {
     font-size: 12px;
     margin-top: 4px;
@@ -1863,8 +1868,8 @@ footer span {
     position: relative;
     overflow: hidden;
     padding: 50px;
-    border-top: 1px solid var(--border-gold);
-    background: var(--bg-alt);
+     border-top: 1px solid var(--border-gold);
+    background: var(--deep);
     text-align: center;
 }
 
@@ -2336,51 +2341,28 @@ body::-webkit-scrollbar {
     }
 }
 
-/* 
-  .traits, .fall{
-    position: relative;
+
+  .sec-witnesses{
+      position: relative;
     overflow: hidden;
-    padding: 60px 22px 56px;
+    padding: 90px 5%;
     border-top: 1px solid var(--border-gold);
     background: var(--bg-alt);
     text-align: center;
   }
-  .traits:nth-of-type(even){ background: var(--deep); }
+  .sec-witnesses:nth-of-type(even){ background: var(--deep); }
 
-  .traits-aura{
-    position: absolute;
-    z-index: 0;
-    pointer-events: none;
-    top: 50%;
-    left: 50%;
-    width: 1100px;
-    height: 1100px;
-    margin: -550px 0 0 -550px;
-    background: radial-gradient(circle,
-        rgba(138, 155, 176, 0.16) 0%,
-        rgba(201, 160, 92, 0.10) 45%,
-        transparent 70%);
-    border-radius: 50%;
-    animation: ray-spin 130s linear infinite;
-  }
 
-  .traits-inner{
+
+  .sec-witnesses-inner{
     position:relative;
     z-index:1;
-    max-width: 460px;
+
     margin: 0 auto;
   }
 
-  .eyebrow{
-    letter-spacing:3px;
-    font-size:11px;
-    color: var(--ink-dim);
-    text-transform:uppercase;
-    margin-bottom: 18px;
-    direction: ltr;
-  }
 
-  .traits h2{
+  .sec-witnesses h2{
     font-family: "Amiri", serif;
     font-weight: 700;
     font-size: clamp(26px, 6vw, 36px);
@@ -2392,25 +2374,17 @@ body::-webkit-scrollbar {
     margin: 0 0 8px;
     line-height:1.5;
   }
-  .subtitle{
-    font-size:14px;
-    font-style:italic;
-    color: var(--ink-dim);
-    letter-spacing:0.5px;
-    margin-bottom: 20px;
-    direction: ltr;
-  }
 
-  .traits-intro{
+  .sec-witnesses-intro{
     max-width: 360px;
     margin: 0 auto 34px;
     color: var(--ink-dim);
     line-height: 1.9;
     font-size: 15px;
   }
-  .traits-intro b{ color: var(--gold); font-weight:600; }
+  .sec-witnesses-intro b{ color: var(--gold); font-weight:600; }
 
-  /* ---- timeline (promises) ---- */
+  /* ---- timeline (promises) ----*/
   .beam{
     width:1px; height:36px;
     background: linear-gradient(to bottom, transparent, var(--border-gold), var(--gold));
@@ -2440,7 +2414,7 @@ body::-webkit-scrollbar {
   .card-title{
     font-family:'Amiri', serif; font-size:21px; color: var(--ink); margin: 0 0 16px;
     line-height:1.6; min-height: 34px; font-weight:700;
-  } */
+  } 
   .verse-block{ margin-bottom: 14px; }
   .verse-label{ font-size:11.5px; letter-spacing:1px; margin-bottom:6px; }
   .verse-label.prophecy{ color: var(--accent); }
@@ -2516,16 +2490,92 @@ body::-webkit-scrollbar {
     border-color: var(--gold);
     font-weight:600;
   }
-  .quotes-list{ display:flex; flex-direction:column; gap:13px; text-align:center; }
-  .quote-card{ background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 14px; padding: 20px 18px 15px; position:relative; }
-  .quote-mark{ position:absolute; top:2px; right:14px; font-family:'Amiri', serif; font-size:34px; color: var(--border-gold); line-height:1; }
-  .quote-text{ font-family:'Amiri', serif; font-size:16px; line-height:1.95; color: var(--ink); margin-bottom: 10px; }
-  .quote-note{ font-size:12.5px; color: var(--ink-dim); line-height:1.8; margin-bottom: 8px; }
-  .quote-foot{ display:flex; align-items:center; justify-content:center; gap:8px; }
-  .quote-speaker{ font-size:13px; color: var(--gold); font-weight:600; }
-  .quote-sep{ color: var(--ink-dim); font-size:11px; }
-  .quote-ref{ font-size:12px; color: var(--ink-dim); }
-  #quotesPane{ transition: opacity 0.3s ease; }
+/* ============ WITNESSES GRID ============ */
+.quotes-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* عرض كرتين بجانب بعض */
+  gap: 20px;
+  text-align: center;
+}
+
+.quote-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 14px;
+  padding: 24px 20px 18px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* المحافظة على محاذاة الجزء السفلي */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.quote-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+.quote-mark {
+  position: absolute;
+  top: 4px;
+  right: 14px;
+  font-family: 'Amiri', serif;
+  font-size: 34px;
+  color: var(--border-gold);
+  line-height: 1;
+  pointer-events: none;
+}
+
+.quote-text {
+  font-family: 'Amiri', serif;
+  font-size: 17px;
+  line-height: 1.95;
+  color: var(--ink);
+  margin-bottom: 10px;
+}
+
+.quote-note {
+  font-size: 13px;
+  color: var(--ink-dim);
+  line-height: 1.8;
+  margin-bottom: 12px;
+  background: rgba(201, 160, 92, 0.08); /* تمييز الملاحظة بخلفية خفيفة */
+  padding: 6px 12px;
+  border-radius: 6px;
+}
+
+.quote-foot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: auto; /* دفع اسم القائل والشاهد للأسفل تلقائياً */
+  padding-top: 8px;
+}
+
+.quote-speaker {
+  font-size: 13px;
+  color: var(--gold);
+  font-weight: 600;
+}
+
+.quote-sep {
+  color: var(--ink-dim);
+  font-size: 11px;
+}
+
+.quote-ref {
+  font-size: 12px;
+  color: var(--ink-dim);
+}
+
+/* التجاوب مع شاشات الموبايل */
+@media (max-width: 680px) {
+  .quotes-list {
+    grid-template-columns: 1fr; /* كرت واحد لكل سطر في الشاشات الصغيرة */
+    gap: 14px;
+  }
+}
 
 .proph-section{
     position: relative;

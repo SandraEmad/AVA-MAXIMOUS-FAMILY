@@ -723,7 +723,7 @@
   <div class="sec-witnesses-inner">
     <h2>الله وحده هو الفادي</h2>
     <div class="sec-witnesses-intro">
-      أدلة كتابية على <b>تفرّد الله وحده</b> بمهمة فداء الإنسان وخلاصه.
+      أدلة كتابية على تفرّد الله وحده بمهمة فداء الإنسان وخلاصه.
     </div>
     <div class="tabs">
       <button class="tab-btn active" data-tab="ot">العهد القديم</button>
@@ -733,15 +733,13 @@
   </div>
 </section>
 
-
-  
 <section class="sec-promises" id="sec-promises">
   <div class="sec-promises-aura"></div>
   <div class="sec-promises-inner">
     <h2>وعود الفداء</h2>
     <div class="sec-promises-intro">
       لم تكن حادثة الفداء صدفة، بل كانت في فكر الله منذ الأزل.
-      اضغط على <b>كل دائرة</b> لترى <b>وعدًا من وعود الفداء</b>، ونبوته، وتحقيقها.
+      اضغط على كل دائرة لترى وعدًا من وعود الفداء، ونبوته، وتحقيقها.
     </div>
 
     <div class="beam"></div>
@@ -782,26 +780,22 @@
   </div>
 </section>
 
-<section class="traits" id="sec-figures">
-  <div class="traits-aura"></div>
-  <div class="traits-inner">
-    <div class="eyebrow">07 — SHADOWS OF CHRIST</div>
+<section class="sec-figures" id="sec-figures">
+  <div class="figures-inner">
     <h2>شخصيات من العهد القديم</h2>
-    <div class="subtitle">Figures Who Foreshadowed Him</div>
-    <div class="traits-intro">
-      عاشت في العهد القديم شخصيات كانت <b>ترمز من بعض الأوجه</b> لذبيحة المسيح.
+    <div class="figures-intro">
+      عاشت في العهد القديم شخصيات كانت ترمز من بعض الأوجه لذبيحة المسيح.
+      <b>اضغط على أي بطاقة</b> لتقرأ الرمز الذي حملته.
     </div>
     <div class="figures-grid" id="figuresGrid"></div>
   </div>
 </section>
 
-<section class="traits" id="sec-relics">
-  <div class="traits-aura"></div>
-  <div class="traits-inner">
-    <div class="eyebrow">08 — SYMBOLS OF REDEMPTION</div>
+<section class="sec-relics" id="sec-relics">
+  <div class="relics-aura"></div>
+  <div class="relics-inner">
     <h2>رموز من العهد القديم</h2>
-    <div class="subtitle">Objects That Foretold the Cross</div>
-    <div class="traits-intro">
+    <div class="relics-intro">
       يوجد في العهد القديم <b>أحداث وأشياء</b> كانت رموزًا للفداء. اضغط على كل رمز لتقرأ معناه.
     </div>
     <div class="relics-list" id="relicsList"></div>
@@ -1426,23 +1420,44 @@ function iconSVG(key){ return `<svg viewBox="0 0 24 24" fill="none" xmlns="http:
 
 /* ============ FIGURES ============ */
 const figures = [
-  { name: "هابيل", ref: "(تك ٤)", icon: "flame" },
-  { name: "نوح", ref: "(تك ٨)", icon: "dove" },
-  { name: "ملكي صادق", ref: "(تك ١٤)", icon: "cup" },
-  { name: "إسحق", ref: "(تك ٢٢)", icon: "mountain" },
-  { name: "يوسف", ref: "(تك ٣٧)", icon: "star" },
-  { name: "يشوع بن نون", ref: "(سفر يشوع)", icon: "shield" },
-  { name: "أيوب", ref: "(سفر أيوب)", icon: "sunrise" },
-  { name: "يونان", ref: "(سفر يونان)", icon: "fish" }
+  { name: "هابيل", ref: "(تك ٤)", icon: "flame",
+    desc: "الصديق الذى سفك دمه حسداً بيد أخيه دون ذنب اقترفه، كان رمزاً للسيد المسيح الذي حسده اليهود، وأسلموه للموت دون ذنب فعله." },
+  { name: "نوح", ref: "(تك ٨)", icon: "dove",
+    desc: "البار الذي هو الأول للخليقة الجديدة والذي بواسطته تم الإبقاء على الجنس البشرى، كان رمزاً للسيد المسيح رأس الخليقة الجديدة، والذي به صار الخلاص لكل البشرية." },
+  { name: "ملكي صادق", ref: "(تك ١٤)", icon: "cup",
+    desc: "ملك البر والسلام الكاهن الذى بلا نسب، وغير معروفة بداية أيامه ولا نهايتها، والذي قدم تقدمة، كان رمزاً للسيد المسيح ملك البر والسلام، رئيس الكهنة الأزلى الأبدى، والذي قدم جسده ودمه الأقدسين." },
+  { name: "إسحق", ref: "(تك ٢٢)", icon: "mountain",
+    desc: "الابن المحبوب الذي أطاع أباه وخرج حاملاً الحطب على كتفه، ورجع حياً، كان رمزاً للسيد المسيح الابن الحبيب الذي أطاع حتى الموت، وخرج حاملاً خشبة الصليب، وقام حياً." },
+{ name: "يوسف", ref: "(تك ٣٧)", icon: "star",
+  desc: "الشاب الطاهر الذي حسده إخوته وباعوه بالفضة، لكنه خرج حياً وصار سبباً في خلاص العالم من المجاعة، كان رمزاً للسيد المسيح الذي أسلمه تلميذه بالفضة، ووُضع في قبر، ثم قام حياً وصار خلاصاً للعالم كله." },
+  { name: "يشوع بن نون", ref: "(سفر يشوع)", icon: "shield",
+    desc: "النبى والقائد العظيم والذي يعنى اسمه المخلص، وهو الذي قاد شعبه للدخول إلى أرض الموعد، كان رمزاً ليسوع المخلص القائد الأعظم والذي قاد شعبه في الدخول إلى أورشليم السمائية." },
+  { name: "أيوب", ref: "(سفر أيوب)", icon: "sunrise",
+    desc: "البار رجل الألم والتجربة المشتكى عليه من الشيطان، والذي اجتاز المعصرة وخرج سليماً صحيحاً، كان رمزاً للسيد المسيح رجل البر، والذي جرب من الشيطان على الجبل وانتصر، واختبر الألم واجتاز الموت وقام حياً." },
+  { name: "يونان", ref: "(سفر يونان)", icon: "fish",
+    desc: "النبى الذى مكث في بطن الحوت ثلاثة أيام وثلاث ليال، وخرج حياً، كان رمزاً للسيد المسيح الذي وضع في القبر ثلاثة أيام، وقام حياً." }
 ];
+
 const figuresGrid = document.getElementById('figuresGrid');
 figures.forEach((f) => {
   const card = document.createElement('div');
   card.className = 'figure-card';
-  card.innerHTML = `<div class="figure-glyph">${iconSVG(f.icon)}</div><div class="figure-name">${f.name}</div><div class="figure-ref">${f.ref}</div>`;
+  card.innerHTML = `
+    <div class="figure-card-inner">
+      <div class="figure-card-face figure-card-front">
+        <div class="figure-glyph">${iconSVG(f.icon)}</div>
+        <div class="figure-name">${f.name}</div>
+        <div class="figure-ref">${f.ref}</div>
+      </div>
+      <div class="figure-card-face figure-card-back">
+        <div class="figure-back-text">${f.desc}</div>
+        <div class="figure-back-ref">${f.ref}</div>
+      </div>
+    </div>
+  `;
+  card.addEventListener('click', () => card.classList.toggle('flipped'));
   figuresGrid.appendChild(card);
 });
-
 /* ============ RELICS ============ */
 const relics = [
   { name: "شجرة الحياة", ref: "(تك ٣)", icon: "tree",

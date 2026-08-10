@@ -680,17 +680,17 @@
       <!-- الشخصيات -->
       <div class="characters">
 
-        <div class="card" draggable="true" id="human">
+        <div class="life-card" draggable="true" id="human">
           <div class="emoji">👤</div>
           <h3>الإنسان</h3>
         </div>
 
-        <div class="card" draggable="true" id="angel">
+        <div class="life-card" draggable="true" id="angel">
           <div class="emoji">👼</div>
           <h3>الملاك</h3>
         </div>
 
-        <div class="card" draggable="true" id="christ">
+        <div class="life-card" draggable="true" id="christ">
           <div class="emoji">✝</div>
           <h3>المسيح</h3>
         </div>
@@ -731,6 +731,14 @@
     </div>
     <div id="quotesPane" class="quotes-list"></div>
   </div>
+      <div class="section-tools" data-aos="fade-up" data-aos-delay="180">
+      <button type="button" class="tool-btn tool-video" data-video="1BWwqReRa67ELoV62vDj1HhokGn706IlB">
+        ▶ <span>فيديو الشرح</span>
+      </button>
+      <button type="button" class="tool-btn tool-read" data-read-target="#consq-intro-text">
+        🔊 <span>استماع</span>
+      </button>
+    </div>
 </section>
 
 <section class="sec-promises" id="sec-promises">
@@ -750,7 +758,7 @@
       </svg>
     </div>
 
-    <div class="card">
+    <div class="promise-card">
       <div class="card-kicker"><span id="promiseIndex">وعد ١</span></div>
       <div id="cardBody">
         <div class="card-title" id="promiseTitle"></div>
@@ -802,19 +810,161 @@
   </div>
 </section>
 
+<section class="sec-memory" id="sec-memory">
+  <div class="memory-inner">
+    <h2>المسيح والفداء </h2>
+    <p class="memory-intro">
+      اقلب الكروت وطابق كل عبارة من الدرس بالرمز اللي يعبّر عنها.
+    </p>
+ 
+    <div class="hud">
+      <div class="pill">🔄 محاولات: <b id="moves">0</b></div>
+      <div class="pill">⏱️ الوقت: <b id="timer">00:00</b></div>
+      <div class="pill">✅ الأزواج: <b id="pairs">0/8</b></div>
+      <div class="pill"><button class="restart-btn" id="restartBtn">ابدأ من جديد</button></div>
+    </div>
+ 
+    <div class="board" id="board"></div>
+  </div>
+      <div class="section-tools" data-aos="fade-up" data-aos-delay="180">
+      <button type="button" class="tool-btn tool-video" data-video="1ouAhxhwlO7SPEie1Lf3zKiUmiWA4H2ZE">
+        ▶ <span>فيديو الشرح</span>
+      </button>
+      <button type="button" class="tool-btn tool-read" data-read-target="#consq-intro-text">
+        🔊 <span>استماع</span>
+      </button>
+    </div>
+</section>
+ 
+<div class="overlay" id="overlay">
+  <div class="win-card">
+    <span class="cross-big">✝</span>
+    <h2>قد أُكمل!</h2>
+    <p id="winMsg">جمعت كل الأزواج بنجاح. المسيح ابن الله تجسد وفدانا بذبيحة نفسه، ليصبح لنا الخلاص الأبدي.</p>
+    <button id="playAgainBtn">العب تاني</button>
+  </div>
+</div>
 
 
-  
-  <section class="story">
-    <p class="story-eyebrow" data-aos="fade-up">الختام</p>
-    <h2 data-aos="fade-up">كيف نستردّ صورة الله فينا؟</h2>
-    <p data-aos="fade-up" data-aos-delay="100">
+
+
+
+<section class="sec-mirror" id="sec-mirror">
+  <div class="mirror-inner">
+    <p class="mirror-eyebrow">الختام</p>
+    <h2>كيف نستردّ صورة الله فينا؟</h2>
+    <p class="mirror-intro">
       "أعطوا ما لقيصر لقيصر وما لله لله" - اتركوا صورة الإنسان الترابي...
     </p>
-    <p class="story-tagline" data-aos="zoom-in" data-aos-delay="200">
-      مهرجان <span class="story-tagline-highlight">مسرحي فيك</span> ٢٠٢٦
+ 
+    <nav class="journey-progress" aria-label="مراحل رحلة الاسترداد">
+      <div class="progress-track" id="progressTrack"></div>
+      <p class="progress-count" id="progressCount">0 / 5</p>
+    </nav>
+ 
+    <div class="mirror-stage">
+      <div class="mirror-wrap" id="mirrorWrap">
+        <svg class="mirror-svg" id="mirrorSvg" viewBox="0 0 300 480" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="مرآة عتيقة متصدعة">
+          <defs>
+            <linearGradient id="frameGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#4A3420"/>
+              <stop offset="45%" stop-color="#8C6A3E"/>
+              <stop offset="55%" stop-color="#C9A85E"/>
+              <stop offset="100%" stop-color="#4A3420"/>
+            </linearGradient>
+            <radialGradient id="glassGrad" cx="50%" cy="38%" r="75%">
+              <stop offset="0%" stop-color="#3a2e22" id="glassStopCenter"/>
+              <stop offset="55%" stop-color="#20180f" id="glassStopMid"/>
+              <stop offset="100%" stop-color="#0D0C0A" id="glassStopEdge"/>
+            </radialGradient>
+            <radialGradient id="innerGlow" cx="50%" cy="45%" r="60%">
+              <stop offset="0%" stop-color="#E6CC91" stop-opacity="0"/>
+              <stop offset="100%" stop-color="#E6CC91" stop-opacity="0"/>
+            </radialGradient>
+            <linearGradient id="silhouetteGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#171411" id="silTop"/>
+              <stop offset="100%" stop-color="#0D0C0A" id="silBottom"/>
+            </linearGradient>
+            <filter id="softBlur" x="-50%" y="-50%" width="200%" height="200%">
+              <feGaussianBlur stdDeviation="3"/>
+            </filter>
+          </defs>
+ 
+          <rect x="14" y="10" width="272" height="460" rx="46" fill="none" stroke="url(#frameGrad)" stroke-width="12"/>
+          <rect x="14" y="10" width="272" height="460" rx="46" fill="none" stroke="#0D0C0A" stroke-width="1" opacity=".4"/>
+ 
+          <clipPath id="glassClip">
+            <rect x="26" y="22" width="248" height="436" rx="38"/>
+          </clipPath>
+          <g clip-path="url(#glassClip)">
+            <rect x="26" y="22" width="248" height="436" fill="url(#glassGrad)"/>
+            <rect x="26" y="22" width="248" height="436" fill="url(#innerGlow)" id="innerGlowRect"/>
+ 
+            <path id="silhouette" d="M150 150
+              c-16 0 -28 14 -28 32 c0 14 8 24 16 30 c-30 10 -46 34 -46 66 l0 100 c0 10 8 18 18 18
+              l80 0 c10 0 18 -8 18 -18 l0 -100 c0 -32 -16 -56 -46 -66 c8 -6 16 -16 16 -30
+              c0 -18 -12 -32 -28 -32 z"
+              fill="url(#silhouetteGrad)" opacity=".9" filter="url(#softBlur)"/>
+ 
+            <g id="cracksGroup" stroke="#0D0C0A" stroke-width="1.6" fill="none" stroke-linecap="round">
+              <path class="crack crack-1" d="M60 60 L95 110 L80 150 L110 190"/>
+              <path class="crack crack-2" d="M230 50 L200 100 L215 140 L190 175 L205 210"/>
+              <path class="crack crack-3" d="M50 260 L90 290 L75 330"/>
+              <path class="crack crack-4" d="M250 300 L215 330 L230 370 L200 400"/>
+              <path class="crack crack-5" d="M120 420 L150 400 L170 440 L200 430"/>
+            </g>
+            <g id="cracksGlow" stroke="#E6CC91" stroke-width="1.2" fill="none" stroke-linecap="round" opacity="0" filter="url(#softBlur)">
+              <path class="crack-glow crack-glow-1" d="M60 60 L95 110 L80 150 L110 190"/>
+              <path class="crack-glow crack-glow-2" d="M230 50 L200 100 L215 140 L190 175 L205 210"/>
+              <path class="crack-glow crack-glow-3" d="M50 260 L90 290 L75 330"/>
+              <path class="crack-glow crack-glow-4" d="M250 300 L215 330 L230 370 L200 400"/>
+              <path class="crack-glow crack-glow-5" d="M120 420 L150 400 L170 440 L200 430"/>
+            </g>
+ 
+            <ellipse cx="110" cy="90" rx="60" ry="140" fill="#FFF9EF" opacity=".04" transform="rotate(-18 110 90)"/>
+          </g>
+        </svg>
+ 
+        <button class="fragment-btn" id="frag-1" data-stage="1" aria-label="اكتشف مرحلة الخلق"><span class="ring"><span class="num">01</span></span></button>
+        <button class="fragment-btn" id="frag-2" data-stage="2" aria-label="اكتشف مرحلة السقوط"><span class="ring"><span class="num">02</span></span></button>
+        <button class="fragment-btn" id="frag-3" data-stage="3" aria-label="اكتشف مرحلة الفداء"><span class="ring"><span class="num">03</span></span></button>
+        <button class="fragment-btn" id="frag-4" data-stage="4" aria-label="اكتشف مرحلة ثمر الفداء"><span class="ring"><span class="num">04</span></span></button>
+        <button class="fragment-btn" id="frag-5" data-stage="5" aria-label="اكتشف مرحلة الاسترداد"><span class="ring"><span class="num">05</span></span></button>
+      </div>
+    </div>
+ 
+    <p class="hint-text" id="hintText">المسها لتكتشف كل جزء من الرحلة.</p>
+ 
+    <p class="mirror-tagline">
+      مهرجان <span class="mirror-tagline-highlight">مسرحي فيك</span> ٢٠٢٦
     </p>
-  </section>
+ 
+   
+  </div>
+   <div class="section-tools">
+      <button type="button" class="tool-btn tool-video" data-video="1SNillphOJ8fuIa6FQZo9WaKRQw_pkpIy">
+        <span>▶</span> <span>فيديو الشرح</span>
+      </button>
+      <button type="button" class="tool-btn tool-read" data-read-target="#consq-intro-text">
+        <span>🔊</span> <span>استماع</span>
+      </button>
+    </div>
+</section>
+ 
+<div class="card-overlay" id="cardOverlay">
+  <div class="discovery-card" role="dialog" aria-modal="true" aria-labelledby="cardTitle">
+    <p class="card-stage-label" id="cardStageLabel">المرحلة الأولى</p>
+    <h3 class="card-title" id="cardTitle">الخلق</h3>
+    <p class="card-body" id="cardBody">راجع هذا الجزء في المادة.</p>
+    <p class="card-count" id="cardCount">اكتشفت جزءًا من الرحلة — 1 / 5</p>
+    <div class="card-close">
+      <button class="card-btn" id="cardCloseBtn">متابعة الرحلة</button>
+    </div>
+  </div>
+</div>
+ 
+
+
 
   <footer>صُنع بمحبة — <span>حكاية حب</span> © 2026</footer>
   <div id="scrollCross">
@@ -1065,7 +1215,7 @@
 </script>
 
   <script>
-const cards = document.querySelectorAll(".card");
+const cards = document.querySelectorAll(".life-card");
 const door = document.getElementById("doorArea");
 
 const popup = document.getElementById("popup");
@@ -1554,8 +1704,399 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
 });
 renderQuotes('ot');
 </script>
+<script>
+(function(){
+  "use strict";
+ 
+var STAGES = [
+  { id:1, key:"creation",   title:"الخلق",       body:"راجع هذا الجزء في المادة." },
+  { id:2, key:"fall",       title:"السقوط",       body:"راجع هذا الجزء في المادة." },
+  { id:3, key:"redemption", title:"الفداء",       body:"راجع هذا الجزء في المادة." },
+  { id:4, key:"fruit",      title:"ثمر الفداء",   body:"راجع هذا الجزء في المادة." },
+  { id:5, key:"restoration",title:"استُردّت الصورة ✨",
+    body:"من الخلق... إلى السقوط... إلى الفداء... إلى الثمر... إلى الاسترداد.\n\nالفداء لم يكن نهاية القصة.\n\nبل كان طريق العودة." }
+];
+ 
+  var mirrorState = { discovered:{}, discoveredCount:0, journeyComplete:false };
+ 
+  var mirrorDom = {
+    progressTrack: document.getElementById('progressTrack'),
+    progressCount: document.getElementById('progressCount'),
+    hintText: document.getElementById('hintText'),
+    cardOverlay: document.getElementById('cardOverlay'),
+    cardStageLabel: document.getElementById('cardStageLabel'),
+    cardTitle: document.getElementById('cardTitle'),
+    cardBody: document.getElementById('cardBody'),
+    cardCount: document.getElementById('cardCount'),
+    cardCloseBtn: document.getElementById('cardCloseBtn'),
+    finale: document.getElementById('finale'),
+    toast: document.getElementById('toast'),
+    videoOverlay: document.getElementById('videoOverlay'),
+    videoBox: document.getElementById('videoBox'),
+    videoCloseBtn: document.getElementById('videoCloseBtn')
+  };
+ 
+  var ARABIC_ORDINALS = ["الأولى","الثانية","الثالثة","الرابعة","الخامسة"];
+ 
+  function buildProgressRail(){
+    mirrorDom.progressTrack.innerHTML = "";
+    STAGES.forEach(function(stage, idx){
+      var step = document.createElement('div');
+      step.className = 'progress-step';
+      step.id = 'progress-step-' + stage.id;
+      step.innerHTML = '<span class="dot" aria-hidden="true"></span>';
+      mirrorDom.progressTrack.appendChild(step);
+      if(idx < STAGES.length - 1){
+        var line = document.createElement('div');
+        line.className = 'progress-line';
+        line.id = 'progress-line-' + stage.id;
+        mirrorDom.progressTrack.appendChild(line);
+      }
+    });
+  }
+ 
+  function initFragmentButtons(){
+    document.querySelectorAll('.fragment-btn').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var stageId = parseInt(btn.getAttribute('data-stage'), 10);
+        discoverStage(stageId, btn);
+      });
+    });
+  }
+ 
+  function discoverStage(stageId, btnEl){
+    if(mirrorState.discovered[stageId]){ openCard(stageId, false); return; }
+    mirrorState.discovered[stageId] = true;
+    mirrorState.discoveredCount++;
+    if(btnEl) btnEl.classList.add('found');
+    applyStageVisual(stageId);
+    updateProgress();
+    openCard(stageId, true);
+    if(mirrorState.discoveredCount === STAGES.length){ setTimeout(triggerFinale, 900); }
+  }
+ 
+  function applyStageVisual(stageId){
+    var crackLine = document.querySelector('.crack-' + stageId);
+    switch(stageId){
+      case 2:
+        if(crackLine){ crackLine.style.transition='stroke .8s ease, stroke-width .8s ease'; crackLine.style.stroke='#000'; crackLine.style.strokeWidth='2.4'; }
+        break;
+      case 3:
+        document.querySelectorAll('.crack-glow').forEach(function(c){ c.style.transition='opacity 1.4s ease'; c.style.opacity='.85'; });
+        break;
+      case 4:
+        var innerGlowRect=document.getElementById('innerGlowRect');
+        innerGlowRect.setAttribute('fill','url(#innerGlow)');
+        var stops=document.querySelectorAll('#innerGlow stop');
+        stops[0].setAttribute('stop-opacity','.35'); stops[1].setAttribute('stop-opacity','0');
+        break;
+      case 5:
+        document.querySelectorAll('.crack').forEach(function(c){ c.style.transition='opacity 1.6s ease'; c.style.opacity='0'; });
+        document.querySelectorAll('.crack-glow').forEach(function(c){ c.style.transition='opacity 1.6s ease'; c.style.opacity='0'; });
+        var glowStops=document.querySelectorAll('#innerGlow stop');
+        glowStops[0].setAttribute('stop-opacity','.5');
+        break;
+    }
+  }
+ 
+  function updateProgress(){
+    STAGES.forEach(function(stage){
+      var step = document.getElementById('progress-step-' + stage.id);
+      if(mirrorState.discovered[stage.id]) step.classList.add('done');
+      var line = document.getElementById('progress-line-' + stage.id);
+      if(line && mirrorState.discovered[stage.id]) line.classList.add('filled');
+    });
+    mirrorDom.progressCount.textContent = mirrorState.discoveredCount + ' / ' + STAGES.length;
+    mirrorDom.hintText.textContent = mirrorState.discoveredCount === 0
+      ? 'المسها لتكتشف كل جزء من الرحلة.'
+      : (mirrorState.discoveredCount < STAGES.length ? 'اكتشفت جزءًا من الرحلة — تابع لتكتمل الصورة.' : 'اكتملت رحلتك عبر المرآة.');
+  }
+ 
+function openCard(stageId, firstTime){
+  var stage = STAGES[stageId - 1];
+  mirrorDom.cardStageLabel.textContent = 'المرحلة ' + ARABIC_ORDINALS[stageId-1];
+  mirrorDom.cardTitle.textContent = stage.title;
+
+  mirrorDom.cardBody.innerHTML = stage.body
+    .split('\n\n')
+    .map(function(p){ return '<p style="margin-bottom:10px;">' + p + '</p>'; })
+    .join('');
+
+  mirrorDom.cardCount.textContent = firstTime
+    ? ('اكتشفت جزءًا من الرحلة — ' + mirrorState.discoveredCount + ' / ' + STAGES.length)
+    : (mirrorState.discoveredCount + ' / ' + STAGES.length + ' — تم اكتشاف هذا الجزء من قبل');
+  mirrorDom.cardOverlay.classList.add('open');
+  mirrorDom.cardCloseBtn.focus();
+}
 
 
+  function closeCard(){ mirrorDom.cardOverlay.classList.remove('open'); }
+ 
+  function triggerFinale(){
+    mirrorState.journeyComplete = true;
+    mirrorDom.finale.classList.add('active');
+    var lines = ['fLine1','fBig1','fLine2','fLine3','fLine4'];
+    lines.forEach(function(id, i){
+      setTimeout(function(){ document.getElementById(id).classList.add('show'); }, 900 + i*1300);
+    });
+    var totalDelay = 900 + lines.length*1300 + 1600;
+    setTimeout(closeFinale, totalDelay);
+    mirrorDom.finale.addEventListener('click', closeFinaleOnce);
+  }
+  function closeFinaleOnce(){ closeFinale(); }
+  function closeFinale(){
+    mirrorDom.finale.classList.remove('active');
+    mirrorDom.finale.removeEventListener('click', closeFinaleOnce);
+  }
+ 
+  var toastTimer=null;
+  function showToast(msg){
+    mirrorDom.toast.textContent = msg;
+    mirrorDom.toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer=setTimeout(function(){ mirrorDom.toast.classList.remove('show'); }, 3200);
+  }
+ 
+  /* ---- video button ---- */
+  function openVideo(driveId){
+    mirrorDom.videoBox.innerHTML = '<iframe src="https://drive.google.com/file/d/' + driveId + '/preview" allow="autoplay" allowfullscreen></iframe>';
+    mirrorDom.videoOverlay.classList.add('open');
+  }
+  function closeVideo(){
+    mirrorDom.videoOverlay.classList.remove('open');
+    mirrorDom.videoBox.innerHTML = '';
+  }
+ 
+  function bindEvents(){
+    initFragmentButtons();
+    mirrorDom.cardCloseBtn.addEventListener('click', closeCard);
+    mirrorDom.cardOverlay.addEventListener('click', function(e){ if(e.target===mirrorDom.cardOverlay) closeCard(); });
+ 
+    document.querySelectorAll('.tool-video').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var id = btn.getAttribute('data-video');
+        openVideo(id);
+      });
+    });
+    mirrorDom.videoCloseBtn.addEventListener('click', closeVideo);
+    mirrorDom.videoOverlay.addEventListener('click', function(e){ if(e.target===mirrorDom.videoOverlay) closeVideo(); });
+ 
+    document.querySelectorAll('.tool-read').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        showToast('جاري تجهيز خاصية الاستماع.');
+      });
+    });
+ 
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape'){ closeCard(); closeVideo(); }
+    });
+  }
+ 
+  function initMirror(){
+    buildProgressRail();
+    bindEvents();
+    updateProgress();
+  }
+ 
+  document.addEventListener('DOMContentLoaded', initMirror);
+})();
+</script>
+
+
+
+
+<script>
+(function(){
+  "use strict";
+ 
+  var ICONS = {
+    incarnation: '<svg viewBox="0 0 64 64"><path fill="#c9972b" d="M32 4l6 16 16 2-12 11 3 17-13-9-13 9 3-17-12-11 16-2z"/></svg>',
+    shepherd: '<svg viewBox="0 0 64 64"><circle cx="20" cy="30" r="10" fill="#3b2a1a"/><path d="M8 42c2-8 8-10 12-10s10 2 12 10" stroke="#3b2a1a" stroke-width="3" fill="none"/><path d="M46 6v40" stroke="#c9972b" stroke-width="4" stroke-linecap="round"/><path d="M46 6c0 6 8 6 8 0" stroke="#c9972b" stroke-width="4" fill="none" stroke-linecap="round"/></svg>',
+    love: '<svg viewBox="0 0 64 64"><path fill="#9c2b1a" d="M32 56S8 40 8 24a13 13 0 0124-8 13 13 0 0124 8c0 16-24 32-24 32z"/><path d="M32 20v16M24 28h16" stroke="#fff2d6" stroke-width="2.5"/></svg>',
+    door: '<svg viewBox="0 0 64 64"><rect x="16" y="8" width="32" height="48" rx="3" fill="#c9972b"/><rect x="21" y="13" width="22" height="38" rx="2" fill="#7c2a1f"/><circle cx="38" cy="32" r="2.4" fill="#f0cf74"/></svg>',
+    cross: '<svg viewBox="0 0 64 64"><path fill="#c9972b" d="M28 4h8v22h20v8H36v26h-8V34H8v-8h20z"/></svg>',
+    scroll: '<svg viewBox="0 0 64 64"><rect x="12" y="14" width="40" height="36" fill="#f3e6c8"/><rect x="8" y="10" width="10" height="44" rx="5" fill="#c9972b"/><rect x="46" y="10" width="10" height="44" rx="5" fill="#c9972b"/><path d="M20 24h24M20 32h24M20 40h16" stroke="#7c2a1f" stroke-width="2"/></svg>',
+    chain: '<svg viewBox="0 0 64 64"><g fill="none" stroke="#c9972b" stroke-width="5"><ellipse cx="20" cy="20" rx="10" ry="7" transform="rotate(-30 20 20)"/><ellipse cx="34" cy="30" rx="10" ry="7" transform="rotate(-30 34 30)"/></g><path d="M44 34l8 8M52 34l8 8M44 50l16-16" stroke="#9c2b1a" stroke-width="4" stroke-linecap="round"/></svg>',
+    lamb: '<svg viewBox="0 0 64 64"><circle cx="26" cy="28" r="14" fill="#3b2a1a" opacity=".08"/><circle cx="26" cy="28" r="14" fill="none" stroke="#3b2a1a" stroke-width="2"/><circle cx="18" cy="20" r="6" fill="#3b2a1a" opacity=".08"/><circle cx="16" cy="20" r="2.4" fill="#3b2a1a"/><ellipse cx="30" cy="46" rx="16" ry="10" fill="none" stroke="#3b2a1a" stroke-width="2"/><path d="M44 20l8-6" stroke="#c9972b" stroke-width="3" stroke-linecap="round"/></svg>'
+  };
+ 
+  var PAIRS = [
+    { id:'incarnation', icon:ICONS.incarnation, label:'الميلاد',
+      note:'تجسد ابن الله الكلمة في ملء الزمان، وُلد من العذراء مريم', ref:'التجسد' },
+    { id:'shepherd', icon:ICONS.shepherd, label:'الراعي',
+      note:'«ابن الإنسان لم يأتِ ليُخدَم بل ليخدم، وليبذل نفسه فدية عن كثيرين»', ref:'مت ٢٠: ٢٨' },
+    { id:'love', icon:ICONS.love, label:'المحبة',
+      note:'«هكذا أحب الله العالم حتى بذل ابنه الوحيد»', ref:'يو ٣: ١٦' },
+    { id:'door', icon:ICONS.door, label:'الباب',
+      note:'«أنا هو الباب، إن دخل بي أحد فيَخلُص»', ref:'يو ١٠: ٩' },
+    { id:'cross', icon:ICONS.cross, label:'الصليب',
+      note:'قبضوا عليه وحكموا عليه بالصلب، ورفعوه على الصليب في الجلجثة', ref:'الفداء' },
+    { id:'scroll', icon:ICONS.scroll, label:'أُكمل',
+      note:'«قد أُكمل» ونكّس رأسه وأسلم الروح', ref:'يو ١٩: ٣٠' },
+    { id:'chain', icon:ICONS.chain, label:'التحرير',
+      note:'نزل إلى الجحيم وسبى سبياً وأطلق المقبوض عليهم من قبضة الشيطان', ref:'كو ٢: ١٤-١٥' },
+    { id:'lamb', icon:ICONS.lamb, label:'الفصح',
+      note:'«لأن فصحنا أيضاً المسيح قد ذُبح لأجلنا»', ref:'١ كو ٥: ٧' }
+  ];
+ 
+  var deck = [], flipped = [], matchedCount = 0, moves = 0, timerInt = null, seconds = 0, lock = false;
+ 
+  var board = document.getElementById('board');
+  var movesEl = document.getElementById('moves');
+  var pairsEl = document.getElementById('pairs');
+  var timerEl = document.getElementById('timer');
+  var overlay = document.getElementById('overlay');
+ 
+  function shuffle(arr){
+    for(var i=arr.length-1;i>0;i--){
+      var j = Math.floor(Math.random()*(i+1));
+      var t = arr[i]; arr[i]=arr[j]; arr[j]=t;
+    }
+    return arr;
+  }
+ 
+  function buildDeck(){
+    var cards = [];
+    PAIRS.forEach(function(p){
+      cards.push({pairId:p.id, type:'note', note:p.note, ref:p.ref});
+      cards.push({pairId:p.id, type:'icon', icon:p.icon, label:p.label});
+    });
+    return shuffle(cards);
+  }
+ 
+  function render(){
+    board.innerHTML = '';
+    deck.forEach(function(card, idx){
+      var el = document.createElement('div');
+      el.className = 'mem-card';
+      el.dataset.idx = idx;
+ 
+      var back = document.createElement('div');
+      back.className = 'face back';
+      back.innerHTML = '<span class="q">؟</span>';
+ 
+      var front = document.createElement('div');
+      if(card.type === 'note'){
+        front.className = 'face front note';
+        front.innerHTML = '<div class="note-tag">' + card.note + '</div><div class="note-ref">' + card.ref + '</div>';
+      } else {
+        front.className = 'face front icon';
+        front.innerHTML = card.icon + '<div class="icon-label">' + card.label + '</div>';
+      }
+ 
+      el.appendChild(front);
+      el.appendChild(back);
+      el.addEventListener('click', function(){ flipCard(idx, el); });
+      board.appendChild(el);
+    });
+  }
+ 
+  function flipCard(idx, el){
+    if(lock) return;
+    if(el.classList.contains('flipped') || el.classList.contains('matched')) return;
+    if(flipped.length === 2) return;
+ 
+    el.classList.add('flipped');
+    flipped.push({idx:idx, el:el});
+ 
+    if(flipped.length === 1 && !timerInt) startTimer();
+ 
+    if(flipped.length === 2){
+      moves++;
+      movesEl.textContent = moves;
+      lock = true;
+      var a = flipped[0], b = flipped[1];
+      var cardA = deck[a.idx], cardB = deck[b.idx];
+      var isMatch = cardA.pairId === cardB.pairId && cardA.type !== cardB.type;
+ 
+      setTimeout(function(){
+        if(isMatch){
+          a.el.classList.add('matched');
+          b.el.classList.add('matched');
+          matchedCount++;
+          pairsEl.textContent = matchedCount + '/' + PAIRS.length;
+          burst(a.el);
+          burst(b.el);
+          if(matchedCount === PAIRS.length){
+            clearInterval(timerInt);
+            setTimeout(function(){ overlay.classList.add('show'); confettiRain(); }, 500);
+          }
+        } else {
+          a.el.classList.add('shake');
+          b.el.classList.add('shake');
+          setTimeout(function(){
+            a.el.classList.remove('flipped','shake');
+            b.el.classList.remove('flipped','shake');
+          }, 550);
+        }
+        flipped = [];
+        lock = false;
+      }, 700);
+    }
+  }
+ 
+  function burst(el){
+    var rect = el.getBoundingClientRect();
+    for(var i=0;i<10;i++){
+      var p = document.createElement('div');
+      p.className = 'confetti-piece';
+      p.style.left = (rect.left + rect.width/2) + 'px';
+      p.style.top = (rect.top + rect.height/2) + 'px';
+      p.style.background = ['#c9972b','#9c2b1a','#8C6A3E','#f0cf74'][i%4];
+      p.style.animationDuration = (0.7 + Math.random()*0.5) + 's';
+      p.style.transform = 'translate(' + ((Math.random()-0.5)*120) + 'px, ' + ((Math.random()-0.5)*120) + 'px)';
+      document.body.appendChild(p);
+      setTimeout(function(){ p.remove(); }, 1300);
+    }
+  }
+ 
+  function confettiRain(){
+    for(var i=0;i<70;i++){
+      setTimeout(function(){
+        var p = document.createElement('div');
+        p.className = 'confetti-piece';
+        p.style.left = Math.random()*100 + 'vw';
+        p.style.top = '-10px';
+        p.style.background = ['#c9972b','#9c2b1a','#8C6A3E','#f0cf74','#1f5c57'][Math.floor(Math.random()*5)];
+        p.style.animationDuration = (2 + Math.random()*1.5) + 's';
+        document.body.appendChild(p);
+        setTimeout(function(){ p.remove(); }, 3800);
+      }, i*30);
+    }
+  }
+ 
+  function startTimer(){
+    seconds = 0;
+    timerInt = setInterval(function(){
+      seconds++;
+      var m = String(Math.floor(seconds/60)).padStart(2,'0');
+      var s = String(seconds%60).padStart(2,'0');
+      timerEl.textContent = m + ':' + s;
+    }, 1000);
+  }
+ 
+  function startGame(){
+    clearInterval(timerInt);
+    timerInt = null;
+    seconds = 0;
+    moves = 0;
+    matchedCount = 0;
+    flipped = [];
+    lock = false;
+    movesEl.textContent = '0';
+    pairsEl.textContent = '0/' + PAIRS.length;
+    timerEl.textContent = '00:00';
+    overlay.classList.remove('show');
+    deck = buildDeck();
+    render();
+  }
+ 
+  document.getElementById('restartBtn').addEventListener('click', startGame);
+  document.getElementById('playAgainBtn').addEventListener('click', startGame);
+ 
+  startGame();
+})();
+</script>
 </body>
 
 </html>

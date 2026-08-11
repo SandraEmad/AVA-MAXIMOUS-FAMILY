@@ -1299,7 +1299,7 @@ document.querySelectorAll('.tool-read').forEach(btn => {
     // تأخير بسيط جداً عشان نتأكد إن الـ cancel السابق خلص فعلياً قبل ما نبدأ speak جديد
     setTimeout(() => {
       speechSynthesis.speak(utter);
-    }, 50);
+    }, 0);
   });
 });
 </script>

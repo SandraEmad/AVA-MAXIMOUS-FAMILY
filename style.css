@@ -949,10 +949,6 @@ footer span {
         box-shadow: 0 0 20px rgba(201, 160, 92, 0.5);
     }
 }
-/* ============================================================
-   نتائج السقوط وعقوباته — consequences section
-   ============================================================ */
-
 .consq {
     position: relative;
     overflow: hidden;
@@ -961,7 +957,7 @@ footer span {
     background: var(--deep);
     text-align: center;
 }
-
+ 
 .consq-aura {
     position: absolute;
     z-index: 0;
@@ -978,14 +974,14 @@ footer span {
     border-radius: 50%;
     animation: ray-spin 140s linear infinite;
 }
-
+ 
 .consq-inner {
     position: relative;
     z-index: 1;
     max-width: 1160px;
     margin: 0 auto;
 }
-
+ 
 .consq-eyebrow {
     font-family: "Amiri", serif;
     color: var(--gold);
@@ -993,7 +989,7 @@ footer span {
     font-size: 13px;
     margin-bottom: 14px;
 }
-
+ 
 .consq h2 {
     font-family: "Amiri", serif;
     font-weight: 700;
@@ -1009,7 +1005,7 @@ footer span {
     -webkit-text-fill-color: transparent;
     margin-bottom: 18px;
 }
-
+ 
 .consq-intro {
     max-width: 620px;
     margin: 0 auto 56px;
@@ -1017,7 +1013,7 @@ footer span {
     line-height: 1.9;
     font-size: 16px;
 }
-
+ 
 /* ---------- Tabs ---------- */
 .consq-tabs {
     position: relative;
@@ -1032,7 +1028,7 @@ footer span {
     background: var(--bg-alt);
     box-shadow: inset 0 0 20px rgba(201, 160, 92, 0.06);
 }
-
+ 
 .consq-tab {
     position: relative;
     z-index: 2;
@@ -1050,7 +1046,7 @@ footer span {
     color: var(--ink-dim);
     transition: color 0.35s ease;
 }
-
+ 
 .consq-tab-num {
     font-family: "Amiri", serif;
     font-weight: 700;
@@ -1059,73 +1055,78 @@ footer span {
     opacity: 0.8;
     transition: opacity 0.35s ease;
 }
-
+ 
 .consq-tab.active {
     color: var(--ink);
 }
-
+ 
 .consq-tab.active .consq-tab-num {
     opacity: 1;
 }
-
+ 
+/* الـ glider دلوقتي بيتحرك ويتمدد في الاتجاهين (أفقي وعمودي) بالكامل
+   عن طريق الـ JS (transform: translate(x,y) + width + height) بدل ما يكون
+   مثبت على top/bottom بشكل يفترض إن التابس دايماً صف أفقي واحد بس.
+   ده اللي كان بيبوظ الشكل على الموبايل لما التابس بتتكوم عمودي. */
 .consq-tab-glider {
     position: absolute;
     z-index: 1;
-    top: 6px;
-    bottom: 6px;
-    left: 0; 
+    top: 0;
+    left: 0;
     width: 0;
-  
+    height: 0;
+ 
     border-radius: 999px;
     background: linear-gradient(100deg, var(--gold-soft), var(--gold));
     box-shadow: 0 0 20px 2px rgba(201, 160, 92, 0.45);
     transition: transform 0.45s cubic-bezier(0.65, 0, 0.35, 1),
-        width 0.45s cubic-bezier(0.65, 0, 0.35, 1);
+        width 0.45s cubic-bezier(0.65, 0, 0.35, 1),
+        height 0.45s cubic-bezier(0.65, 0, 0.35, 1);
 }
-
+ 
 @media (max-width: 700px) {
     .consq-tabs {
         flex-direction: column;
         border-radius: 22px;
         width: 100%;
     }
-
+ 
     .consq-tab {
         justify-content: center;
     }
-
+ 
     .consq-tab-glider {
         border-radius: 16px;
     }
 }
-
+ 
 /* ---------- Panels ---------- */
 .consq-panel {
     display: none;
 }
-
+ 
 .consq-panel.active {
     display: block;
     animation: panel-in 0.6s ease both;
 }
-
+ 
 @keyframes panel-in {
     from {
         opacity: 0;
         transform: translateY(18px);
     }
-
+ 
     to {
         opacity: 1;
         transform: translateY(0);
     }
 }
-
+ 
 .consq-panel-head {
     max-width: 760px;
     margin: 0 auto 44px;
 }
-
+ 
 .consq-panel-head h3 {
     font-family: "Amiri", serif;
     font-weight: 700;
@@ -1138,29 +1139,29 @@ footer span {
     gap: 0.3em;
     cursor: pointer;
 }
-
+ 
 .consq-panel-head h3 .h3-word {
     position: relative;
     display: inline-block;
     top: 0;
     transition: 0.5s cubic-bezier(0.19, 1, 0.22, 1);
 }
-
+ 
 .consq-panel-head h3:hover .h3-word:nth-child(odd) {
     top: -6px;
 }
-
+ 
 .consq-panel-head h3:hover .h3-word:nth-child(even) {
     top: 6px;
 }
-
+ 
 .consq-panel-head p {
     color: var(--ink-dim);
     line-height: 2;
     font-size: 15.5px;
     margin-bottom: 20px;
 }
-
+ 
 .consq-panel-head blockquote {
     position: relative;
     margin: 0 auto;
@@ -1176,7 +1177,7 @@ footer span {
     border-radius: 4px;
     text-align: right;
 }
-
+ 
 .consq-panel-head blockquote cite {
     display: block;
     margin-top: 10px;
@@ -1186,7 +1187,7 @@ footer span {
     font-size: 12.5px;
     color: var(--gold);
 }
-
+ 
 .consq-sub {
     font-family: "Amiri", serif;
     font-weight: 700;
@@ -1196,7 +1197,7 @@ footer span {
     position: relative;
     display: inline-block;
 }
-
+ 
 .consq-sub::after {
     content: "";
     position: absolute;
@@ -1207,7 +1208,7 @@ footer span {
     height: 2px;
     background: linear-gradient(90deg, transparent, var(--gold), transparent);
 }
-
+ 
 .consq-closing {
     max-width: 720px;
     margin: 46px auto 0;
@@ -1218,7 +1219,7 @@ footer span {
     font-size: 17px;
     line-height: 2;
 }
-
+ 
 /* ---------- Cards grid ---------- */
 .consq-grid {
     display: grid;
@@ -1226,31 +1227,31 @@ footer span {
     text-align: right;
     perspective: 1200px;
 }
-
+ 
 .consq-grid-4 {
     grid-template-columns: repeat(4, 1fr);
 }
-
+ 
 .consq-grid-3 {
     grid-template-columns: repeat(3, 1fr);
 }
-
+ 
 @media (max-width: 980px) {
-
+ 
     .consq-grid-4,
     .consq-grid-3 {
         grid-template-columns: repeat(2, 1fr);
     }
 }
-
+ 
 @media (max-width: 620px) {
-
+ 
     .consq-grid-4,
     .consq-grid-3 {
         grid-template-columns: 1fr;
     }
 }
-
+ 
 /* ---------- card: 3D flip (image front / info back) ---------- */
 .c-card {
     position: relative;
@@ -1262,11 +1263,11 @@ footer span {
     border-radius: 18px;
     overflow: visible;
 }
-
+ 
 .consq-grid-3 .c-card {
     height: 460px;
 }
-
+ 
 .c-card-flip {
     position: relative;
     width: 100%;
@@ -1274,11 +1275,11 @@ footer span {
     transform-style: preserve-3d;
     transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
-
+ 
 .c-card:hover .c-card-flip {
     transform: rotateY(180deg);
 }
-
+ 
 .c-card-face {
     position: absolute;
     inset: 0;
@@ -1288,18 +1289,18 @@ footer span {
     border: 1px solid var(--border-gold);
     overflow: hidden;
 }
-
+ 
 .c-card-front {
     background: var(--bg-alt);
 }
-
+ 
 .c-card-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
 }
-
+ 
 .c-card-front-title {
     position: absolute;
     bottom: 0;
@@ -1313,7 +1314,7 @@ footer span {
     font-size: 16px;
     text-align: right;
 }
-
+ 
 .c-card-back {
     background: var(--bg-alt);
     transform: rotateY(180deg);
@@ -1322,11 +1323,11 @@ footer span {
     flex-direction: column;
     overflow: hidden;
 }
-
+ 
 .c-card-wide {
     padding: 34px 28px 30px;
 }
-
+ 
 .c-card-icon {
     position: relative;
     z-index: 1;
@@ -1341,12 +1342,12 @@ footer span {
     border: 1.5px solid var(--border-gold);
     color: var(--gold);
 }
-
+ 
 .c-card-icon svg {
     width: 30px;
     height: 30px;
 }
-
+ 
 .c-card-back h5 {
     font-family: "Amiri", serif;
     font-weight: 700;
@@ -1354,13 +1355,13 @@ footer span {
     color: var(--ink);
     margin-bottom: 10px;
 }
-
+ 
 .c-card-back p {
     color: var(--ink-dim);
     font-size: 14px;
     line-height: 1.9;
 }
-
+ 
 .c-card-back p cite {
     display: block;
     margin-top: 8px;
@@ -1369,13 +1370,13 @@ footer span {
     font-size: 12px;
     color: var(--gold);
 }
-
+ 
 .consq [data-aos] {
     will-change: transform, opacity;
 }
-
+ 
 @media (prefers-reduced-motion: reduce) {
-
+ 
     .traits-aura,
     .center-emblem,
     .node-btn,
@@ -1389,7 +1390,7 @@ footer span {
         transition: none !important;
     }
 }
-
+ 
 /* ============================================================
    بعد سقوط الإنسان — gates section
    ============================================================ */

@@ -1315,19 +1315,23 @@ document.querySelectorAll('.tool-read').forEach(btn => {
 
     if (!tabs.length || !panels.length) return;
 
-  function moveGlider(tab) {
-  if (!glider || !tabsWrap || !tab) return;
-  
-  const wrapRect = tabsWrap.getBoundingClientRect();
-  const tabRect = tab.getBoundingClientRect();
+    function moveGlider(tab) {
+      if (!glider || !tabsWrap || !tab) return;
 
-  if (tabRect.width === 0) return;
+      const wrapRect = tabsWrap.getBoundingClientRect();
+      const tabRect = tab.getBoundingClientRect();
 
-  const leftPos = tabRect.left - wrapRect.left;
+      if (tabRect.width === 0 || tabRect.height === 0) return;
 
-  glider.style.width = `${tabRect.width}px`;
-  glider.style.transform = `translateX(${leftPos}px)`;
-}
+      // بنحسب الموضع والحجم في الاتجاهين مع بعض، عشان يشتغل صح
+      // سواء كانت التابس صف أفقي (ديسكتوب) أو عمودية فوق بعض (موبايل)
+      const leftPos = tabRect.left - wrapRect.left;
+      const topPos = tabRect.top - wrapRect.top;
+
+      glider.style.width = `${tabRect.width}px`;
+      glider.style.height = `${tabRect.height}px`;
+      glider.style.transform = `translate(${leftPos}px, ${topPos}px)`;
+    }
 
     function activate(id, tabEl) {
       tabs.forEach((t) => t.classList.remove("active"));
@@ -1348,18 +1352,40 @@ document.querySelectorAll('.tool-read').forEach(btn => {
       });
     });
 
-    // إعادة ضبط مكان الشريط بدقة بعد اكتمال التحميل والأنيميشن
+    // بيرجع التاب اللي المفروض يكون هو الافتراضي (تاب-1 "الموت") مهما حصل
+    function getDefaultActiveTab() {
+      return wrap.querySelector(".consq-tab.active") || tabs[0];
+    }
+
     function initGlider() {
-      const activeTab = wrap.querySelector(".consq-tab.active") || tabs[0];
-      requestAnimationFrame(() => moveGlider(activeTab));
+      requestAnimationFrame(() => moveGlider(getDefaultActiveTab()));
     }
 
     window.addEventListener("load", initGlider);
     window.addEventListener("resize", initGlider);
 
-    // تأكيدات متتابعة لضمان عدم حدوث تشوه موقع Glider أثناء تحميل الخطوط
-    setTimeout(initGlider, 100);
-    setTimeout(initGlider, 500);
+    // ===== الإصلاح الأساسي =====
+    // بدل الاعتماد على أرقام setTimeout ثابتة (اللي ممكن تتنفذ قبل أو بعد
+    // ما أنيميشن AOS (zoom-in) بتاعة .consq-tabs تخلص فعلياً، وده اللي كان
+    // بيخلي الـ glider يستقر في مكان غلط)، بنستنى فعلياً نهاية أي CSS
+    // transition/animation على tabsWrap نفسه، وبعدين نظبط المكان بدقة.
+    if (tabsWrap) {
+      tabsWrap.addEventListener("transitionend", initGlider);
+      tabsWrap.addEventListener("animationend", initGlider);
+    }
+
+    // لو AOS بيبعت حدث مخصص لما العنصر يظهر، نستخدمه كمان كطبقة حماية إضافية
+    document.addEventListener("aos:in", function (e) {
+      if (e.detail === tabsWrap) initGlider();
+    });
+
+    // تأكيدات احتياطية زيادة (شبكة أمان لو المتصفح مبعتش أي من الأحداث فوق)
+    setTimeout(initGlider, 150);
+    setTimeout(initGlider, 600);
+    setTimeout(initGlider, 1200);
+
+    // نضبط المكان فوراً أول ما الصفحة تحمّل (قبل أي أنيميشن أصلاً)
+    initGlider();
 
     // ===== كود شغل الفيديو للـ Modal =====
     const videoBtns = document.querySelectorAll(".tool-video");
@@ -1394,7 +1420,6 @@ document.querySelectorAll('.tool-read').forEach(btn => {
     }
   });
 </script>
-
   <script>
 const cards = document.querySelectorAll(".life-card");
 const door = document.getElementById("doorArea");

@@ -2556,114 +2556,95 @@ svg.wave{ width:100%; height:100%; overflow:visible; }
 
   /* ---- figures ---- */
 /* ================== SEC-FIGURES (بنفس ستايل sec-promises) ================== */
-
-.sec-figures{
-  position: relative;
-  overflow: hidden;
-  padding: 90px 5%;
-  border-top: 1px solid var(--border-gold);
-  background: var(--bg-alt);
-  text-align: center;
-}
-
-
-.figures-inner{
-  position:relative;
-  z-index:1;
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-.figures-inner h2{
-  font-family: "Amiri", serif;
-  font-weight: 700;
-  font-size: clamp(26px, 6vw, 36px);
-  text-align: center;
-  background: linear-gradient(95deg, var(--ink) 0%, var(--gold) 50%, var(--ink) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin: 0 0 8px;
-  line-height:1.5;
-}
-
-.figures-intro{
-  max-width: 700px;
-  margin: 0 auto 34px;
-  color: var(--ink-dim);
-  line-height: 1.9;
-  font-size: 15px;
-}
-.figures-intro b{ color: var(--gold); font-weight:600; }
-
-/* ---- grid + flip cards ---- */
-.figures-grid{
-  display:grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-}
-@media (max-width: 900px){
-  .figures-grid{ grid-template-columns: repeat(3, 1fr); }
-}
-@media (max-width: 640px){
-  .figures-grid{ grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 420px){
-  .figures-grid{ grid-template-columns: 1fr; }
-}
-.figure-card{
-  perspective: 1200px;
-  height: 210px;
-  cursor:pointer;
-}
-
-.figure-card-inner{
-  position:relative;
-  width:100%; height:100%;
-  transition: transform 0.6s cubic-bezier(.4,.2,.2,1);
-  transform-style: preserve-3d;
-}
-.figure-card.flipped .figure-card-inner{ transform: rotateY(180deg); }
-
-.figure-card-face{
-  position:absolute; inset:0;
-  backface-visibility: hidden;
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: 14px;
-  box-shadow: 0 14px 34px rgba(122,90,40,0.08);
-  transition: border-color 0.25s ease, box-shadow 0.25s ease;
-  display:flex; flex-direction:column; align-items:center; justify-content:center;
-  padding: 20px 14px;
-  box-sizing:border-box;
-  text-align:center;
-}
-.figure-card:hover .figure-card-face{ border-color: var(--gold); }
-
-.figure-card-front{ }
-.figure-glyph{
-  width:34px; height:34px; margin: 0 auto 10px; border-radius:50%;
-  border:1px solid var(--border-gold); display:flex; align-items:center; justify-content:center; color: var(--gold);
-}
-.figure-glyph svg{ width:17px; height:17px; }
-.figure-name{ font-family:'Amiri', serif; font-size:17px; color: var(--ink); margin-bottom:4px; font-weight:700; }
-.figure-ref{ font-size:12px; color: var(--ink-dim); }
-
-.figure-card-back{
-  transform: rotateY(180deg);
-  overflow-y:auto;
-}
-.figure-back-text{
-  font-family:'Amiri', serif;
-  font-size:13.5px;
-  line-height:1.85;
-  color: var(--ink);
-}
-.figure-back-ref{
-  font-size:11px;
-  color: var(--gold);
-  margin-top:8px;
-}
+ .sec-figures{
+    position: relative;
+    overflow: hidden;
+    padding: 90px 5%;
+    border-top: 1px solid var(--border-gold);
+    background: var(--bg-alt);
+    text-align: center;
+  }
+  .figures-inner{ position:relative; z-index:1; max-width: 1100px; margin: 0 auto; }
+  .figures-inner h2{
+    font-family: "Amiri", serif; font-weight: 700;
+    font-size: clamp(26px, 6vw, 36px); text-align: center;
+    background: linear-gradient(95deg, var(--ink) 0%, var(--gold) 50%, var(--ink) 100%);
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    margin: 0 0 8px; line-height:1.5;
+  }
+  .figures-intro{
+    max-width: 700px; margin: 0 auto 34px; color: var(--ink-dim); line-height: 1.9; font-size: 15px;
+  }
+  .figures-intro b{ color: var(--gold); font-weight:600; }
+ 
+  .figures-grid{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4px;
+  }
+  @media (max-width: 900px){ .figures-grid{ grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 640px){ .figures-grid{ grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 420px){ .figures-grid{ grid-template-columns: 1fr; } }
+ 
+  .figure-card{
+    perspective: 1200px;
+    height: 210px;
+    cursor:pointer;
+  }
+  .figure-card-inner{
+    position:relative; width:100%; height:100%;
+    transition: transform 0.6s cubic-bezier(.4,.2,.2,1);
+    transform-style: preserve-3d;
+  }
+  .figure-card.flipped .figure-card-inner{ transform: rotateY(180deg); }
+ 
+  .figure-card-face{
+    position:absolute; inset:0;
+    backface-visibility: hidden;
+    border-radius: 6px;
+    overflow:hidden;
+    box-sizing:border-box;
+  }
+ 
+  /* الوش: قطعة من اللوحة الكبيرة - كل الكروت مع بعض بتكوّن الصورة كاملة */
+  .figure-card-front{
+    background-image: var(--mosaic-img);
+    background-repeat: no-repeat;
+    filter: saturate(0.92) brightness(0.96);
+    transition: filter 0.3s ease, transform 0.3s ease;
+    border: 1px solid rgba(0,0,0,0.06);
+  }
+  .figure-card:hover .figure-card-front{
+    filter: saturate(1) brightness(1.05);
+  }
+  .figure-card-front::after{
+    content:"";
+    position:absolute; inset:0;
+    background: linear-gradient(180deg, transparent 60%, rgba(30,20,10,.35) 100%);
+    pointer-events:none;
+  }
+ 
+  /* الضهر: الاسم والمعلومات */
+  .figure-card-back{
+    transform: rotateY(180deg);
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    box-shadow: 0 14px 34px rgba(122,90,40,0.08);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    padding: 18px 14px;
+    overflow-y:auto;
+    text-align:center;
+  }
+  .figure-back-name{
+    font-family:'Amiri', serif; font-size:17px; color: var(--ink);
+    font-weight:700; margin-bottom:6px;
+  }
+  .figure-back-text{
+    font-family:'Amiri', serif; font-size:13px; line-height:1.8; color: var(--ink-dim);
+  }
+  .figure-back-ref{
+    font-size:11px; color: var(--gold); margin-top:8px; font-weight:600;
+  }
 
   /* ---- relics accordion ---- */
  /* ================== SEC-RELICS (بنفس ستايل sec-promises/sec-figures) ================== */
@@ -3463,7 +3444,263 @@ svg.wave{ width:100%; height:100%; overflow:visible; }
     padding:12px 30px; font-family:inherit; font-weight:700; font-size:14px; cursor:pointer;
     box-shadow:0 6px 16px rgba(0,0,0,.3);
   }
+.memory-lead{
+  max-width: 480px;
+  margin: 0 auto 6px;
+  color: var(--ink-dim);
+  line-height: 1.9;
+  font-size: 15px;
+}
 
+.memory-divider{
+  display:flex; align-items:center; justify-content:center; gap:12px;
+  margin: 36px auto 14px;
+}
+.memory-divider::before, .memory-divider::after{
+  content:"";
+  height:1px; width:46px;
+  background: var(--border-gold);
+}
+.memory-divider span{
+  font-family:'Amiri', serif;
+  font-size: 14px;
+  color: var(--gold);
+  font-weight:700;
+  white-space:nowrap;
+}
+
+  .sec-blessings{
+    position: relative;
+    overflow: hidden;
+    padding: 90px 5%;
+    border-top: 1px solid var(--border-gold);
+    background: var(--deep);
+    text-align: center;
+  }
+ 
+  .blessings-aura{
+    position: absolute;
+    z-index: 0;
+    pointer-events: none;
+    top: 38%;
+    left: 50%;
+    width: 900px;
+    height: 900px;
+    margin: -450px 0 0 -450px;
+    background: radial-gradient(circle,
+        rgba(201,160,92,0.16) 0%,
+        rgba(201,160,92,0.07) 45%,
+        transparent 70%);
+    border-radius: 50%;
+    animation: aura-spin 120s linear infinite;
+  }
+  @keyframes aura-spin{ from{transform:rotate(0deg);} to{transform:rotate(360deg);} }
+ 
+  .blessings-inner{
+    position:relative; z-index:1;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+ 
+  .blessings-eyebrow{
+    font-size:.78rem; letter-spacing:.25em; color: var(--gold);
+    text-transform:uppercase; margin-bottom:10px;
+  }
+ 
+  .blessings-inner h2{
+    font-family: "Amiri", serif;
+    font-weight: 700;
+    font-size: clamp(26px, 6vw, 36px);
+    text-align: center;
+    background: linear-gradient(95deg, var(--ink) 0%, var(--gold) 50%, var(--ink) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0 0 8px;
+    line-height:1.5;
+  }
+ 
+  .blessings-intro{
+    max-width: 480px;
+    margin: 0 auto 10px;
+    color: var(--ink-dim);
+    line-height: 1.9;
+    font-size: 15px;
+  }
+ 
+  /* ================== 3D CROSS ================== */
+  .cross-scene{
+    width:100%;
+    display:flex; justify-content:center;
+    padding: 30px 8px 4px;
+    perspective: 1100px;
+    cursor: grab;
+    touch-action: none;
+    user-select: none;
+  }
+  .cross-scene:active{ cursor: grabbing; }
+  .cross-3d{
+    position:relative;
+    width: 220px;
+    height: 320px;
+    transform-style: preserve-3d;
+    animation: crossFloat 9s ease-in-out infinite;
+  }
+  .cross-3d.manual{ animation: none; }
+  @keyframes crossFloat{
+    0%,100%{ transform: rotateY(-16deg) rotateX(4deg) translateY(0); }
+    50%{ transform: rotateY(16deg) rotateX(-3deg) translateY(-12px); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .cross-3d{ animation: none; }
+  }
+  .cross-hint{
+    text-align:center; color: var(--ink-dim); font-size:.8rem; margin-top:2px;
+  }
+ 
+  /* glow halo directly behind the cross */
+  .cross-3d::before{
+    content:"";
+    position:absolute;
+    left:50%; top:50%;
+    width: 280px; height: 280px;
+    margin:-140px 0 0 -140px;
+    background: radial-gradient(circle, rgba(201,160,92,.5) 0%, rgba(201,160,92,.15) 45%, transparent 72%);
+    filter: blur(6px);
+    z-index:-1;
+  }
+ 
+  /* beams: gradient + inset shadow simulate a lit, beveled solid beam */
+  .beam{
+    position:absolute;
+    border-radius: 6px;
+    background: linear-gradient(115deg, var(--gold-soft) 0%, var(--gold) 45%, var(--gold-deep) 100%);
+    box-shadow:
+      inset 0 2px 4px rgba(255,255,255,.55),
+      inset 0 -4px 8px rgba(74,52,20,.45),
+      0 18px 34px rgba(122,90,40,.35);
+  }
+  .beam-vertical{
+    left: 50%; top: 0;
+    width: 42px; height: 300px;
+    margin-left: -21px;
+    transform: translateZ(0px);
+  }
+  /* العارضة الأمامية (نقاط ٢،٣) - أقرب للعين، هي اللي بتبان دايمًا */
+  .beam-upper{
+    left: 50%; top: 110px;
+    width: 210px; height: 38px;
+    margin-left: -105px;
+    transform: translateZ(34px);
+  }
+  /* العارضة الخلفية (نقاط ٤،٥) - في نفس المكان بالظبط، وراء الأولى تمامًا
+     مخفية بالكامل من الأمام، وبتبان بس لما الصليب يلف */
+  .beam-lower{
+    left: 50%; top: 110px;
+    width: 210px; height: 38px;
+    margin-left: -105px;
+    transform: translateZ(-34px);
+    filter: brightness(0.68) saturate(0.85);
+  }
+  /* thin depth strip under each beam to fake a 3d side face */
+  .beam-vertical::after,
+  .beam-upper::after,
+  .beam-lower::after{
+    content:"";
+    position:absolute; inset:0;
+    border-radius: inherit;
+    background: linear-gradient(180deg, rgba(0,0,0,0), rgba(74,52,20,.35));
+    transform: translateZ(-10px);
+  }
+ 
+  /* points on the cross */
+  .bl-point{
+    position:absolute;
+    width: 34px; height:34px;
+    margin: -17px 0 0 -17px;
+    border-radius:50%;
+    cursor:pointer;
+    transform: translateZ(20px);
+  }
+  /* نقاط العارضة الأمامية (٢،٣) - قدام */
+  .p-up-l, .p-up-r{ transform: translateZ(44px); }
+  /* نقاط العارضة الخلفية (٤،٥) - وراء، أغمق وأصغر شوية عشان إحساس البُعد */
+  .p-low-l, .p-low-r{ transform: translateZ(-44px) scale(0.88); }
+  .p-low-l .bl-point-orb, .p-low-r .bl-point-orb{ filter: brightness(0.75); }
+  .bl-point-orb{
+    position:absolute; inset:0;
+    border-radius:50%;
+    background: radial-gradient(circle at 32% 28%, #fff8ea, var(--card-bg) 55%, var(--border-gold) 100%);
+    border: 1.5px solid var(--gold);
+    box-shadow: 0 6px 14px rgba(122,90,40,.35);
+    transition: transform .3s ease, box-shadow .3s ease, background .3s ease;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .bl-point-num{
+    font-family:'Amiri', serif; font-size:13px; color: var(--gold-deep); font-weight:700;
+  }
+  .bl-point:hover .bl-point-orb{ transform: scale(1.15); }
+  .bl-point.active .bl-point-orb{
+    background: radial-gradient(circle at 32% 28%, #fff8ea, var(--gold) 60%, var(--gold-deep) 100%);
+    box-shadow: 0 0 18px 6px rgba(201,160,92,.65);
+    transform: scale(1.12);
+  }
+  .bl-point.active .bl-point-num{ color:#fff8ea; }
+ 
+  .p-top{     left:50%; top:0;   }
+  .p-up-l{    left:24%; top:129px; }
+  .p-up-r{    left:76%; top:129px; }
+  .p-low-l{   left:24%; top:129px; }
+  .p-low-r{   left:76%; top:129px; }
+  .p-bottom{  left:50%; top:300px; }
+ 
+  /* ---- blessing card ---- */
+  .blessing-card{
+    position:relative;
+    width:100%;
+    max-width: 520px;
+    margin: 24px auto 0;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 18px;
+    padding: 28px 26px 24px;
+    min-height: 150px;
+    box-shadow: 0 14px 34px rgba(122,90,40,0.08);
+    box-sizing: border-box;
+  }
+  .blessing-card-kicker{
+    display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom: 12px;
+  }
+  .blessing-card-kicker span{ font-size:12px; letter-spacing:2px; color: var(--gold); }
+  .blessing-card-kicker::before, .blessing-card-kicker::after{
+    content:""; height:1px; width:26px; background: var(--border-gold);
+  }
+  #blessingBody{ transition: opacity 0.28s ease, transform 0.28s ease; }
+  #blessingBody.fade{ opacity:0; transform: translateY(6px); }
+  .blessing-title{
+    font-family:'Amiri', serif; font-size:19px; color: var(--ink); margin: 0 0 12px;
+    line-height:1.6; font-weight:700;
+  }
+  .blessing-text{ font-size:14.5px; line-height:1.95; color: var(--ink-dim); }
+  .blessing-ref{ display:block; margin-top:10px; font-size:12px; color: var(--gold); font-weight:600; }
+ 
+  .blessings-pager{ display:flex; justify-content:center; gap:8px; margin: 18px 0 4px; flex-wrap:wrap; }
+  .blessings-pager i{
+    width:16px; height:4px; border-radius:3px; background: var(--border-gold);
+    cursor:pointer; transition: background 0.25s ease, width 0.25s ease;
+  }
+  .blessings-pager i.on{ background: var(--gold); width:26px; }
+ 
+  .section-tools{ display:flex; gap:12px; justify-content:center; margin-top:28px; flex-wrap:wrap; }
+  .tool-btn{
+    display:flex; align-items:center; gap:6px;
+    padding:8px 14px; border-radius:999px;
+    border:1px solid var(--border-gold); background: var(--deep); color: var(--ink);
+    font-family:inherit; font-size:13px; cursor:pointer;
+    box-shadow: 0 4px 14px rgba(59,42,28,.12);
+    transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
+  }
+  .tool-btn:hover{ transform:translateY(-2px); background: var(--gold-soft); }
   /* ============================================================
    تبديل خلفيات السكاشن (فاتح/غامق) بالتبادل - ثابت ومضمون
    ============================================================ */
@@ -3478,4 +3715,5 @@ svg.wave{ width:100%; height:100%; overflow:visible; }
 #sec-figures   { background: var(--bg-alt); }
 #sec-relics    { background: var(--deep); }
 #sec-memory    { background: var(--bg-alt); }
-#sec-mirror    { background: var(--deep); }
+
+#sec-mirror    { background: var(--bg-alt); }

@@ -670,7 +670,7 @@
   <section class="lifeDoor">
     <div class="lifeDoor-inner">
 
-      <h2> باب الحياة</h2>
+      <h2>مواصفات الفادى </h2>
       <p class="lifeDoor-intro">
         اسحب الشخصية إلى الباب.
         <br>
@@ -793,7 +793,7 @@
     <h2>شخصيات من العهد القديم</h2>
     <div class="figures-intro">
       عاشت في العهد القديم شخصيات كانت ترمز من بعض الأوجه لذبيحة المسيح.
-      <b>اضغط على أي بطاقة</b> لتقرأ الرمز الذي حملته.
+      كل هذه البطاقات معًا تكوّن مشهد الصليب — <b>اقلب كل بطاقة</b> لتقرأ الرمز الذي حملته.
     </div>
     <div class="figures-grid" id="figuresGrid"></div>
   </div>
@@ -812,28 +812,37 @@
 
 <section class="sec-memory" id="sec-memory">
   <div class="memory-inner">
-    <h2>المسيح والفداء </h2>
-    <p class="memory-intro">
-      اقلب الكروت وطابق كل عبارة من الدرس بالرمز اللي يعبّر عنها.
+    <h2>المسيح والفداء</h2>
+    <p class="memory-lead">
+      كيف تم فداء الإنسان؟ شاهد القصة كاملة من التجسد إلى الصليب.
     </p>
- 
+  </div>
+
+  <div class="fall-video-wrap" data-aos="fade-up" data-aos-delay="300">
+    <video controls loop preload="auto">
+      <source src="assets/Christ and Redemption.mp4" type="video/mp4" />
+    </video>
+  </div>
+
+  <div class="memory-inner">
+    <div class="memory-divider">
+      <span>الآن جاء دورك</span>
+    </div>
+    <p class="memory-intro">
+      شفت القصة... دلوقتي اختبر ذاكرتك: اقلب الكروت وطابق كل عبارة من الدرس بالرمز اللي يعبّر عنها.
+    </p>
+
     <div class="hud">
       <div class="pill">🔄 محاولات: <b id="moves">0</b></div>
       <div class="pill">⏱️ الوقت: <b id="timer">00:00</b></div>
       <div class="pill">✅ الأزواج: <b id="pairs">0/8</b></div>
       <div class="pill"><button class="restart-btn" id="restartBtn">ابدأ من جديد</button></div>
     </div>
- 
+
     <div class="board" id="board"></div>
   </div>
-      <div class="section-tools" data-aos="fade-up" data-aos-delay="180">
-      <button type="button" class="tool-btn tool-video" data-video="1ouAhxhwlO7SPEie1Lf3zKiUmiWA4H2ZE">
-        ▶ <span>فيديو الشرح</span>
-      </button>
-      <button type="button" class="tool-btn tool-read" data-read-target="#consq-intro-text">
-        🔊 <span>استماع</span>
-      </button>
-    </div>
+
+
 </section>
  
 <div class="overlay" id="overlay">
@@ -846,8 +855,52 @@
 </div>
 
 
-
-
+<section class="sec-blessings" id="sec-blessings">
+  <div class="blessings-aura"></div>
+  <div class="blessings-inner">
+    <p class="blessings-eyebrow">ثمر الفداء</p>
+    <h2>بركات الفداء</h2>
+    <p class="blessings-intro">
+      كان للفداء بركات كبرى أكّدت عليها أسفار العهد الجديد وأقوال الآباء.
+      اضغط على كل نقطة على الصليب لتكتشف بركة من بركات الفداء.
+    </p>
+ 
+    <div class="cross-scene" id="crossScene">
+      <div class="cross-3d" id="cross3d">
+        <div class="beam beam-vertical"></div>
+        <div class="beam beam-upper"></div>
+        <div class="beam beam-lower"></div>
+ 
+        <button class="bl-point p-top" data-i="0"><span class="bl-point-orb"><span class="bl-point-num">١</span></span></button>
+        <button class="bl-point p-up-l" data-i="1"><span class="bl-point-orb"><span class="bl-point-num">٢</span></span></button>
+        <button class="bl-point p-up-r" data-i="2"><span class="bl-point-orb"><span class="bl-point-num">٣</span></span></button>
+        <button class="bl-point p-low-l" data-i="3"><span class="bl-point-orb"><span class="bl-point-num">٤</span></span></button>
+        <button class="bl-point p-low-r" data-i="4"><span class="bl-point-orb"><span class="bl-point-num">٥</span></span></button>
+        <button class="bl-point p-bottom" data-i="5"><span class="bl-point-orb"><span class="bl-point-num">٦</span></span></button>
+      </div>
+    </div>
+    <p class="cross-hint">اسحب الصليب بإصبعك أو الماوس لتديره وتكتشف النقاط الخلفية</p>
+ 
+    <div class="blessing-card">
+      <div class="blessing-card-kicker"><span id="blessingIndex">بركة ١</span></div>
+      <div id="blessingBody">
+        <div class="blessing-title" id="blessingTitle"></div>
+        <div class="blessing-text" id="blessingText"></div>
+        <span class="blessing-ref" id="blessingRef"></span>
+      </div>
+    </div>
+ 
+    <div class="blessings-pager" id="blessingsPager"></div>
+  </div>
+  <div class="section-tools" data-aos="fade-up" data-aos-delay="180">
+    <button type="button" class="tool-btn tool-video" data-video="1XizD6CAqGCce_lgY3IKmNcvCuN5G7ZdD">
+      ▶ <span>فيديو الشرح</span>
+    </button>
+    <button type="button" class="tool-btn tool-read" data-read-target="#consq-intro-text">
+      🔊 <span>استماع</span>
+    </button>
+  </div>
+</section>
 
 <section class="sec-mirror" id="sec-mirror">
   <div class="mirror-inner">
@@ -1569,37 +1622,39 @@ const ICONS = {
 function iconSVG(key){ return `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">${ICONS[key]}</svg>`; }
 
 /* ============ FIGURES ============ */
+/* ============ FIGURES ============ */
+const MOSAIC_IMAGE = "./assets/crucifixion.png";
+
 const figures = [
-  { name: "هابيل", ref: "(تك ٤)", icon: "flame",
+  { name: "هابيل", ref: "(تك ٤)",
     desc: "الصديق الذى سفك دمه حسداً بيد أخيه دون ذنب اقترفه، كان رمزاً للسيد المسيح الذي حسده اليهود، وأسلموه للموت دون ذنب فعله." },
-  { name: "نوح", ref: "(تك ٨)", icon: "dove",
+  { name: "نوح", ref: "(تك ٨)",
     desc: "البار الذي هو الأول للخليقة الجديدة والذي بواسطته تم الإبقاء على الجنس البشرى، كان رمزاً للسيد المسيح رأس الخليقة الجديدة، والذي به صار الخلاص لكل البشرية." },
-  { name: "ملكي صادق", ref: "(تك ١٤)", icon: "cup",
+  { name: "ملكي صادق", ref: "(تك ١٤)",
     desc: "ملك البر والسلام الكاهن الذى بلا نسب، وغير معروفة بداية أيامه ولا نهايتها، والذي قدم تقدمة، كان رمزاً للسيد المسيح ملك البر والسلام، رئيس الكهنة الأزلى الأبدى، والذي قدم جسده ودمه الأقدسين." },
-  { name: "إسحق", ref: "(تك ٢٢)", icon: "mountain",
+  { name: "إسحق", ref: "(تك ٢٢)",
     desc: "الابن المحبوب الذي أطاع أباه وخرج حاملاً الحطب على كتفه، ورجع حياً، كان رمزاً للسيد المسيح الابن الحبيب الذي أطاع حتى الموت، وخرج حاملاً خشبة الصليب، وقام حياً." },
-{ name: "يوسف", ref: "(تك ٣٧)", icon: "star",
-  desc: "الشاب الطاهر الذي حسده إخوته وباعوه بالفضة، لكنه خرج حياً وصار سبباً في خلاص العالم من المجاعة، كان رمزاً للسيد المسيح الذي أسلمه تلميذه بالفضة، ووُضع في قبر، ثم قام حياً وصار خلاصاً للعالم كله." },
-  { name: "يشوع بن نون", ref: "(سفر يشوع)", icon: "shield",
+  { name: "يوسف", ref: "(تك ٣٧)",
+    desc: "الشاب الطاهر الذي حسده إخوته وباعوه بالفضة، لكنه خرج حياً وصار سبباً في خلاص العالم من المجاعة، كان رمزاً للسيد المسيح الذي أسلمه تلميذه بالفضة، ووُضع في قبر، ثم قام حياً وصار خلاصاً للعالم كله." },
+  { name: "يشوع بن نون", ref: "(سفر يشوع)",
     desc: "النبى والقائد العظيم والذي يعنى اسمه المخلص، وهو الذي قاد شعبه للدخول إلى أرض الموعد، كان رمزاً ليسوع المخلص القائد الأعظم والذي قاد شعبه في الدخول إلى أورشليم السمائية." },
-  { name: "أيوب", ref: "(سفر أيوب)", icon: "sunrise",
+  { name: "أيوب", ref: "(سفر أيوب)",
     desc: "البار رجل الألم والتجربة المشتكى عليه من الشيطان، والذي اجتاز المعصرة وخرج سليماً صحيحاً، كان رمزاً للسيد المسيح رجل البر، والذي جرب من الشيطان على الجبل وانتصر، واختبر الألم واجتاز الموت وقام حياً." },
-  { name: "يونان", ref: "(سفر يونان)", icon: "fish",
+  { name: "يونان", ref: "(سفر يونان)",
     desc: "النبى الذى مكث في بطن الحوت ثلاثة أيام وثلاث ليال، وخرج حياً، كان رمزاً للسيد المسيح الذي وضع في القبر ثلاثة أيام، وقام حياً." }
 ];
 
 const figuresGrid = document.getElementById('figuresGrid');
+
+// 1) نبني الكروت الأول من غير أي background-size/position
 figures.forEach((f) => {
   const card = document.createElement('div');
   card.className = 'figure-card';
   card.innerHTML = `
     <div class="figure-card-inner">
-      <div class="figure-card-face figure-card-front">
-        <div class="figure-glyph">${iconSVG(f.icon)}</div>
-        <div class="figure-name">${f.name}</div>
-        <div class="figure-ref">${f.ref}</div>
-      </div>
+      <div class="figure-card-face figure-card-front"></div>
       <div class="figure-card-face figure-card-back">
+        <div class="figure-back-name">${f.name}</div>
         <div class="figure-back-text">${f.desc}</div>
         <div class="figure-back-ref">${f.ref}</div>
       </div>
@@ -1608,6 +1663,70 @@ figures.forEach((f) => {
   card.addEventListener('click', () => card.classList.toggle('flipped'));
   figuresGrid.appendChild(card);
 });
+
+const fronts = Array.from(figuresGrid.querySelectorAll('.figure-card-front'));
+
+// 2) نحسب مقاسات الموزاييك بمنطق cover يدوي، على المقاسات الحقيقية بالبكسل
+function layoutMosaic(imgW, imgH) {
+  const gridRect = figuresGrid.getBoundingClientRect();
+  const gridW = gridRect.width;
+  const gridH = gridRect.height;
+  if (!gridW || !gridH) return;
+
+  // نفس منطق background-size: cover
+  const scale = Math.max(gridW / imgW, gridH / imgH);
+  const bgW = imgW * scale;
+  const bgH = imgH * scale;
+
+  // الصورة بتتمركز افتراضيًا في نص الـ grid (زي cover تمامًا)
+  const offsetX = (gridW - bgW) / 2;
+  const offsetY = (gridH - bgH) / 2;
+
+  fronts.forEach((el) => {
+    const cardRect = el.getBoundingClientRect();
+    const localLeft = cardRect.left - gridRect.left;
+    const localTop = cardRect.top - gridRect.top;
+
+    el.style.backgroundImage = `url('${MOSAIC_IMAGE}')`;
+    el.style.backgroundRepeat = 'no-repeat';
+    el.style.backgroundSize = `${bgW}px ${bgH}px`;
+    el.style.backgroundPosition =
+      `${offsetX - localLeft}px ${offsetY - localTop}px`;
+  });
+}
+
+// 3) نستنى الصورة تتحمل عشان ناخد المقاس الحقيقي بتاعها
+const mosaicImg = new Image();
+let naturalW = 0, naturalH = 0;
+
+function relayout() {
+  if (naturalW && naturalH) layoutMosaic(naturalW, naturalH);
+}
+
+mosaicImg.onload = () => {
+  naturalW = mosaicImg.naturalWidth;
+  naturalH = mosaicImg.naturalHeight;
+  relayout();
+};
+mosaicImg.src = MOSAIC_IMAGE;
+
+// 4) إعادة الحساب لما الـ grid يتغيّر مقاسه (ريسايز، تغيير عدد الأعمدة بالـ breakpoints، تحميل الخطوط...)
+let resizeRAF = null;
+const ro = new ResizeObserver(() => {
+  if (resizeRAF) cancelAnimationFrame(resizeRAF);
+  resizeRAF = requestAnimationFrame(relayout);
+});
+ro.observe(figuresGrid);
+
+window.addEventListener('resize', () => {
+  if (resizeRAF) cancelAnimationFrame(resizeRAF);
+  resizeRAF = requestAnimationFrame(relayout);
+});
+
+// لو الخطوط بتتحمل بعدين ممكن تأثر على المقاسات
+if (document.fonts && document.fonts.ready) {
+  document.fonts.ready.then(relayout);
+}
 /* ============ RELICS ============ */
 const relics = [
   { name: "شجرة الحياة", ref: "(تك ٣)", icon: "tree",
@@ -2095,6 +2214,105 @@ function openCard(stageId, firstTime){
   document.getElementById('playAgainBtn').addEventListener('click', startGame);
  
   startGame();
+})();
+</script>
+
+<script>
+(function(){
+  "use strict";
+ 
+  /* ---- drag-to-rotate the 3D cross ---- */
+  var scene = document.getElementById('crossScene');
+  var obj = document.getElementById('cross3d');
+  var dragging = false;
+  var lastX = 0, lastY = 0;
+  var rotY = -16, rotX = 4;
+ 
+  function applyTransform(){
+    obj.style.transform = 'rotateY(' + rotY + 'deg) rotateX(' + rotX + 'deg)';
+  }
+ 
+  function pointFromEvent(e){
+    return e.touches && e.touches[0] ? e.touches[0] : e;
+  }
+ 
+  function onDown(e){
+    dragging = true;
+    obj.classList.add('manual');
+    var p = pointFromEvent(e);
+    lastX = p.clientX; lastY = p.clientY;
+  }
+  function onMove(e){
+    if(!dragging) return;
+    var p = pointFromEvent(e);
+    var dx = p.clientX - lastX;
+    var dy = p.clientY - lastY;
+    rotY += dx * 0.5;
+    rotX -= dy * 0.3;
+    rotX = Math.max(-40, Math.min(40, rotX));
+    lastX = p.clientX; lastY = p.clientY;
+    applyTransform();
+    if(e.cancelable) e.preventDefault();
+  }
+  function onUp(){ dragging = false; }
+ 
+  scene.addEventListener('mousedown', onDown);
+  window.addEventListener('mousemove', onMove);
+  window.addEventListener('mouseup', onUp);
+  scene.addEventListener('touchstart', onDown, {passive:true});
+  window.addEventListener('touchmove', onMove, {passive:false});
+  window.addEventListener('touchend', onUp);
+ 
+  var blessings = [
+    { title:"أولاً: الفداء من حكم الموت",
+      text:"إذ مات ابن الله الكلمة عنا، بدمه الكريم دخل مرة واحدة إلى الأقداس فوجد فداءً أبديًّا، وبالصليب أباد الموت.",
+      ref:"عب ٩: ١١-١٢ / ١كو ١٥: ٥٥ / ١بط ١: ١٨-١٩" },
+    { title:"ثانياً: التبرير وغفران الخطايا",
+      text:"بموت المسيح وقيامته نلنا التبرير وغفران خطايانا، وصرنا أبرارًا أمام الله بدم صليبه.", ref:"" },
+    { title:"ثالثاً: الافتداء من لعنة الناموس",
+      text:"افتدانا المسيح من لعنة الناموس، إذ صار لعنة لأجلنا على خشبة الصليب.", ref:"" },
+    { title:"رابعاً: الانتصار على الشيطان وإبطال سلطان الخطية",
+      text:"بالصليب انتصر المسيح على الشيطان، وأبطل سلطان الخطية وحرّر الأسرى من قبضتها.", ref:"" },
+    { title:"خامساً: فتح الطريق للملكوت والحياة الأبدية",
+      text:"فتح لنا المسيح بموته وقيامته الطريق إلى الملكوت، ووهبنا رجاء الحياة الأبدية.", ref:"" },
+    { title:"سادساً: عمل الصلح بين السمائيين والأرضيين",
+      text:"بدم صليبه صنع المسيح الصلح بين السمائيين والأرضيين، وجمع كل شيء تحت رأس واحد.", ref:"" }
+  ];
+  var arabicOrdinal = ["١","٢","٣","٤","٥","٦"];
+ 
+  var pager = document.getElementById('blessingsPager');
+  blessings.forEach(function(_, i){
+    var d = document.createElement('i');
+    d.addEventListener('click', function(){ setActive(i); });
+    pager.appendChild(d);
+  });
+ 
+  document.querySelectorAll('.bl-point').forEach(function(btn){
+    btn.addEventListener('click', function(){ setActive(+btn.dataset.i); });
+  });
+ 
+  var current = 0;
+  function render(i){
+    var b = blessings[i];
+    document.getElementById('blessingIndex').textContent = 'بركة ' + arabicOrdinal[i];
+    document.getElementById('blessingTitle').textContent = b.title;
+    document.getElementById('blessingText').textContent = b.text;
+    document.getElementById('blessingRef').textContent = b.ref || '';
+    document.querySelectorAll('.bl-point').forEach(function(d){
+      d.classList.toggle('active', +d.dataset.i === i);
+    });
+    document.querySelectorAll('.blessings-pager i').forEach(function(d, idx){
+      d.classList.toggle('on', idx === i);
+    });
+  }
+  function setActive(i){
+    if(i === current){ render(i); return; }
+    current = i;
+    var body = document.getElementById('blessingBody');
+    body.classList.add('fade');
+    setTimeout(function(){ render(i); body.classList.remove('fade'); }, 180);
+  }
+  render(0);
 })();
 </script>
 </body>

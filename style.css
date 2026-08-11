@@ -854,63 +854,71 @@ footer span {
 }
 
 /* ===== موبايل: العقد بتتحول لِستة عمودية بدل التموضع الدائري ===== */
+/* ===== موبايل: نفس شكل الـ constellation الدائري بس بمقاس أصغر ===== */
+
+
 @media (max-width: 640px) {
-    .constellation {
-        max-width: 100%;
-        aspect-ratio: unset;
-        height: auto;
-        padding-top: 40px;
+    .traits {
+        padding: 25px 12px;
     }
 
-    .constellation svg { display: none; }
-
-    .center-emblem {
-        position: static;
-        transform: none;
-        width: 140px;
-        margin: 0 auto 24px;
+    .constellation {
+        max-width: 340px;
     }
 
     .node {
-        position: static;
-        width: 100%;
-        max-width: 300px;
-        transform: none !important;
-        margin: 0 auto 16px;
-        display: flex;
-        align-items: center;
-        gap: 14px;
-        opacity: 1;
+        width: 26%;
     }
 
-    .node-btn {
-        width: 72px;
-        flex-shrink: 0;
-    }
 
-    .node-overlay {
-        position: static;
-        background: none;
-        opacity: 1;
-        padding: 0;
-        text-align: right;
-        display: block;
-    }
-
-    .node-overlay .txt {
-        color: var(--ink);
-        font-size: 14px;
-    }
-
-    .node-overlay .txt strong {
-        color: var(--gold);
+    /* لازم نفس وزن .constellation.in-view .node أو أعلى */
+    .constellation.in-view .node:active,
+    .constellation.in-view .node.active {
+        transform: translate(-50%, -50%) scale(1.15) !important;
+        z-index: 10;
+        transition: transform .2s ease;
     }
 
     .node-badge {
-        position: static;
-        margin-inline-start: 8px;
+        width: 18px;
+        height: 18px;
+        line-height: 18px;
+        font-size: 10px;
+        top: -4px;
+        right: -4px;
+    }
+
+    .node-overlay {
+        padding: 6%;
+    }
+
+    .node-overlay .txt {
+        font-size: 8px;
+        line-height: 1.35;
+    }
+
+    .node-overlay .txt strong {
+        font-size: 1.05em;
+        margin-bottom: 2px;
     }
 }
+@media (hover: hover) and (pointer: fine) {
+    .node:hover {
+        transform: translate(-50%, -50%) scale(1.3) !important;
+        z-index: 10;
+    }
+    .node:hover .node-overlay { opacity: 1; }
+    .node:hover .node-btn {
+        border-color: var(--gold);
+        box-shadow: 0 0 20px rgba(201, 160, 92, 0.5);
+    }
+}
+@media (max-width: 400px) {
+    .constellation {
+        max-width: 280px;
+    }
+}
+
 /* تأثير التكبير عند الماوس للـ Desktop */
 @media (min-width: 641px) {
     /* تكبير العقدة اللي واقف عليها الماوس */

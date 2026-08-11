@@ -80,7 +80,7 @@
   <section class="traits" id="traits">
     <div class="traits-inner">
       <h2>خِلْقةالإنسان على صورة الله</h2>
-      <p class="traits-intro">
+      <p class="traits-intro" id="traits-intro-text">
      خلق الله الإنسان في اليوم السادس بعد أن أعد له كل شيء، هذا وقد كان الإنسان مميزاً - دون سائر المخلوقات الأخرى - في طريقة خلقته، ومميزاً أيضاً في طبيعة خلقته:
         <span>مميزاً في طريقة خلقته</span>
         و
@@ -195,6 +195,9 @@
   </button>
 </div>
   </section>
+
+
+
   <section class="fall" id="fall">
     <div class="fall-inner">
       <h2 data-aos="fade-up" data-aos-delay="100">سقوط الإنسان</h2>
@@ -989,7 +992,7 @@
     <p class="hint-text" id="hintText">المسها لتكتشف كل جزء من الرحلة.</p>
  
     <p class="mirror-tagline">
-      مهرجان <span class="mirror-tagline-highlight">مسرحي فيك</span> ٢٠٢٦
+      مهرجان <span class="mirror-tagline-highlight">مسرتي فيك</span> ٢٠٢٦
     </p>
  
    
@@ -1135,45 +1138,125 @@
   </script>
   <script>
   // ===== فيديو الشرح =====
-  const videoModal = document.getElementById('videoModal');
-  const videoFrame = document.getElementById('videoModalFrame');
+
+// ===== فيديو الشرح =====
+const videoModal = document.getElementById('videoModal');
+const videoFrame = document.getElementById('videoModalFrame');
+ 
+if (videoModal && videoFrame) {
   document.querySelectorAll('.tool-video').forEach(btn => {
     btn.addEventListener('click', () => {
       videoFrame.src = `https://drive.google.com/file/d/${btn.dataset.video}/preview`;
       videoModal.classList.add('open');
     });
   });
-  document.getElementById('videoModalClose').addEventListener('click', closeVideoModal);
-  videoModal.addEventListener('click', e => { if (e.target === videoModal) closeVideoModal(); });
+ 
+  const videoModalClose = document.getElementById('videoModalClose');
+  if (videoModalClose) {
+    videoModalClose.addEventListener('click', closeVideoModal);
+  }
+ 
+  videoModal.addEventListener('click', e => {
+    if (e.target === videoModal) closeVideoModal();
+  });
+ 
   function closeVideoModal() {
     videoModal.classList.remove('open');
     videoFrame.src = '';
   }
-
-  // ===== قراءة النص صوتياً (لذوي الاحتياجات الخاصة) =====
-  document.querySelectorAll('.tool-read').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const target = document.querySelector(btn.dataset.readTarget);
-      if (!target) return;
-
-      if (btn.classList.contains('is-reading')) {
-        speechSynthesis.cancel();
-        btn.classList.remove('is-reading');
-        return;
-      }
-
+} else {
+  console.warn('videoModal أو videoModalFrame مش موجودين في الصفحة');
+}
+ 
+// ===== قراءة النص صوتياً (لذوي الاحتياجات الخاصة) =====
+ 
+// لازم نحتفظ بمرجع للـ utterance في متغير خارجي، وإلا Chrome ممكن يعمل
+// garbage collect للـ object وهو لسه بيتكلم، فيبقى فيه "أيقونة شغالة" بدون صوت
+let currentUtter = null;
+ 
+// كاش لقائمة الأصوات المتاحة في المتصفح (بتتحمل بشكل async في كروم)
+let cachedVoices = [];
+function loadVoices() {
+  cachedVoices = speechSynthesis.getVoices();
+}
+loadVoices();
+if ('onvoiceschanged' in speechSynthesis) {
+  speechSynthesis.onvoiceschanged = loadVoices;
+}
+ 
+function pickArabicVoice() {
+  if (!cachedVoices.length) loadVoices();
+  // دور أولاً على صوت عربي مصري بالظبط، بعدين أي صوت عربي، بعدين null (يسيب المتصفح يختار)
+  return (
+    cachedVoices.find(v => v.lang && v.lang.toLowerCase() === 'ar-eg') ||
+    cachedVoices.find(v => v.lang && v.lang.toLowerCase().startsWith('ar')) ||
+    null
+  );
+}
+ 
+document.querySelectorAll('.tool-read').forEach(btn => {
+  btn.addEventListener('click', () => {
+ 
+    if (!('speechSynthesis' in window)) {
+      alert('المتصفح ده مش بيدعم القراءة الصوتية');
+      return;
+    }
+ 
+    const target = document.querySelector(btn.dataset.readTarget);
+    if (!target) {
+      console.warn('Read target not found:', btn.dataset.readTarget);
+      return;
+    }
+ 
+    // لو الزرار ده شغال حالياً -> وقف القراءة
+    if (btn.classList.contains('is-reading')) {
       speechSynthesis.cancel();
-      document.querySelectorAll('.tool-read').forEach(b => b.classList.remove('is-reading'));
-
-      const utter = new SpeechSynthesisUtterance(target.innerText);
-      utter.lang = 'ar-EG';
-      utter.rate = 0.95;
-      utter.onend = utter.onerror = () => btn.classList.remove('is-reading');
-
-      btn.classList.add('is-reading');
+      btn.classList.remove('is-reading');
+      currentUtter = null;
+      return;
+    }
+ 
+    // وقف أي قراءة تانية شغالة قبل ما تبدأ الجديدة
+    speechSynthesis.cancel();
+    document.querySelectorAll('.tool-read').forEach(b => b.classList.remove('is-reading'));
+ 
+    const text = target.innerText.trim();
+    if (!text) {
+      console.warn('النص فاضي، مفيش حاجة نقراها');
+      return;
+    }
+ 
+    const utter = new SpeechSynthesisUtterance(text);
+    utter.lang = 'ar-EG';
+    utter.rate = 0.95;
+ 
+    const voice = pickArabicVoice();
+    if (voice) {
+      utter.voice = voice;
+    } else {
+      console.warn('مفيش صوت عربي متاح في المتصفح، هيتم استخدام الصوت الافتراضي (ممكن يبقى صامت أو بلغة تانية)');
+      console.log(speechSynthesis.getVoices());
+      speechSynthesis.getVoices().forEach(v => console.log(v.name, '|', v.lang));
+    }
+ 
+    utter.onend = utter.onerror = (e) => {
+      if (e.type === 'error') console.warn('SpeechSynthesis error:', e);
+      btn.classList.remove('is-reading');
+      currentUtter = null;
+    };
+ 
+    btn.classList.add('is-reading');
+    currentUtter = utter; // نحتفظ بالمرجع عشان الـ garbage collector
+ 
+    // Chrome أحياناً محتاج resume() قبل speak() لو كان فيه cancel قبلها على طول
+    speechSynthesis.resume();
+ 
+    // تأخير بسيط جداً عشان نتأكد إن الـ cancel السابق خلص فعلياً قبل ما نبدأ speak جديد
+    setTimeout(() => {
       speechSynthesis.speak(utter);
-    });
+    }, 50);
   });
+});
 </script>
 <script>
   document.addEventListener("DOMContentLoaded", function () {

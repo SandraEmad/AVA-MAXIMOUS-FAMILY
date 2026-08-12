@@ -588,9 +588,10 @@
       <button type="button" class="tool-btn tool-video" data-video="1Z4c0JPA91Ua962scAN7Al6E0rO8RQ0oe">
         ▶ <span>فيديو الشرح</span>
       </button>
-      <button type="button" class="tool-btn tool-read" data-read-target="#consq-intro-text">
+      <button class="tool-btn tool-read" id="traits-audio-btn" data-audio-target="traits-audio">
         🔊 <span>استماع</span>
       </button>
+      <audio id="traits-audio" src="./audio/نتائج السقوط.mpeg" preload="none"></audio>
     </div>
   </section>
 
@@ -1340,30 +1341,30 @@
       const text = clone.innerText || clone.textContent || '';
       return text.replace(/\s+/g, ' ').trim();
     }
-  document.querySelectorAll('.tool-read').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const audioId = btn.getAttribute('data-audio-target');
-      const audio = document.getElementById(audioId);
-      if (!audio) return;
+    document.querySelectorAll('.tool-read').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const audioId = btn.getAttribute('data-audio-target');
+        const audio = document.getElementById(audioId);
+        if (!audio) return;
 
-      // وقف أي صوت تاني شغال دلوقتي
-      document.querySelectorAll('audio').forEach(a => {
-        if (a !== audio) { a.pause(); a.currentTime = 0; }
-      });
-      document.querySelectorAll('.tool-read.playing').forEach(b => {
-        if (b !== btn) b.classList.remove('playing');
-      });
+        // وقف أي صوت تاني شغال دلوقتي
+        document.querySelectorAll('audio').forEach(a => {
+          if (a !== audio) { a.pause(); a.currentTime = 0; }
+        });
+        document.querySelectorAll('.tool-read.playing').forEach(b => {
+          if (b !== btn) b.classList.remove('playing');
+        });
 
-      if (audio.paused) {
-        audio.play();
-        btn.classList.add('playing');
-      } else {
-        audio.pause();
-        audio.currentTime = 0;
-        btn.classList.remove('playing');
-      }
+        if (audio.paused) {
+          audio.play();
+          btn.classList.add('playing');
+        } else {
+          audio.pause();
+          audio.currentTime = 0;
+          btn.classList.remove('playing');
+        }
+      });
     });
-  });
   </script>
   <script>
     (function () {

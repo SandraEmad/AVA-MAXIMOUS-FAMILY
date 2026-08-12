@@ -2740,6 +2740,80 @@ document.addEventListener("DOMContentLoaded", function () {
   sections.forEach((section) => observer.observe(section));
 });
 </script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const wrap = document.getElementById("consequences");
+    if (!wrap) return;
+
+    const tabs = wrap.querySelectorAll(".consq-tab");
+    const panels = wrap.querySelectorAll(".consq-panel");
+    const tabsWrap = wrap.querySelector(".consq-tabs");
+    const glider = wrap.querySelector(".consq-tab-glider");
+
+    if (!tabs.length || !panels.length) return;
+
+    function moveGlider(tab) {
+      if (!glider || !tabsWrap || !tab) return;
+
+      const wrapRect = tabsWrap.getBoundingClientRect();
+      const tabRect = tab.getBoundingClientRect();
+
+      if (tabRect.width === 0 || tabRect.height === 0) return;
+
+      const leftPos = tabRect.left - wrapRect.left;
+      const topPos = tabRect.top - wrapRect.top;
+
+      glider.style.width = `${tabRect.width}px`;
+      glider.style.height = `${tabRect.height}px`;
+      glider.style.transform = `translate(${leftPos}px, ${topPos}px)`;
+    }
+
+    function activate(id, tabEl) {
+      tabs.forEach((t) => t.classList.remove("active"));
+      panels.forEach((p) => p.classList.remove("active"));
+
+      tabEl.classList.add("active");
+
+      const target = document.getElementById(id);
+      if (target) target.classList.add("active");
+
+      moveGlider(tabEl);
+      if (window.AOS) AOS.refresh();
+    }
+
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", function () {
+        activate(tab.dataset.tab, tab);
+      });
+    });
+
+    function getDefaultActiveTab() {
+      return wrap.querySelector(".consq-tab.active") || tabs[0];
+    }
+
+    function initGlider() {
+      requestAnimationFrame(() => moveGlider(getDefaultActiveTab()));
+    }
+
+    window.addEventListener("load", initGlider);
+    window.addEventListener("resize", initGlider);
+
+    if (tabsWrap) {
+      tabsWrap.addEventListener("transitionend", initGlider);
+      tabsWrap.addEventListener("animationend", initGlider);
+    }
+
+    document.addEventListener("aos:in", function (e) {
+      if (e.detail === tabsWrap) initGlider();
+    });
+
+    setTimeout(initGlider, 150);
+    setTimeout(initGlider, 600);
+    setTimeout(initGlider, 1200);
+
+    initGlider();
+  });
+</script>
 </body>
 
 </html>

@@ -464,7 +464,100 @@ h1 {
         transform: translateY(0);
     }
 }
+/* ============================================================
+   تعديلات Hero: خلفية صورة بدل الفيديو + نصوص جديدة + لينكات
+   ============================================================ */
 
+/* استبدال .bg-video بـ .bg-image (نفس منطق ملء الخلفية + حركة كين-برنز
+   بطيئة عشان الصورة تفضل حيّة ومش جامدة) */
+.bg-image {
+    position: absolute;
+    inset: -4%;
+    width: 108%;
+    height: 108%;
+    object-fit: cover;
+    object-position: center 30%;
+    filter: saturate(1.08) contrast(1.05) brightness(0.85);
+    animation: kenburns 30s ease-in-out infinite alternate;
+}
+
+/* ---------- نصوص الـ Hero الجديدة ---------- */
+.hero-kicker {
+    font-family: "Amiri", serif;
+    color: var(--gold-soft);
+    font-size: 15px;
+    letter-spacing: 2px;
+    margin-bottom: 6px;
+    opacity: 0;
+    animation: fade-up 1.2s ease forwards 0.15s;
+}
+
+.hero-presents {
+    font-family: "Tajawal", sans-serif;
+    color: var(--hero-ink);
+    font-size: 14px;
+    letter-spacing: 3px;
+    opacity: 0.85;
+    margin-bottom: 22px;
+    opacity: 0;
+    animation: fade-up 1.2s ease forwards 0.3s;
+}
+
+.hero-subtitle {
+    font-family: "Tajawal", sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 1px;
+    color: var(--gold-soft);
+    margin-top: -14px;
+    margin-bottom: 30px;
+    opacity: 0;
+    animation: fade-up 1.3s ease forwards 0.7s;
+}
+
+/* ---------- منطقة أزرار الحركة (اقرأ القصة / تحميل الكتاب) ---------- */
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+    opacity: 0;
+    animation: fade-up 1.3s ease forwards 1.2s;
+}
+
+/* الزرار التاني (تحميل الكتاب) بياخد نفس تأثير .cta بالظبط، بس بشكل outline
+   خفيف عشان يبقى تانوي بصرياً وميزاحمش زرار "اقرأ القصة" الأساسي */
+.cta-outline {
+    border-color: var(--border-gold);
+    color: var(--hero-ink);
+}
+
+.cta-outline:hover {
+    border-color: var(--gold);
+    background: transparent;
+    color: var(--gold-soft);
+    box-shadow: 0 0 30px 4px rgba(201, 160, 92, 0.35);
+}
+
+
+.hero-actions .cta {
+    opacity: 1;
+    animation: none;
+}
+
+@media (max-width: 600px) {
+    .hero-actions {
+        flex-direction: column;
+        width: 100%;
+        max-width: 320px;
+        margin: 0 auto;
+    }
+
+    .hero-actions .cta {
+        width: 100%;
+        justify-content: center;
+    }
+}
 .scroll-cue {
     position: absolute;
     bottom: 3.5vh;
@@ -1962,10 +2055,12 @@ border-color: #5dff87;
     align-items: center;
     justify-content: center;
     gap: 12px;
+    cursor: pointer;
 }
 
 .life-card:hover {
     transform: translateY(-6px);
+    cursor: pointer;
     border-color: var(--gold);
     box-shadow: 0 16px 34px rgba(122, 90, 40, .22);
 }
@@ -1997,7 +2092,12 @@ border-color: #5dff87;
     border: 1px solid var(--border-gold);
     box-shadow: inset 0 0 12px rgba(201,160,92,.15);
 }
-
+.emoji img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
 .life-card h3 {
     margin: 0;
     font-family: "Amiri", serif;
@@ -2339,7 +2439,14 @@ border-color: #5dff87;
         transition: none !important;
     }
 }
+.gate {
+  cursor: pointer;
+  transition: transform .3s ease;
+}
 
+.gate:hover:not(.open) {
+  transform: translateY(-8px);
+}
 /* ============================================================
    Scrollbar — hidden native scrollbar, golden cross indicator only
    ============================================================ */
@@ -2599,20 +2706,20 @@ svg.wave{ width:100%; height:100%; overflow:visible; }
   }
   .figures-intro b{ color: var(--gold); font-weight:600; }
  
-  .figures-grid{
-    display:grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 4px;
-  }
-  @media (max-width: 900px){ .figures-grid{ grid-template-columns: repeat(3, 1fr); } }
-  @media (max-width: 640px){ .figures-grid{ grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 420px){ .figures-grid{ grid-template-columns: 1fr; } }
- 
+.figures-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  aspect-ratio: 1417 / 561;
+  width: 100%;
+}
+
+
   .figure-card{
-    perspective: 1200px;
-    height: 210px;
-    cursor:pointer;
-  }
+  perspective: 1200px;
+  height: 100%;   
+  cursor: pointer;
+}
   .figure-card-inner{
     position:relative; width:100%; height:100%;
     transition: transform 0.6s cubic-bezier(.4,.2,.2,1);
@@ -2667,6 +2774,84 @@ svg.wave{ width:100%; height:100%; overflow:visible; }
   .figure-back-ref{
     font-size:11px; color: var(--gold); margin-top:8px; font-weight:600;
   }
+/* الصورة الكاملة - مخفية على الديسكتوب، ظاهرة على الموبايل بس */
+.figures-mosaic-full{
+  display: none;
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 22px;
+  box-shadow: 0 14px 34px rgba(122,90,40,.15);
+}
+
+/* عناصر الكارت البسيط (أفاتار + اسم) - مخفية بشكل افتراضي على الديسكتوب */
+.figure-front-avatar,
+.figure-front-name{
+  display: none;
+}
+@media (max-width: 640px){
+
+  .figures-mosaic-full{
+    display: block;
+  }
+
+  .figures-grid{
+    display: grid;
+    grid-template-columns: 1fr;   /* بدل repeat(2, 1fr) */
+    aspect-ratio: unset;
+    gap: 14px;
+  }
+
+  .figure-card{
+    height: 150px;   /* بدل 130px، مساحة أريح */
+  }
+
+  .figure-card-front{
+    background-image: none !important;
+    background: linear-gradient(160deg, var(--card-bg), var(--bg-alt));
+    display: flex;
+    flex-direction: row;      /* أفقي بدل عمودي عشان يبقى أنسب للعرض الكامل */
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+  }
+
+  .figure-card-front::after{
+    display: none;
+  }
+
+  .figure-front-avatar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #fff, var(--bg-alt) 70%);
+    border: 1px solid var(--border-gold);
+    font-family: 'Amiri', serif;
+    font-weight: 700;
+    font-size: 19px;
+    color: var(--gold);
+  }
+
+  .figure-front-name{
+    display: block;
+    font-family: 'Amiri', serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--ink);
+  }
+
+  .figure-card-back{
+    padding: 20px 18px;
+  }
+
+  .figure-back-text{
+    font-size: 13.5px;
+    line-height: 1.85;
+  }
+}
 
   /* ---- relics accordion ---- */
  /* ================== SEC-RELICS (بنفس ستايل sec-promises/sec-figures) ================== */
@@ -3076,7 +3261,7 @@ svg.wave{ width:100%; height:100%; overflow:visible; }
   }
  
   .mirror-eyebrow{
-    font-size:.78rem; letter-spacing:.25em; color: var(--accent);
+    font-size:.78rem; letter-spacing:.25em; color: #c9a05c;
     text-transform:uppercase; margin-bottom:14px;
   }
  
@@ -3384,10 +3569,10 @@ svg.wave{ width:100%; height:100%; overflow:visible; }
  
   /* NOTE cards */
   .front.note{
-    background: var(--card-bg);
+    background: linear-gradient(135deg, var(--gold-dark), var(--gold));
     border:1px solid var(--card-border);
     box-shadow: 0 8px 20px rgba(122,90,40,.10);
-    color: var(--ink);
+    color: #fff;
     justify-content:flex-start;
     padding-top:12px;
   }
@@ -3395,13 +3580,13 @@ svg.wave{ width:100%; height:100%; overflow:visible; }
     font-family:var(--display-font); font-weight:700;
     font-size:calc(var(--card-w)*0.088);
     line-height:1.4;
-    color: var(--ink);
+    color: #fff;
   }
   .note-ref{
     margin-top:auto;
     padding-bottom:8px;
     font-size:calc(var(--card-w)*0.072);
-    color: var(--accent);
+    color: #fff;
     font-weight:700;
   }
  
@@ -3549,7 +3734,9 @@ svg.wave{ width:100%; height:100%; overflow:visible; }
     line-height: 1.9;
     font-size: 15px;
   }
- 
+ .p-top-front, .p-bottom-front{ transform: translateZ(44px); }
+.p-top-back, .p-bottom-back{ transform: translateZ(-44px) scale(0.88); }
+.p-top-back .bl-point-orb, .p-bottom-back .bl-point-orb{ filter: brightness(0.75); }
   /* ================== 3D CROSS ================== */
   .cross-scene{
     width:100%;
@@ -3917,4 +4104,98 @@ svg.wave{ width:100%; height:100%; overflow:visible; }
     .eden-progress {
         bottom: 1rem;
     }
+}
+
+
+
+/* ============================================================
+   شريط التنقل السفلي - موبايل بس
+   ============================================================ */
+.mobile-bottom-nav {
+    display: none;
+    /* شغال بس تحت 900px، متسقة مع نفس نقطة الكسر اللي بتخفي نافيجيشن
+       الهيدر الأساسية */
+}
+
+@media (max-width: 900px) {
+    .mobile-bottom-nav {
+        display: flex;
+        position: fixed;
+        z-index: 998;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: var(--deep);
+        border-top: 1px solid var(--border-gold);
+        box-shadow: 0 -8px 24px rgba(59, 42, 28, 0.12);
+        padding: 6px 4px calc(6px + env(safe-area-inset-bottom));
+        gap: 2px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+
+    .mobile-bottom-nav::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* عشان محتوى الصفحة متتغطاش من الشريط الثابت، لازم نسيب مساحة
+       فاضية أسفل الصفحة بمقدار ارتفاع الشريط تقريباً */
+    body {
+        padding-bottom: 74px;
+    }
+
+    /* الزرار العائم بتاع رفيق المادة أصبح مكرر مع العنصر الأخير هنا،
+       فبنخبيه على الموبايل بس (وبيفضل شغال عادي على الديسكتوب) */
+    .refeeq-fab {
+        display: none;
+    }
+}
+
+.mbn-item {
+    flex: 1 0 auto;
+    min-width: 64px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    padding: 8px 6px;
+    border-radius: 14px;
+    text-decoration: none;
+    color: var(--ink-dim);
+    transition: color 0.25s ease, background 0.25s ease;
+}
+
+.mbn-icon {
+    font-size: 18px;
+    line-height: 1;
+    transition: transform 0.25s ease;
+}
+
+.mbn-label {
+    font-family: "Tajawal", sans-serif;
+    font-size: 10.5px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.mbn-item.active {
+    color: var(--gold);
+    background: var(--gold-soft, rgba(201, 160, 92, 0.12));
+}
+
+.mbn-item.active .mbn-icon {
+    transform: translateY(-2px) scale(1.1);
+}
+
+/* عنصر "رفيق المادة" مميز شوية بصرياً لأنه رابط خارجي مش سكشن في
+   نفس الصفحة، فمن المهم يبان إنه حاجة مختلفة */
+.mbn-item-assistant {
+    background: linear-gradient(135deg, var(--gold-light), var(--gold));
+    color: var(--ink);
+}
+
+.mbn-item-assistant .mbn-label {
+    color: var(--ink);
 }

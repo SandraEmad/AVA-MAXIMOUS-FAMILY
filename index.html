@@ -11,14 +11,30 @@
     rel="stylesheet" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.1/aos.css" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+
+<script>
+  (function () {
+   
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+
+
+    if (window.location.hash) {
+      history.replaceState(null, '', window.location.pathname + window.location.search);
+    }
+
+    window.scrollTo(0, 0);
+  })();
+</script>
 </head>
 
 <body>
-  <section class="hero">
+
+<section class="hero">
     <div class="bg-wrap">
-      <video class="bg-video" id="heroVideo" autoplay muted loop playsinline preload="auto">
-        <source src="assets/christ video.mp4" type="video/mp4" />
-      </video>
+      <!-- ===== الخلفية بقت صورة بدل الفيديو ===== -->
+      <img class="bg-image" src="assets/hero-bg-book.jpeg" alt="رحلة الفداء: من السقوط في عدن إلى الصليب والقيامة" />
 
       <div class="grade"></div>
       <div class="rays"></div>
@@ -37,6 +53,11 @@
         <div class="p p11"></div>
         <div class="p p12"></div>
       </div>
+
+      <!-- ===== ميدالية المسيح: عنصر مزخرف جنب النص، مش خلفية كاملة ===== -->
+      <div class="hero-figure" aria-hidden="true">
+        <img src="assets/hero-jesus-figure.png" alt="" />
+      </div>
     </div>
 
     <header>
@@ -44,12 +65,15 @@
         <img src="assets/MEDIA TEAM.png" alt="MEDIA TEAM" />
       </div>
 
+      <!-- ===== لينكات النافيجيشن اتربطت بسكاشن الموقع الفعلية بدل الروابط الوهمية ===== -->
       <nav>
         <ul>
-          <li><a href="#">الرئيسية</a></li>
-          <li><a href="#story">القصة</a></li>
-          <li><a href="#">الآيات</a></li>
-          <li><a href="#">تواصل معنا</a></li>
+          <li><a href="#traits">الخِلقة</a></li>
+          <li><a href="#fall">السقوط</a></li>
+          <li><a href="#redemption">الفداء</a></li>
+          <li><a href="#sec-blessings">البركات</a></li>
+          <li><a href="#sec-mirror">الختام</a></li>
+          <li><a href="refeeq-almadda.html"  rel="noopener">🤍 رفيق المادة</a></li>
         </ul>
       </nav>
 
@@ -59,7 +83,12 @@
     </header>
 
     <div class="hero-content">
+      <p class="hero-kicker">أسرة الأنبا مكسيموس</p>
+      <p class="hero-presents">لجنة الميديا تقدم لكم</p>
+
       <h1>الحب الاعظم</h1>
+      <p class="hero-subtitle">مادة لاهوت وعقيدة</p>
+
       <div class="verse-block">
         <p class="verse">
           «لأَنَّهُ هٰكَذَا أَحَبَّ اللهُ الْعَالَمَ حَتَّى بَذَلَ ابْنَهُ
@@ -68,7 +97,19 @@
         </p>
         <span class="verse-ref">إنجيل يوحنا ٣ : ١٦</span>
       </div>
-      <a href="#story" class="cta">اقرأ القصة كاملة</a>
+
+      <!-- ===== لينكات الحركة: ابدأ الرحلة + تحميل الكتاب، بنفس تأثير زرار الـ CTA ===== -->
+      <div class="hero-actions">
+        <a href="#story" class="cta">اقرأ القصة كاملة</a>
+        <a
+          href="https://drive.google.com/uc?export=download&id=1nvmYjDA9pG3QYj5fEzws3lyt8nc98Uop"
+          class="cta cta-outline"
+          target="_blank"
+          rel="noopener"
+        >
+          تحميل الكتاب
+        </a>
+      </div>
     </div>
   </section>
 <div class="video-modal" id="videoModal">
@@ -205,7 +246,7 @@
     </p>
   </div>
    <div class="section-tools">
-  <button class="tool-btn tool-video" data-video="1umW1p1XI3asNdMA2fIwZ3WZPQSqWzV0d">
+  <button class="tool-btn tool-video" data-video="1KMzrcBrf8VWIgGHzcR8Qv34hC87iiLlj">
     ▶ <span>فيديو الشرح</span>
   </button>
   <button class="tool-btn tool-read" data-read-target="#fall-intro-text">
@@ -728,21 +769,20 @@
       <!-- الشخصيات -->
       <div class="characters">
 
-        <div class="life-card" draggable="true" id="human">
-          <div class="emoji">👤</div>
-          <h3>الإنسان</h3>
-        </div>
+ <div class="life-card" draggable="true" id="human">
+  <div class="emoji"><img src="./assets/human.png" alt="الإنسان" /></div>
+  <h3>الإنسان</h3>
+</div>
 
-        <div class="life-card" draggable="true" id="angel">
-          <div class="emoji">👼</div>
-          <h3>الملاك</h3>
-        </div>
+<div class="life-card" draggable="true" id="angel">
+  <div class="emoji"><img src="./assets/angel.png" alt="الملاك" /></div>
+  <h3>الملاك</h3>
+</div>
 
-        <div class="life-card" draggable="true" id="christ">
-          <div class="emoji">✝</div>
-          <h3>المسيح</h3>
-        </div>
-
+<div class="life-card" draggable="true" id="christ">
+  <div class="emoji"><img src="./assets/christ.png" alt="المسيح" /></div>
+  <h3>المسيح</h3>
+</div>
       </div>
 
       <!-- الباب -->
@@ -906,7 +946,6 @@
 <section class="sec-blessings" id="sec-blessings">
   <div class="blessings-aura"></div>
   <div class="blessings-inner">
-    <p class="blessings-eyebrow">ثمر الفداء</p>
     <h2>بركات الفداء</h2>
     <p class="blessings-intro">
       كان للفداء بركات كبرى أكّدت عليها أسفار العهد الجديد وأقوال الآباء.
@@ -919,12 +958,14 @@
         <div class="beam beam-upper"></div>
         <div class="beam beam-lower"></div>
  
-        <button class="bl-point p-top" data-i="0"><span class="bl-point-orb"><span class="bl-point-num">١</span></span></button>
+<button class="bl-point p-top p-top-front" data-i="0"><span class="bl-point-orb"><span class="bl-point-num">١</span></span></button>
+<button class="bl-point p-top p-top-back" data-i="0"><span class="bl-point-orb"><span class="bl-point-num">١</span></span></button>
         <button class="bl-point p-up-l" data-i="1"><span class="bl-point-orb"><span class="bl-point-num">٢</span></span></button>
         <button class="bl-point p-up-r" data-i="2"><span class="bl-point-orb"><span class="bl-point-num">٣</span></span></button>
         <button class="bl-point p-low-l" data-i="3"><span class="bl-point-orb"><span class="bl-point-num">٤</span></span></button>
         <button class="bl-point p-low-r" data-i="4"><span class="bl-point-orb"><span class="bl-point-num">٥</span></span></button>
-        <button class="bl-point p-bottom" data-i="5"><span class="bl-point-orb"><span class="bl-point-num">٦</span></span></button>
+<button class="bl-point p-bottom p-bottom-front" data-i="5"><span class="bl-point-orb"><span class="bl-point-num">٦</span></span></button>
+<button class="bl-point p-bottom p-bottom-back" data-i="5"><span class="bl-point-orb"><span class="bl-point-num">٦</span></span></button>
       </div>
     </div>
     <p class="cross-hint">اسحب الصليب بإصبعك أو الماوس لتديره وتكتشف النقاط الخلفية</p>
@@ -1212,14 +1253,9 @@ if (videoModal && videoFrame) {
 } else {
   console.warn('videoModal أو videoModalFrame مش موجودين في الصفحة');
 }
- 
-// ===== قراءة النص صوتياً (لذوي الاحتياجات الخاصة) =====
- 
-// لازم نحتفظ بمرجع للـ utterance في متغير خارجي، وإلا Chrome ممكن يعمل
-// garbage collect للـ object وهو لسه بيتكلم، فيبقى فيه "أيقونة شغالة" بدون صوت
+ // ===== قراءة السكشن كله صوتياً (لذوي الاحتياجات الخاصة) =====
+
 let currentUtter = null;
- 
-// كاش لقائمة الأصوات المتاحة في المتصفح (بتتحمل بشكل async في كروم)
 let cachedVoices = [];
 function loadVoices() {
   cachedVoices = speechSynthesis.getVoices();
@@ -1228,401 +1264,257 @@ loadVoices();
 if ('onvoiceschanged' in speechSynthesis) {
   speechSynthesis.onvoiceschanged = loadVoices;
 }
- 
+
 function pickArabicVoice() {
   if (!cachedVoices.length) loadVoices();
-  // دور أولاً على صوت عربي مصري بالظبط، بعدين أي صوت عربي، بعدين null (يسيب المتصفح يختار)
   return (
     cachedVoices.find(v => v.lang && v.lang.toLowerCase() === 'ar-eg') ||
     cachedVoices.find(v => v.lang && v.lang.toLowerCase().startsWith('ar')) ||
     null
   );
 }
- 
+
+// بيجمع نص السكشن كله، وبيشيل منه:
+// - أزرار الفيديو والاستماع نفسها (عشان مايقراش "فيديو الشرح، استماع")
+// - أي SVG/canvas (مفيش نص مفيد فيها)
+// - أي تاب/بانل مش نشط حالياً (يقرا بس اللي ظاهر على الشاشة)
+function getSectionReadableText(section) {
+  const clone = section.cloneNode(true);
+
+  clone.querySelectorAll('.section-tools, .tool-video, .tool-read').forEach(el => el.remove());
+  clone.querySelectorAll('svg, canvas').forEach(el => el.remove());
+
+  clone.querySelectorAll('[class*="panel"], [class*="tab-pane"]').forEach(el => {
+    if (!el.classList.contains('active')) el.remove();
+  });
+
+  const text = clone.innerText || clone.textContent || '';
+  return text.replace(/\s+/g, ' ').trim();
+}
+
 document.querySelectorAll('.tool-read').forEach(btn => {
   btn.addEventListener('click', () => {
- 
     if (!('speechSynthesis' in window)) {
       alert('المتصفح ده مش بيدعم القراءة الصوتية');
       return;
     }
- 
-    const target = document.querySelector(btn.dataset.readTarget);
-    if (!target) {
-      console.warn('Read target not found:', btn.dataset.readTarget);
+
+    // بنقرا الـ section اللي الزرار جواها، مش target ثابت
+    const section = btn.closest('section');
+    if (!section) {
+      console.warn('مفيش section حاوي للزرار ده');
       return;
     }
- 
-    // لو الزرار ده شغال حالياً -> وقف القراءة
+
     if (btn.classList.contains('is-reading')) {
       speechSynthesis.cancel();
       btn.classList.remove('is-reading');
       currentUtter = null;
       return;
     }
- 
-    // وقف أي قراءة تانية شغالة قبل ما تبدأ الجديدة
+
     speechSynthesis.cancel();
     document.querySelectorAll('.tool-read').forEach(b => b.classList.remove('is-reading'));
- 
-    const text = target.innerText.trim();
+
+    const text = getSectionReadableText(section);
     if (!text) {
       console.warn('النص فاضي، مفيش حاجة نقراها');
       return;
     }
- 
+
     const utter = new SpeechSynthesisUtterance(text);
     utter.lang = 'ar-EG';
     utter.rate = 0.95;
- 
+
     const voice = pickArabicVoice();
     if (voice) {
       utter.voice = voice;
     } else {
-      console.warn('مفيش صوت عربي متاح في المتصفح، هيتم استخدام الصوت الافتراضي (ممكن يبقى صامت أو بلغة تانية)');
-      console.log(speechSynthesis.getVoices());
-      speechSynthesis.getVoices().forEach(v => console.log(v.name, '|', v.lang));
+      console.warn('مفيش صوت عربي متاح، هيتم استخدام الصوت الافتراضي');
     }
- 
+
     utter.onend = utter.onerror = (e) => {
       if (e.type === 'error') console.warn('SpeechSynthesis error:', e);
       btn.classList.remove('is-reading');
       currentUtter = null;
     };
- 
+
     btn.classList.add('is-reading');
-    currentUtter = utter; // نحتفظ بالمرجع عشان الـ garbage collector
- 
-    // Chrome أحياناً محتاج resume() قبل speak() لو كان فيه cancel قبلها على طول
+    currentUtter = utter;
+
     speechSynthesis.resume();
- 
-    // تأخير بسيط جداً عشان نتأكد إن الـ cancel السابق خلص فعلياً قبل ما نبدأ speak جديد
     setTimeout(() => {
       speechSynthesis.speak(utter);
     }, 0);
   });
 });
 </script>
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const wrap = document.getElementById("consequences");
-    if (!wrap) return;
-
-    const tabs = wrap.querySelectorAll(".consq-tab");
-    const panels = wrap.querySelectorAll(".consq-panel");
-    const tabsWrap = wrap.querySelector(".consq-tabs");
-    const glider = wrap.querySelector(".consq-tab-glider");
-
-    if (!tabs.length || !panels.length) return;
-
-    function moveGlider(tab) {
-      if (!glider || !tabsWrap || !tab) return;
-
-      const wrapRect = tabsWrap.getBoundingClientRect();
-      const tabRect = tab.getBoundingClientRect();
-
-      if (tabRect.width === 0 || tabRect.height === 0) return;
-
-      // بنحسب الموضع والحجم في الاتجاهين مع بعض، عشان يشتغل صح
-      // سواء كانت التابس صف أفقي (ديسكتوب) أو عمودية فوق بعض (موبايل)
-      const leftPos = tabRect.left - wrapRect.left;
-      const topPos = tabRect.top - wrapRect.top;
-
-      glider.style.width = `${tabRect.width}px`;
-      glider.style.height = `${tabRect.height}px`;
-      glider.style.transform = `translate(${leftPos}px, ${topPos}px)`;
-    }
-
-    function activate(id, tabEl) {
-      tabs.forEach((t) => t.classList.remove("active"));
-      panels.forEach((p) => p.classList.remove("active"));
-
-      tabEl.classList.add("active");
-
-      const target = document.getElementById(id);
-      if (target) target.classList.add("active");
-
-      moveGlider(tabEl);
-      if (window.AOS) AOS.refresh();
-    }
-
-    tabs.forEach((tab) => {
-      tab.addEventListener("click", function () {
-        activate(tab.dataset.tab, tab);
-      });
-    });
-
-    // بيرجع التاب اللي المفروض يكون هو الافتراضي (تاب-1 "الموت") مهما حصل
-    function getDefaultActiveTab() {
-      return wrap.querySelector(".consq-tab.active") || tabs[0];
-    }
-
-    function initGlider() {
-      requestAnimationFrame(() => moveGlider(getDefaultActiveTab()));
-    }
-
-    window.addEventListener("load", initGlider);
-    window.addEventListener("resize", initGlider);
-
-    // ===== الإصلاح الأساسي =====
-    // بدل الاعتماد على أرقام setTimeout ثابتة (اللي ممكن تتنفذ قبل أو بعد
-    // ما أنيميشن AOS (zoom-in) بتاعة .consq-tabs تخلص فعلياً، وده اللي كان
-    // بيخلي الـ glider يستقر في مكان غلط)، بنستنى فعلياً نهاية أي CSS
-    // transition/animation على tabsWrap نفسه، وبعدين نظبط المكان بدقة.
-    if (tabsWrap) {
-      tabsWrap.addEventListener("transitionend", initGlider);
-      tabsWrap.addEventListener("animationend", initGlider);
-    }
-
-    // لو AOS بيبعت حدث مخصص لما العنصر يظهر، نستخدمه كمان كطبقة حماية إضافية
-    document.addEventListener("aos:in", function (e) {
-      if (e.detail === tabsWrap) initGlider();
-    });
-
-    // تأكيدات احتياطية زيادة (شبكة أمان لو المتصفح مبعتش أي من الأحداث فوق)
-    setTimeout(initGlider, 150);
-    setTimeout(initGlider, 600);
-    setTimeout(initGlider, 1200);
-
-    // نضبط المكان فوراً أول ما الصفحة تحمّل (قبل أي أنيميشن أصلاً)
-    initGlider();
-
-    // ===== كود شغل الفيديو للـ Modal =====
-    const videoBtns = document.querySelectorAll(".tool-video");
-    const modal = document.getElementById("videoModal");
-    const modalFrame = document.getElementById("videoModalFrame");
-    const modalClose = document.getElementById("videoModalClose");
-
-    videoBtns.forEach((btn) => {
-      btn.addEventListener("click", function () {
-        const videoId = this.getAttribute("data-video");
-        if (videoId && modal && modalFrame) {
-          modalFrame.src = `https://drive.google.com/file/d/${videoId}/preview`;
-          modal.classList.add("active");
-        }
-      });
-    });
-
-    if (modalClose) {
-      modalClose.addEventListener("click", function () {
-        if (modal) modal.classList.remove("active");
-        if (modalFrame) modalFrame.src = "";
-      });
-    }
-
-    if (modal) {
-      modal.addEventListener("click", function (e) {
-        if (e.target === modal) {
-          modal.classList.remove("active");
-          if (modalFrame) modalFrame.src = "";
-        }
-      });
-    }
-  });
-</script>
   <script>
-const cards = document.querySelectorAll(".life-card");
-const door = document.getElementById("doorArea");
+(function () {
+  const cards = document.querySelectorAll(".life-card");
+  const door = document.getElementById("doorArea");
 
-const popup = document.getElementById("popup");
-const popupTitle = document.getElementById("popupTitle");
-const popupBody = document.getElementById("popupBody");
-const closeBtn = document.getElementById("close");
+  const popup = document.getElementById("popup");
+  const popupTitle = document.getElementById("popupTitle");
+  const popupBody = document.getElementById("popupBody");
+  const closeBtn = document.getElementById("close");
 
-let draggedCard = null;
+  let draggedCard = null;
+  let dragClone = null;
+  let touchOffsetX = 0, touchOffsetY = 0;
 
-// =============================
-
-cards.forEach(card => {
-
+  // ===== Desktop (mouse) drag =====
+  cards.forEach(card => {
     card.addEventListener("dragstart", function () {
-        draggedCard = this;
-        this.style.opacity = ".5";
+      popup.style.display = "none";
+      draggedCard = this;
+      this.style.opacity = ".5";
     });
-
     card.addEventListener("dragend", function () {
-        this.style.opacity = "1";
+      this.style.opacity = "1";
     });
+  });
 
-});
-
-// =============================
-
-door.addEventListener("dragover", function (e) {
+  door.addEventListener("dragover", e => e.preventDefault());
+  door.addEventListener("drop", e => {
     e.preventDefault();
-});
-
-// =============================
-
-door.addEventListener("drop", function (e) {
-    e.preventDefault();
-
     if (!draggedCard) return;
+    handleDrop(draggedCard.id);
+  });
 
-    let id = draggedCard.id;
+  // ===== Mobile (touch) drag =====
+  cards.forEach(card => {
+    card.addEventListener("touchstart", function (e) {
+      popup.style.display = "none";  
+      draggedCard = this;
+      const touch = e.touches[0];
+      const rect = this.getBoundingClientRect();
+      touchOffsetX = touch.clientX - rect.left;
+      touchOffsetY = touch.clientY - rect.top;
 
-    if (id === "human") {
-        wrongHuman();
-    }
-    else if (id === "angel") {
-        wrongAngel();
-    }
-    else {
-        correctChrist();
-    }
-});
+      dragClone = this.cloneNode(true);
+      dragClone.style.position = "fixed";
+      dragClone.style.zIndex = "9999";
+      dragClone.style.width = rect.width + "px";
+      dragClone.style.height = rect.height + "px";
+      dragClone.style.opacity = ".85";
+      dragClone.style.pointerEvents = "none";
+      dragClone.style.left = rect.left + "px";
+      dragClone.style.top = rect.top + "px";
+      document.body.appendChild(dragClone);
 
-// =============================
+      this.style.opacity = ".3";
+    }, { passive: true });
 
-function wrongHuman() {
+    card.addEventListener("touchmove", function (e) {
+      if (!dragClone) return;
+      const touch = e.touches[0];
+      dragClone.style.left = (touch.clientX - touchOffsetX) + "px";
+      dragClone.style.top = (touch.clientY - touchOffsetY) + "px";
+      e.preventDefault();
+    }, { passive: false });
 
+    card.addEventListener("touchend", function (e) {
+      if (!dragClone || !draggedCard) return;
+
+      const touch = e.changedTouches[0];
+      const dropTarget = document.elementFromPoint(touch.clientX, touch.clientY);
+
+      dragClone.remove();
+      dragClone = null;
+      this.style.opacity = "1";
+
+      if (dropTarget && dropTarget.closest("#doorArea")) {
+        handleDrop(draggedCard.id);
+      }
+      draggedCard = null;
+    });
+  });
+
+  function handleDrop(id) {
+    if (id === "human") wrongHuman();
+    else if (id === "angel") wrongAngel();
+    else correctChrist();
+  }
+
+  function wrongHuman() {
     shakeDoor();
     popup.style.display = "flex";
     popupTitle.innerHTML = "❌ الباب لم يفتح";
-
     popupBody.innerHTML = `
     <h3>👤 الإنسان</h3>
     <ul>
-        <li class="ok">
-            <span class="mark">✅</span>
-            <span class="txt"><strong>إنسان</strong></span>
-        </li>
-        <li class="bad">
-            <span class="mark">❌</span>
-            <span class="txt">
-                <strong>محدود</strong>
-                <span>لا يستطيع أن يحمل خطايا جميع البشر.</span>
-            </span>
-        </li>
-        <li class="bad">
-            <span class="mark">❌</span>
-            <span class="txt">
-                <strong>خاطئ</strong>
-                <span>يحتاج هو نفسه إلى فادٍ.</span>
-            </span>
-        </li>
-        <li class="bad">
-            <span class="mark">❌</span>
-            <span class="txt">
-                <strong>ليس خالقًا</strong>
-                <span>لا يستطيع تجديد الطبيعة البشرية.</span>
-            </span>
-        </li>
-        <li class="bad">
-            <span class="mark">❌</span>
-            <span class="txt"><strong>لا سلطان له على الموت.</strong></span>
-        </li>
-    </ul>
-    `;
-}
+        <li class="ok"><span class="mark">✅</span><span class="txt"><strong>إنسان</strong></span></li>
+        <li class="bad"><span class="mark">❌</span><span class="txt"><strong>محدود</strong><span>لا يستطيع أن يحمل خطايا جميع البشر.</span></span></li>
+        <li class="bad"><span class="mark">❌</span><span class="txt"><strong>خاطئ</strong><span>يحتاج هو نفسه إلى فادٍ.</span></span></li>
+        <li class="bad"><span class="mark">❌</span><span class="txt"><strong>ليس خالقًا</strong><span>لا يستطيع تجديد الطبيعة البشرية.</span></span></li>
+        <li class="bad"><span class="mark">❌</span><span class="txt"><strong>لا سلطان له على الموت.</strong></span></li>
+    </ul>`;
+  }
 
-// =============================
-
-function wrongAngel() {
-
+  function wrongAngel() {
     shakeDoor();
     popup.style.display = "flex";
     popupTitle.innerHTML = "❌ الباب لم يفتح";
-
     popupBody.innerHTML = `
     <h3>👼 الملاك</h3>
     <ul>
-        <li class="bad">
-            <span class="mark">❌</span>
-            <span class="txt"><strong>ليس إنسانًا.</strong></span>
-        </li>
-        <li class="bad">
-            <span class="mark">❌</span>
-            <span class="txt"><strong>محدود.</strong></span>
-        </li>
-        <li class="bad">
-            <span class="mark">❌</span>
-            <span class="txt"><strong>مخلوق وليس خالقًا.</strong></span>
-        </li>
-        <li class="bad">
-            <span class="mark">❌</span>
-            <span class="txt"><strong>لا يستطيع أن يقدم نفسه ذبيحة عن البشر.</strong></span>
-        </li>
-        <li class="bad">
-            <span class="mark">❌</span>
-            <span class="txt"><strong>لا يحقق شروط الفادي.</strong></span>
-        </li>
-    </ul>
-    `;
-}
-
-// =============================
+        <li class="bad"><span class="mark">❌</span><span class="txt"><strong>ليس إنسانًا.</strong></span></li>
+        <li class="bad"><span class="mark">❌</span><span class="txt"><strong>محدود.</strong></span></li>
+        <li class="bad"><span class="mark">❌</span><span class="txt"><strong>مخلوق وليس خالقًا.</strong></span></li>
+        <li class="bad"><span class="mark">❌</span><span class="txt"><strong>لا يستطيع أن يقدم نفسه ذبيحة عن البشر.</strong></span></li>
+        <li class="bad"><span class="mark">❌</span><span class="txt"><strong>لا يحقق شروط الفادي.</strong></span></li>
+    </ul>`;
+  }
 
 function correctChrist() {
-
-    door.classList.add("open");
-    popup.style.display = "flex";
-    popupTitle.innerHTML = "✨ الباب انفتح";
-
-    popupBody.innerHTML = `
-    <h3>✝ المسيح</h3>
-    <ul>
-        <li class="ok">
-            <span class="mark">✅</span>
-            <span class="txt"><strong>صار إنسانًا.</strong></span>
-        </li>
-        <li class="ok">
-            <span class="mark">✅</span>
-            <span class="txt"><strong>غير محدود لأنه الله.</strong></span>
-        </li>
-        <li class="ok">
-            <span class="mark">✅</span>
-            <span class="txt"><strong>بلا خطية.</strong></span>
-        </li>
-        <li class="ok">
-            <span class="mark">✅</span>
-            <span class="txt"><strong>هو الخالق.</strong></span>
-        </li>
-        <li class="ok">
-            <span class="mark">✅</span>
-            <span class="txt"><strong>قبل الموت بإرادته.</strong></span>
-        </li>
-        <li class="ok">
-            <span class="mark">✅</span>
-            <span class="txt"><strong>قام منتصرًا على الموت.</strong></span>
-        </li>
-    </ul>
-
-    <hr>
-
-    <div class="result-block">
-        <div class="result-title">🎉 وجدنا الفادي الحقيقي</div>
-        <p class="result-text">
-            الله افتدى الإنسان،
-            وقبل حكم الموت نيابة عنه،
-            وأعطاه حياة أبدية.
-        </p>
-    </div>
-    `;
-}
-
-// =============================
-
-function shakeDoor() {
-    door.classList.add("shake");
-    setTimeout(() => {
-        door.classList.remove("shake");
-    }, 500);
-}
-
-// =============================
-
-closeBtn.onclick = function () {
+  if (door.classList.contains("open")) {
+    // الباب مفتوح خلاص -> اقفله
+    door.classList.remove("open");
     popup.style.display = "none";
+    return;
+  }
+
+  door.classList.add("open");
+  popup.style.display = "flex";
+  popupTitle.innerHTML = "✨ الباب انفتح";
+  popupBody.innerHTML = `
+  <h3>✝ المسيح</h3>
+  <ul>
+      <li class="ok"><span class="mark">✅</span><span class="txt"><strong>صار إنسانًا.</strong></span></li>
+      <li class="ok"><span class="mark">✅</span><span class="txt"><strong>غير محدود لأنه الله.</strong></span></li>
+      <li class="ok"><span class="mark">✅</span><span class="txt"><strong>بلا خطية.</strong></span></li>
+      <li class="ok"><span class="mark">✅</span><span class="txt"><strong>هو الخالق.</strong></span></li>
+      <li class="ok"><span class="mark">✅</span><span class="txt"><strong>قبل الموت بإرادته.</strong></span></li>
+      <li class="ok"><span class="mark">✅</span><span class="txt"><strong>قام منتصرًا على الموت.</strong></span></li>
+  </ul>
+  <hr>
+  <div class="result-block">
+      <div class="result-title">🎉 وجدنا الفادي الحقيقي</div>
+      <p class="result-text">الله افتدى الإنسان، وقبل حكم الموت نيابة عنه، وأعطاه حياة أبدية.</p>
+  </div>`;
 }
+  function shakeDoor() {
+    door.classList.add("shake");
+    setTimeout(() => { door.classList.remove("shake"); }, 500);
+  }
 
-// =============================
+  closeBtn.onclick = function () {
+    popup.style.display = "none";
+  };
 
-window.onclick = function (e) {
+  window.addEventListener("click", function (e) {
     if (e.target === popup) {
-        popup.style.display = "none";
+      popup.style.display = "none";
     }
-}
+  });
+  door.addEventListener("click", function () {
+  if (door.classList.contains("open")) {
+    door.classList.remove("open");
+    popup.style.display = "none";
+  }
+});
+})();
 </script>
 <script>
   // =========================================
@@ -1647,30 +1539,6 @@ function openGate(card) {
     // افتح الباب الحالي
     card.classList.add("open");
 }
-
-// =========================================
-// Hover Effect
-// =========================================
-
-gates.forEach(gate => {
-
-    gate.addEventListener("mouseenter", () => {
-
-        if (!gate.classList.contains("open")) {
-            gate.style.transform = "translateY(-8px)";
-        }
-
-    });
-
-    gate.addEventListener("mouseleave", () => {
-
-        if (!gate.classList.contains("open")) {
-            gate.style.transform = "translateY(0)";
-        }
-
-    });
-
-});
 
 // =========================================
 // Escape يغلق جميع الأبواب
@@ -1775,7 +1643,6 @@ const ICONS = {
 function iconSVG(key){ return `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">${ICONS[key]}</svg>`; }
 
 /* ============ FIGURES ============ */
-/* ============ FIGURES ============ */
 const MOSAIC_IMAGE = "./assets/crucifixion.png";
 
 const figures = [
@@ -1798,14 +1665,23 @@ const figures = [
 ];
 
 const figuresGrid = document.getElementById('figuresGrid');
-
+const mosaicFull = document.createElement('img');
+mosaicFull.className = 'figures-mosaic-full';
+mosaicFull.src = MOSAIC_IMAGE;
+mosaicFull.alt = 'لوحة تجمع الرموز التي تمثلها هذه الشخصيات';
+mosaicFull.loading = 'lazy';
+figuresGrid.parentNode.insertBefore(mosaicFull, figuresGrid);
 // 1) نبني الكروت الأول من غير أي background-size/position
+
 figures.forEach((f) => {
   const card = document.createElement('div');
   card.className = 'figure-card';
   card.innerHTML = `
     <div class="figure-card-inner">
-      <div class="figure-card-face figure-card-front"></div>
+      <div class="figure-card-face figure-card-front">
+        <span class="figure-front-avatar">${f.name.charAt(0)}</span>
+        <span class="figure-front-name">${f.name}</span>
+      </div>
       <div class="figure-card-face figure-card-back">
         <div class="figure-back-name">${f.name}</div>
         <div class="figure-back-text">${f.desc}</div>
@@ -1816,7 +1692,6 @@ figures.forEach((f) => {
   card.addEventListener('click', () => card.classList.toggle('flipped'));
   figuresGrid.appendChild(card);
 });
-
 const fronts = Array.from(figuresGrid.querySelectorAll('.figure-card-front'));
 
 // 2) نحسب مقاسات الموزاييك بمنطق cover يدوي، على المقاسات الحقيقية بالبكسل
@@ -1862,7 +1737,7 @@ mosaicImg.onload = () => {
   relayout();
 };
 mosaicImg.src = MOSAIC_IMAGE;
-
+window.addEventListener('load', relayout);
 // 4) إعادة الحساب لما الـ grid يتغيّر مقاسه (ريسايز، تغيير عدد الأعمدة بالـ breakpoints، تحميل الخطوط...)
 let resizeRAF = null;
 const ro = new ResizeObserver(() => {
@@ -2440,9 +2315,10 @@ function openCard(stageId, firstTime){
     pager.appendChild(d);
   });
  
+
   document.querySelectorAll('.bl-point').forEach(function(btn){
-    btn.addEventListener('click', function(){ setActive(+btn.dataset.i); });
-  });
+  btn.addEventListener('click', function(){ setActive(+btn.dataset.i); });
+});
  
   var current = 0;
   function render(i){
@@ -2787,6 +2663,82 @@ function openCard(stageId, firstTime){
   window.addEventListener('resize', updateStageText);
  
 })();
+</script>
+<!-- ============================================================
+     شريط تنقل سفلي - يظهر بس على الموبايل، بيحط قبل </body>
+     في كل صفحات الموقع (بما فيها الصفحة اللي فيها الهيرو)
+     ============================================================ -->
+<nav class="mobile-bottom-nav" id="mobileBottomNav" aria-label="التنقل السريع">
+  <a href="#traits" class="mbn-item" data-target="traits">
+    <span class="mbn-icon">🌿</span>
+    <span class="mbn-label">الخِلقة</span>
+  </a>
+  <a href="#fall" class="mbn-item" data-target="fall">
+    <span class="mbn-icon">🍂</span>
+    <span class="mbn-label">السقوط</span>
+  </a>
+  <a href="#redemption" class="mbn-item" data-target="redemption">
+    <span class="mbn-icon">✝</span>
+    <span class="mbn-label">الفداء</span>
+  </a>
+  <a href="#sec-blessings" class="mbn-item" data-target="sec-blessings">
+    <span class="mbn-icon">🎁</span>
+    <span class="mbn-label">البركات</span>
+  </a>
+  <a href="#sec-mirror" class="mbn-item" data-target="sec-mirror">
+    <span class="mbn-icon">🪞</span>
+    <span class="mbn-label">الختام</span>
+  </a>
+  <a href="refeeq-almadda.html" class="mbn-item mbn-item-assistant"  rel="noopener">
+    <span class="mbn-icon">🤍</span>
+    <span class="mbn-label">رفيق المادة</span>
+  </a>
+</nav>
+<script>
+  // ===== شريط التنقل السفلي: تفعيل العنصر المطابق للسكشن الظاهر حالياً =====
+document.addEventListener("DOMContentLoaded", function () {
+  const nav = document.getElementById("mobileBottomNav");
+  if (!nav) return;
+
+  const items = nav.querySelectorAll(".mbn-item[data-target]");
+  if (!items.length) return;
+
+  const sections = Array.from(items)
+    .map((item) => document.getElementById(item.dataset.target))
+    .filter(Boolean);
+
+  if (!sections.length) return;
+
+  function setActive(id) {
+    items.forEach((item) => {
+      item.classList.toggle("active", item.dataset.target === id);
+    });
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      // ناخد أكتر سكشن ظاهر في منتصف الشاشة تقريباً، مش أول واحد لمسته
+      // الشاشة بس، عشان التفعيل يبقى دقيق حتى في السكاشن الطويلة
+      let bestEntry = null;
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          if (!bestEntry || entry.intersectionRatio > bestEntry.intersectionRatio) {
+            bestEntry = entry;
+          }
+        }
+      });
+      if (bestEntry) setActive(bestEntry.target.id);
+    },
+    {
+      // نراقب الشريحة الأوسط من الشاشة بس، عشان القسم يتفعّل لما يبقى
+      // في مجال القراءة الفعلي مش لمجرد ما يبدأ يظهر من تحت
+      rootMargin: "-40% 0px -40% 0px",
+      threshold: [0, 0.25, 0.5, 0.75, 1],
+    }
+  );
+
+  sections.forEach((section) => observer.observe(section));
+});
 </script>
 </body>
 

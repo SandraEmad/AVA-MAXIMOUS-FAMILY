@@ -1,0 +1,2349 @@
+<!--
+  رفيق المادة 🤍
+  Theology & Doctrine AI Study Assistant
+  Single File HTML / CSS / JavaScript
+-->
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<title>رفيق المادة 🤍 | اللاهوت والعقيدة</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   1) DESIGN TOKENS — customize colors/fonts here
+   ============================================================ */
+:root {
+    /* ============================================================
+       الوضع الغامق (الافتراضي) — بني غامق دافئ بدل الرمادي/الأسود
+       المحايد، عشان يفضل حاسس إنه من نفس هوية الموقع مش تطبيق تاني
+       ============================================================ */
+    --bg-0: #1A130B;
+    /* الخلفية الأساسية - بني غامق جداً (مش أسود بحت) */
+    --bg-1: #241A10;
+    /* خلفية السايدبار */
+    --bg-2: #2E2115;
+    /* خلفية الكروت/الهوفر - قريبة من --ink بتاع الموقع الأساسي */
+
+    --beige-1: #C9A05C;
+    /* = --gold بتاع الموقع */
+    --beige-2: #F0CF74;
+    /* = --gold-light بتاع الموقع */
+    --beige-3: #A08D6F;
+    /* = --brown-light بتاع الموقع */
+
+    --cream: #F3E8D4;
+    /* = --cream بتاع الموقع بالظبط */
+    --text-1: #F7F2E8;
+    /* قريب من --white-warm */
+    --text-2: #BFAE89;
+    /* = --beige-3 (نص ثانوي دافئ) */
+
+    --gold: #E8C888;
+    /* = --gold-soft بتاع الموقع (بيبان أوضح على الخلفية الغامقة) */
+    --gold-soft: rgba(232, 200, 136, .16);
+    --line: rgba(232, 200, 136, .14);
+
+    --shadow: 0 10px 30px rgba(0, 0, 0, .35);
+    --radius-lg: 22px;
+    --radius-md: 16px;
+    --radius-sm: 10px;
+
+    /* نفس خطوط الموقع الأساسي بالظبط بدل Cairo */
+    --font-display: 'Amiri', serif;
+    --font-body: 'Tajawal', sans-serif;
+    --ease: cubic-bezier(.22, .61, .36, 1);
+
+    --user-bubble: linear-gradient(135deg, #F0CF74, #C9A05C);
+    --user-bubble-text: #26221A;
+    --bot-bubble: #241A10;
+    --card-bg: linear-gradient(180deg, rgba(232, 200, 136, .06), rgba(232, 200, 136, .02));
+}
+
+html[data-theme="light"] {
+    /* ============================================================
+       الوضع الفاتح — نفس متغيرات الموقع الأساسي حرفياً (من الجدول)
+       ============================================================ */
+    --bg-0: #FBF5E9;
+    /* = --deep */
+    --bg-1: #F3E9D6;
+    /* = --bg-alt */
+    --bg-2: #ECE0C3;
+    /* درجة بيج أغمق شوية للكروت/الهوفر */
+
+    --text-1: #3B2A1C;
+    /* = --ink */
+    --text-2: #7A6A55;
+    /* = --ink-dim */
+
+    --gold: #C9A05C;
+    /* = --gold */
+    --gold-soft: rgba(201, 160, 92, .14);
+    --line: rgba(201, 160, 92, .25);
+    /* = --border-gold */
+
+    --shadow: 0 10px 26px rgba(90, 70, 40, .12);
+
+    --user-bubble: linear-gradient(135deg, #F0CF74, #C9A05C);
+    /* = --gold-light → --gold */
+    --user-bubble-text: #3B2A1C;
+    /* = --ink، نفس منطق زرار الـ CTA في الموقع الأساسي */
+    --bot-bubble: #FFFBF3;
+    --card-bg: linear-gradient(180deg, rgba(201, 160, 92, .06), rgba(201, 160, 92, .015));
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:var(--font-body);
+  background:
+    radial-gradient(ellipse 80% 50% at 15% -10%, var(--gold-soft), transparent 60%),
+    radial-gradient(ellipse 60% 40% at 100% 100%, rgba(216,199,163,.06), transparent 60%),
+    var(--bg-0);
+  color:var(--text-1);
+  min-height:100vh;
+  overflow-x:hidden;
+  transition:background-color .4s var(--ease), color .4s var(--ease);
+  position:relative;
+}
+
+/* subtle paper grain */
+body::before{
+  content:"";
+  position:fixed;inset:0;
+  pointer-events:none;
+  z-index:1;
+  opacity:.035;
+  mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+::selection{background:var(--gold-soft);color:var(--text-1);}
+::-webkit-scrollbar{width:8px;height:8px;}
+::-webkit-scrollbar-thumb{background:var(--beige-3);border-radius:10px;}
+::-webkit-scrollbar-track{background:transparent;}
+
+a,button,input,textarea{font-family:inherit;color:inherit;}
+button{cursor:pointer;border:none;background:none;}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px;border-radius:6px;}
+
+/* floating ambient light spots */
+.ambient{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
+.spot{position:absolute;border-radius:50%;background:radial-gradient(circle, var(--gold-soft), transparent 70%);filter:blur(6px);animation:drift 22s ease-in-out infinite;}
+.spot.s1{width:280px;height:280px;top:8%;right:12%;animation-duration:26s;}
+.spot.s2{width:180px;height:180px;bottom:12%;left:8%;animation-duration:19s;animation-delay:-4s;}
+.spot.s3{width:140px;height:140px;top:55%;right:35%;animation-duration:31s;animation-delay:-9s;}
+@keyframes drift{
+  0%,100%{transform:translate(0,0) scale(1);}
+  33%{transform:translate(18px,-24px) scale(1.08);}
+  66%{transform:translate(-14px,16px) scale(.95);}
+}
+@media (prefers-reduced-motion:reduce){ .spot{animation:none;} }
+
+/* ============================================================
+   2) APP SHELL
+   ============================================================ */
+.app{
+  position:relative;z-index:2;
+  display:grid;
+  grid-template-columns:290px 1fr;
+  min-height:100vh;
+}
+
+/* ---------- SIDEBAR ---------- */
+.sidebar{
+  background:linear-gradient(180deg, var(--bg-1), var(--bg-0));
+  border-left:1px solid var(--line);
+  padding:26px 20px;
+  display:flex;flex-direction:column;
+  position:sticky;top:0;height:100vh;
+  transition:transform .35s var(--ease);
+}
+.brand{display:flex;align-items:center;gap:12px;padding:6px 6px 22px;}
+.brand-mark{
+  width:46px;height:46px;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  background:radial-gradient(circle at 35% 30%, var(--beige-2), var(--beige-3) 70%);
+  box-shadow:0 0 0 1px var(--line), 0 8px 18px rgba(0,0,0,.3);
+  position:relative;flex-shrink:0;
+}
+.brand-mark::after{
+  content:"";position:absolute;inset:-6px;border-radius:18px;
+  background:radial-gradient(circle, var(--gold-soft), transparent 70%);
+  animation:halo 4s ease-in-out infinite;
+}
+@keyframes halo{0%,100%{opacity:.5;transform:scale(1);}50%{opacity:1;transform:scale(1.12);}}
+.brand-mark svg{width:24px;height:24px;position:relative;z-index:1;}
+.brand-text h1{font-family:var(--font-display);font-size:1.05rem;font-weight:800;letter-spacing:.2px;}
+.brand-text p{font-size:.72rem;color:var(--text-2);margin-top:2px;}
+
+.nav{display:flex;flex-direction:column;gap:6px;margin-top:8px;}
+.nav-item{
+  display:flex;align-items:center;gap:12px;
+  padding:12px 14px;border-radius:var(--radius-sm);
+  font-size:.92rem;font-weight:500;color:var(--text-2);
+  transition:all .25s var(--ease);text-align:right;width:100%;
+}
+.nav-item .ico{width:20px;text-align:center;font-size:1.05rem;}
+.nav-item:hover{background:rgba(216,199,163,.06);color:var(--text-1);}
+.nav-item.active{
+  background:var(--card-bg);
+  color:var(--gold);
+  box-shadow:inset 0 0 0 1px var(--line), 0 0 22px -4px var(--gold-soft);
+}
+.nav-item.active .ico{filter:drop-shadow(0 0 6px var(--gold-soft));}
+
+.sidebar-footer{
+  margin-top:auto;padding-top:18px;border-top:1px solid var(--line);
+  font-size:.68rem;color:var(--text-2);text-align:center;line-height:1.6;
+}
+.theme-toggle{
+  margin-top:14px;display:flex;align-items:center;justify-content:space-between;
+  padding:10px 14px;border-radius:var(--radius-sm);background:rgba(216,199,163,.05);
+  font-size:.8rem;color:var(--text-2);
+}
+.switch{
+  width:42px;height:24px;border-radius:20px;background:var(--bg-2);
+  position:relative;box-shadow:inset 0 0 0 1px var(--line);flex-shrink:0;
+}
+.switch::after{
+  content:"";position:absolute;top:2px;right:2px;width:20px;height:20px;border-radius:50%;
+  background:var(--gold);transition:transform .3s var(--ease);
+}
+html[data-theme="light"] .switch::after{transform:translateX(-18px);}
+
+.sidebar-close{display:none;}
+
+/* ---------- MAIN ---------- */
+.main{position:relative;display:flex;flex-direction:column;min-height:100vh;}
+.topbar{
+  display:none;
+  align-items:center;justify-content:space-between;
+  padding:14px 16px;border-bottom:1px solid var(--line);
+  position:sticky;top:0;background:var(--bg-0);z-index:20;
+}
+.menu-btn{
+  width:40px;height:40px;border-radius:12px;background:var(--card-bg);
+  display:flex;align-items:center;justify-content:center;font-size:1.1rem;
+  box-shadow:inset 0 0 0 1px var(--line);
+}
+
+.view{display:none;flex:1;flex-direction:column;animation:fadeIn .4s var(--ease);}
+.view.active{display:flex;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+
+/* ============================================================
+   3) HOME VIEW
+   ============================================================ */
+.home-wrap{padding:52px 48px;max-width:1000px;}
+.home-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:.75rem;color:var(--gold);background:var(--gold-soft);
+  padding:6px 14px;border-radius:20px;margin-bottom:18px;
+}
+.home-eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--gold);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
+.home-wrap h2{font-family:var(--font-display);font-size:clamp(1.7rem,3.4vw,2.5rem);font-weight:800;line-height:1.35;max-width:620px;}
+.home-wrap h2 span{color:var(--gold);}
+.home-wrap>p.lead{color:var(--text-2);margin-top:16px;max-width:540px;line-height:1.9;font-size:.98rem;}
+.home-cta{
+  margin-top:28px;display:inline-flex;align-items:center;gap:10px;
+  background:linear-gradient(135deg,var(--beige-2),var(--beige-1));
+  color:#26221A;padding:14px 26px;border-radius:14px;font-weight:700;font-size:.95rem;
+  box-shadow:var(--shadow);transition:transform .25s var(--ease), box-shadow .25s var(--ease);
+}
+.home-cta:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(0,0,0,.4);}
+
+.home-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:46px;}
+.stat-card{
+  background:var(--card-bg);border:1px solid var(--line);border-radius:var(--radius-md);
+  padding:20px;transition:transform .3s var(--ease), border-color .3s;
+}
+.stat-card:hover{transform:translateY(-4px);border-color:var(--beige-3);}
+.stat-card .num{font-family:var(--font-display);font-size:1.9rem;font-weight:800;color:var(--gold);}
+.stat-card .lbl{font-size:.82rem;color:var(--text-2);margin-top:4px;}
+
+.home-divider{
+  margin:44px 0 32px;height:1px;
+  background:linear-gradient(90deg, transparent, var(--line) 20%, var(--line) 80%, transparent);
+  position:relative;
+}
+.home-divider::after{
+  content:"✦";position:absolute;top:50%;right:50%;transform:translate(50%,-50%);
+  background:var(--bg-0);color:var(--gold);padding:0 14px;font-size:.8rem;
+}
+
+.home-quick h3{font-family:var(--font-display);font-size:1.1rem;margin-bottom:16px;}
+.chip-row{display:flex;flex-wrap:wrap;gap:10px;}
+.chip{
+  background:var(--card-bg);border:1px solid var(--line);color:var(--text-1);
+  padding:10px 18px;border-radius:30px;font-size:.85rem;transition:all .25s var(--ease);
+}
+.chip:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px);}
+
+/* ============================================================
+   4) CHAT VIEW
+   ============================================================ */
+.chat-view{padding:0;}
+.chat-header{
+  padding:22px 40px 16px;border-bottom:1px solid var(--line);
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;
+}
+.chat-header-left{display:flex;align-items:center;gap:14px;}
+.assist-avatar{
+  width:46px;height:46px;border-radius:14px;flex-shrink:0;position:relative;
+  background:radial-gradient(circle at 35% 30%, var(--beige-2), var(--beige-3) 70%);
+  display:flex;align-items:center;justify-content:center;font-size:1.3rem;
+}
+.assist-avatar::after{
+  content:"";position:absolute;inset:-8px;border-radius:18px;
+  background:radial-gradient(circle, var(--gold-soft), transparent 70%);
+  animation:halo 4s ease-in-out infinite;
+}
+.status-line{display:flex;align-items:center;gap:6px;font-size:.72rem;color:var(--text-2);margin-bottom:2px;}
+.status-dot{width:6px;height:6px;border-radius:50%;background:#7BC67B;box-shadow:0 0 8px #7BC67B;}
+.chat-header h2{font-family:var(--font-display);font-size:1.25rem;font-weight:800;}
+.chat-header p.sub{font-size:.82rem;color:var(--text-2);margin-top:2px;}
+.header-actions{display:flex;gap:8px;}
+.icon-btn{
+  width:38px;height:38px;border-radius:11px;background:var(--card-bg);
+  box-shadow:inset 0 0 0 1px var(--line);display:flex;align-items:center;justify-content:center;
+  font-size:.95rem;color:var(--text-2);transition:all .25s var(--ease);
+}
+.icon-btn:hover{color:var(--gold);border-color:var(--gold);transform:translateY(-2px);}
+
+.chat-body{flex:1;overflow-y:auto;padding:26px 40px;display:flex;flex-direction:column;gap:18px;scroll-behavior:smooth;}
+
+/* welcome screen */
+.welcome{
+  margin:auto;text-align:center;max-width:560px;padding:20px;
+  animation:fadeIn .5s var(--ease);
+}
+.welcome-icon{
+  width:74px;height:74px;margin:0 auto 20px;border-radius:22px;
+  background:radial-gradient(circle at 35% 30%, var(--beige-2), var(--beige-3) 70%);
+  display:flex;align-items:center;justify-content:center;font-size:2rem;position:relative;
+}
+.welcome-icon::after{
+  content:"";position:absolute;inset:-12px;border-radius:30px;
+  background:radial-gradient(circle, var(--gold-soft), transparent 70%);
+  animation:halo 4s ease-in-out infinite;
+}
+.welcome h2{font-family:var(--font-display);font-size:1.5rem;font-weight:800;margin-bottom:10px;}
+.welcome p{color:var(--text-2);line-height:1.9;font-size:.95rem;margin-bottom:26px;}
+.suggest-grid{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;}
+.suggest-card{
+  background:var(--card-bg);border:1px solid var(--line);border-radius:14px;
+  padding:12px 18px;font-size:.86rem;text-align:right;transition:all .25s var(--ease);
+  max-width:260px;
+}
+.suggest-card:hover{border-color:var(--gold);transform:translateY(-3px);box-shadow:0 10px 24px -8px rgba(0,0,0,.4);}
+
+/* messages */
+.msg{display:flex;gap:12px;max-width:78%;animation:msgIn .38s var(--ease);}
+@keyframes msgIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+.msg.user{align-self:flex-end;flex-direction:row-reverse;}
+.msg.bot{align-self:flex-start;}
+.msg-avatar{
+  width:34px;height:34px;border-radius:10px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:1rem;
+  background:var(--card-bg);box-shadow:inset 0 0 0 1px var(--line);
+}
+.msg.bot .msg-avatar{background:radial-gradient(circle at 35% 30%, var(--beige-2), var(--beige-3) 70%);}
+.bubble{
+  border-radius:18px;padding:14px 18px;font-size:.92rem;line-height:2;
+  box-shadow:var(--shadow);
+}
+.msg.user .bubble{background:var(--user-bubble);color:var(--user-bubble-text);border-bottom-left-radius:6px;}
+.msg.bot .bubble{background:var(--bot-bubble);border:1px solid var(--line);border-bottom-right-radius:6px;}
+.bubble h4{font-family:var(--font-display);font-size:.88rem;color:var(--gold);margin:10px 0 4px;display:flex;align-items:center;gap:6px;}
+.bubble h4:first-child{margin-top:0;}
+.bubble p{margin-bottom:2px;}
+.bubble .ref-tag{
+  display:inline-block;margin-top:10px;font-size:.74rem;color:var(--gold);
+  background:var(--gold-soft);padding:4px 10px;border-radius:20px;
+}
+.msg-actions{display:flex;gap:6px;margin-top:8px;}
+.mini-btn{
+  font-size:.72rem;color:var(--text-2);background:rgba(216,199,163,.06);
+  padding:5px 10px;border-radius:8px;display:flex;align-items:center;gap:4px;transition:all .2s;
+}
+.mini-btn:hover{color:var(--gold);background:var(--gold-soft);}
+.mini-btn.liked{color:#8FD68F;}
+.mini-btn.disliked{color:#E29A9A;}
+.mini-btn.faved{color:var(--gold);background:var(--gold-soft);}
+
+/* typing dots */
+.typing{display:flex;gap:5px;padding:6px 4px;}
+.typing span{width:7px;height:7px;border-radius:50%;background:var(--beige-3);animation:bounce 1.2s infinite;}
+.typing span:nth-child(2){animation-delay:.15s;}
+.typing span:nth-child(3){animation-delay:.3s;}
+@keyframes bounce{0%,60%,100%{transform:translateY(0);opacity:.5;}30%{transform:translateY(-6px);opacity:1;}}
+
+/* quick questions bar */
+.quick-bar{
+  padding:10px 40px;display:flex;gap:10px;overflow-x:auto;border-top:1px solid var(--line);
+  scrollbar-width:none;
+}
+.quick-bar::-webkit-scrollbar{display:none;}
+.quick-pill{
+  flex-shrink:0;font-size:.8rem;background:var(--card-bg);border:1px solid var(--line);
+  padding:8px 16px;border-radius:20px;white-space:nowrap;transition:all .2s var(--ease);
+}
+.quick-pill:hover{border-color:var(--gold);color:var(--gold);}
+
+/* input area */
+.input-area{padding:14px 40px 24px;}
+.input-shell{
+  display:flex;align-items:flex-end;gap:10px;background:var(--card-bg);
+  border:1px solid var(--line);border-radius:22px;padding:10px 12px;box-shadow:var(--shadow);
+}
+.input-shell textarea{
+  flex:1;background:none;border:none;resize:none;max-height:120px;
+  font-size:.94rem;line-height:1.7;padding:8px 6px;outline:none;color:var(--text-1);
+}
+.input-shell textarea::placeholder{color:var(--text-2);}
+.round-btn{
+  width:42px;height:42px;border-radius:50%;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:1rem;
+  transition:all .25s var(--ease);
+}
+.round-btn.mic{background:rgba(216,199,163,.07);color:var(--text-2);}
+.round-btn.mic:hover{color:var(--gold);}
+.round-btn.send{
+  background:linear-gradient(135deg,var(--beige-2),var(--beige-1));color:#26221A;
+  box-shadow:0 6px 18px -4px rgba(0,0,0,.5);
+}
+.round-btn.send:hover{transform:scale(1.08) rotate(-8deg);}
+.round-btn.send:active{transform:scale(.95);}
+.input-hint{font-size:.7rem;color:var(--text-2);margin-top:8px;text-align:center;}
+
+/* ============================================================
+   5) TOPICS VIEW
+   ============================================================ */
+.page-header{padding:44px 44px 8px;}
+.page-header h2{font-family:var(--font-display);font-size:1.7rem;font-weight:800;}
+.page-header p{color:var(--text-2);margin-top:8px;font-size:.92rem;}
+.topics-grid{
+  padding:26px 44px 50px;display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;
+}
+.topic-card{
+  background:var(--card-bg);border:1px solid var(--line);border-radius:var(--radius-md);
+  padding:22px;display:flex;flex-direction:column;gap:10px;transition:all .3s var(--ease);
+}
+.topic-card:hover{transform:translateY(-5px);border-color:var(--gold);box-shadow:0 16px 34px -12px rgba(0,0,0,.5);}
+.topic-icon{width:42px;height:42px;border-radius:12px;background:var(--gold-soft);display:flex;align-items:center;justify-content:center;font-size:1.2rem;}
+.topic-card h3{font-family:var(--font-display);font-size:1rem;font-weight:700;}
+.topic-card p{font-size:.82rem;color:var(--text-2);line-height:1.7;flex:1;}
+.topic-link{font-size:.8rem;color:var(--gold);display:inline-flex;align-items:center;gap:6px;margin-top:4px;}
+
+/* ============================================================
+   6) FAVORITES VIEW
+   ============================================================ */
+.fav-list{padding:20px 44px 50px;display:flex;flex-direction:column;gap:14px;}
+.empty-state{
+  margin:60px auto;text-align:center;color:var(--text-2);max-width:340px;
+}
+.empty-state .ico{font-size:2.4rem;margin-bottom:14px;opacity:.6;}
+.fav-item{
+  background:var(--card-bg);border:1px solid var(--line);border-radius:var(--radius-md);
+  padding:18px 20px;
+}
+.fav-item h4{font-family:var(--font-display);color:var(--gold);font-size:.9rem;margin-bottom:6px;}
+.fav-item p{font-size:.86rem;color:var(--text-1);line-height:1.8;opacity:.9;}
+.fav-remove{margin-top:10px;font-size:.75rem;color:var(--text-2);}
+.fav-remove:hover{color:#E29A9A;}
+
+/* ============================================================
+   7) ABOUT VIEW
+   ============================================================ */
+.about-wrap{padding:20px 44px 60px;max-width:720px;line-height:2;}
+.about-wrap .card{
+  background:var(--card-bg);border:1px solid var(--line);border-radius:var(--radius-md);
+  padding:26px;margin-top:18px;
+}
+.about-wrap .card h3{font-family:var(--font-display);color:var(--gold);margin-bottom:10px;font-size:1.02rem;}
+.about-wrap ul{padding-right:20px;color:var(--text-2);font-size:.9rem;}
+
+/* ============================================================
+   8) EXAM MODE
+   ============================================================ */
+.exam-wrap{padding:30px 44px 60px;max-width:680px;}
+.exam-progress{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px;}
+.exam-score{font-family:var(--font-display);color:var(--gold);font-weight:800;}
+.progress-track{flex:1;height:6px;background:var(--bg-2);border-radius:6px;margin:0 16px;overflow:hidden;}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--beige-3),var(--gold));transition:width .4s var(--ease);}
+.exam-card{
+  background:var(--card-bg);border:1px solid var(--line);border-radius:var(--radius-lg);
+  padding:30px;animation:fadeIn .4s var(--ease);
+}
+.exam-card h3{font-family:var(--font-display);font-size:1.1rem;line-height:1.8;margin-bottom:22px;}
+.exam-options{display:flex;flex-direction:column;gap:10px;}
+.exam-opt{
+  text-align:right;padding:14px 18px;border-radius:14px;border:1px solid var(--line);
+  background:rgba(216,199,163,.03);font-size:.9rem;transition:all .2s var(--ease);
+  display:flex;gap:10px;align-items:center;
+}
+.exam-opt .lbl{width:24px;height:24px;border-radius:50%;background:var(--bg-2);display:flex;align-items:center;justify-content:center;font-size:.75rem;flex-shrink:0;}
+.exam-opt:hover:not(.locked){border-color:var(--gold);}
+.exam-opt.correct{border-color:#7BC67B;background:rgba(123,198,123,.1);}
+.exam-opt.wrong{border-color:#E29A9A;background:rgba(226,154,154,.1);}
+.exam-explain{
+  margin-top:18px;padding:14px 16px;background:var(--gold-soft);border-radius:12px;
+  font-size:.85rem;line-height:1.9;display:none;
+}
+.exam-explain.show{display:block;animation:fadeIn .3s;}
+.exam-next{
+  margin-top:18px;background:linear-gradient(135deg,var(--beige-2),var(--beige-1));
+  color:#26221A;padding:12px 24px;border-radius:12px;font-weight:700;font-size:.88rem;display:none;
+}
+.exam-next.show{display:inline-flex;}
+.exam-done{text-align:center;padding:40px 20px;}
+.exam-done .big{font-family:var(--font-display);font-size:2.4rem;color:var(--gold);font-weight:800;}
+.start-exam-box{text-align:center;padding:50px 20px;}
+.start-exam-box .ico{font-size:2.6rem;margin-bottom:16px;}
+.start-exam-box h3{font-family:var(--font-display);font-size:1.3rem;margin-bottom:10px;}
+.start-exam-box p{color:var(--text-2);margin-bottom:24px;max-width:420px;margin-inline:auto;line-height:1.9;}
+
+/* ============================================================
+   9) SEARCH OVERLAY
+   ============================================================ */
+.search-overlay{
+  position:fixed;inset:0;background:rgba(10,9,7,.7);backdrop-filter:blur(6px);
+  z-index:100;display:none;align-items:flex-start;justify-content:center;padding-top:10vh;
+}
+.search-overlay.show{display:flex;animation:fadeIn .25s;}
+.search-box{
+  width:min(560px,92vw);background:var(--bg-1);border:1px solid var(--line);
+  border-radius:var(--radius-lg);box-shadow:0 30px 70px rgba(0,0,0,.5);overflow:hidden;
+}
+.search-input-row{display:flex;align-items:center;gap:10px;padding:16px 20px;border-bottom:1px solid var(--line);}
+.search-input-row input{flex:1;background:none;border:none;font-size:1rem;outline:none;color:var(--text-1);}
+.search-results{max-height:50vh;overflow-y:auto;}
+.search-result{padding:14px 20px;border-bottom:1px solid var(--line);transition:background .2s;display:block;width:100%;text-align:right;}
+.search-result:hover{background:rgba(216,199,163,.06);}
+.search-result h5{font-size:.9rem;color:var(--gold);font-family:var(--font-display);}
+.search-result p{font-size:.78rem;color:var(--text-2);margin-top:4px;}
+.search-empty{padding:30px;text-align:center;color:var(--text-2);font-size:.85rem;}
+
+/* toast */
+.toast{
+  position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(20px);
+  background:var(--bg-1);border:1px solid var(--gold);color:var(--text-1);
+  padding:12px 22px;border-radius:14px;font-size:.85rem;box-shadow:var(--shadow);
+  z-index:200;opacity:0;transition:all .3s var(--ease);pointer-events:none;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+.sidebar-overlay{display:none;}
+
+/* ============================================================
+   10) RESPONSIVE
+   ============================================================ */
+@media (max-width:980px){
+  .app{grid-template-columns:1fr;}
+  .sidebar{
+    position:fixed;top:0;right:0;height:100vh;width:280px;z-index:60;
+    transform:translateX(100%);box-shadow:-20px 0 50px rgba(0,0,0,.4);
+  }
+  .sidebar.open{transform:translateX(0);}
+  .sidebar-close{display:block;position:absolute;top:20px;left:16px;font-size:1.2rem;color:var(--text-2);}
+  .sidebar-overlay{
+    display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:55;
+  }
+  .sidebar-overlay.show{display:block;}
+  .topbar{display:flex;}
+  .home-wrap{padding:34px 20px;}
+  .home-grid{grid-template-columns:1fr;}
+  .chat-header{padding:16px 18px;}
+  .chat-body{padding:18px 16px;}
+  .quick-bar{padding:8px 16px;}
+  .input-area{padding:10px 14px 18px;}
+  .msg{max-width:92%;}
+  .page-header{padding:26px 20px 6px;}
+  .topics-grid{padding:16px 16px 40px;grid-template-columns:1fr 1fr;}
+  .fav-list{padding:16px 16px 40px;}
+  .about-wrap{padding:16px 18px 40px;}
+  .exam-wrap{padding:20px 18px 40px;}
+}
+@media (max-width:560px){
+  .topics-grid{grid-template-columns:1fr;}
+  .home-wrap h2{font-size:1.5rem;}
+}
+/* ============================================================
+   لينك الرجوع للموقع الرئيسي
+   ============================================================ */
+.nav-back-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 12px;
+    padding: 12px 14px;
+    border-top: 1px solid var(--line);
+    font-size: .92rem;
+    font-weight: 700;
+    color: var(--gold);
+    text-decoration: none;
+    transition: background .25s var(--ease), transform .25s var(--ease);
+}
+
+.nav-back-link .ico {
+    width: 20px;
+    text-align: center;
+    font-size: 1.05rem;
+}
+
+.nav-back-link:hover {
+    background: var(--gold-soft, rgba(201, 160, 92, .12));
+    transform: translateX(-2px);
+}
+</style>
+</head>
+<body>
+
+<div class="ambient">
+  <div class="spot s1"></div>
+  <div class="spot s2"></div>
+  <div class="spot s3"></div>
+</div>
+
+<div class="app">
+
+  <!-- ============ SIDEBAR ============ -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+  <aside class="sidebar" id="sidebar" aria-label="القائمة الرئيسية">
+    <button class="sidebar-close" id="sidebarClose" aria-label="إغلاق القائمة">✕</button>
+    <div class="brand">
+      <div class="brand-mark">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 2L4 6v6c0 5 3.4 8.7 8 10 4.6-1.3 8-5 8-10V6l-8-4z" stroke="#26221A" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="#26221A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="brand-text">
+        <h1>رفيق المادة</h1>
+        <p>مساعدك في فهم اللاهوت والعقيدة</p>
+      </div>
+    </div>
+
+    <nav class="nav" id="navList">
+      <button class="nav-item active" data-view="home"><span class="ico">🏠</span> الرئيسية</button>
+      <button class="nav-item" data-view="chat"><span class="ico">💬</span> اسأل رفيق المادة</button>
+      <button class="nav-item" data-view="topics"><span class="ico">📖</span> موضوعات المادة</button>
+      <button class="nav-item" data-view="favorites"><span class="ico">⭐</span> المفضلة</button>
+      <button class="nav-item" data-view="exam"><span class="ico">🎯</span> اختبرني</button>
+      <button class="nav-item" data-view="about"><span class="ico">ℹ️</span> عن المادة</button>
+    </nav>
+ <a href="index.html" class="nav-back-link">
+      <span class="ico">↩️</span> الرجوع للموقع الرئيسي
+    </a>
+    <div class="theme-toggle" id="themeToggle" role="button" tabindex="0" aria-label="تبديل المظهر">
+      <span id="themeLabel">🌙 الوضع الداكن</span>
+      <span class="switch"></span>
+    </div>
+
+    <div class="sidebar-footer">
+      مبني على مادة مهرجان مسرتي فيك 2026
+    </div>
+  </aside>
+
+  <!-- ============ MAIN ============ -->
+  <main class="main">
+    <div class="topbar">
+      <button class="menu-btn" id="menuBtn" aria-label="فتح القائمة">☰</button>
+      <div style="display:flex;align-items:center;gap:8px;font-family:var(--font-display);font-weight:700;font-size:.95rem;">
+        <span>رفيق المادة</span> 🤍
+      </div>
+      <button class="menu-btn" id="topSearchBtn" aria-label="بحث">🔍</button>
+    </div>
+
+    <!-- ---------- HOME VIEW ---------- -->
+    <section class="view active" id="view-home">
+      <div class="home-wrap">
+        <div class="home-eyebrow"><span class="dot"></span> جاهز لمساعدتك الآن</div>
+        <h2>اتعلّم اللاهوت والعقيدة بطريقة <span>بسيطة وهادئة</span>، خطوة خطوة.</h2>
+        <p class="lead">رفيق المادة مساعدك الدراسي لمادة اللاهوت والعقيدة، مبني على محتوى مهرجان مسرتي فيك 2026. اسأل أي سؤال، وهيوصلك الشرح ببساطة وبدقة من المادة نفسها.</p>
+        <button class="home-cta" id="startChatBtn">💬 ابدأ محادثة جديدة</button>
+
+        <div class="home-grid">
+          <div class="stat-card"><div class="num">18</div><div class="lbl">موضوع رئيسي في المادة</div></div>
+          <div class="stat-card"><div class="num">10</div><div class="lbl">أسئلة في وضع الاختبار</div></div>
+          <div class="stat-card"><div class="num">100%</div><div class="lbl">إجابات مبنية على المادة</div></div>
+        </div>
+
+        <div class="home-divider"></div>
+
+        <div class="home-quick">
+          <h3>ابدأ بسؤال سريع</h3>
+          <div class="chip-row" id="homeQuickChips"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- CHAT VIEW ---------- -->
+    <section class="view" id="view-chat">
+      <div class="chat-view" style="display:flex;flex-direction:column;height:calc(100vh - 0px);">
+        <div class="chat-header">
+          <div class="chat-header-left">
+            <div class="assist-avatar">🤍</div>
+            <div>
+              <div class="status-line"><span class="status-dot"></span> متصل بالمادة</div>
+              <h2>اسأل براحتك 🤍</h2>
+              <p class="sub">أي سؤال في المادة... وأنا أساعدك تفهمه ببساطة.</p>
+            </div>
+          </div>
+          <div class="header-actions">
+            <button class="icon-btn" id="searchBtn" title="بحث في المادة" aria-label="بحث في المادة">🔍</button>
+            <button class="icon-btn" id="clearChatBtn" title="مسح المحادثة" aria-label="مسح المحادثة">🗑️</button>
+          </div>
+        </div>
+
+        <div class="chat-body" id="chatBody">
+          <div class="welcome" id="welcomeScreen">
+            <div class="welcome-icon">👋</div>
+            <h2>أهلاً بيك</h2>
+            <p>أنا رفيق المادة. اسألني عن أي نقطة في اللاهوت والعقيدة، وهساعدك تفهمها خطوة خطوة.</p>
+            <div class="suggest-grid" id="suggestGrid"></div>
+          </div>
+        </div>
+
+        <div class="quick-bar" id="quickBar"></div>
+
+        <div class="input-area">
+          <div class="input-shell">
+            <button class="round-btn mic" id="micBtn" aria-label="تسجيل صوتي (تجريبي)">🎤</button>
+            <textarea id="chatInput" rows="1" placeholder="اكتب سؤالك هنا..." aria-label="اكتب سؤالك"></textarea>
+            <button class="round-btn send" id="sendBtn" aria-label="إرسال">➤</button>
+          </div>
+          <div class="input-hint">اضغط Enter للإرسال · Shift + Enter لسطر جديد</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- TOPICS VIEW ---------- -->
+    <section class="view" id="view-topics">
+      <div class="page-header">
+        <h2>📖 موضوعات المادة</h2>
+        <p>اختر موضوعاً لتفتح محادثة مباشرة عنه</p>
+      </div>
+      <div class="topics-grid" id="topicsGrid"></div>
+    </section>
+
+    <!-- ---------- FAVORITES VIEW ---------- -->
+    <section class="view" id="view-favorites">
+      <div class="page-header">
+        <h2>⭐ المفضلة</h2>
+        <p>الإجابات اللي حفظتها عشان ترجعلها بسهولة</p>
+      </div>
+      <div class="fav-list" id="favList"></div>
+    </section>
+
+    <!-- ---------- EXAM VIEW ---------- -->
+    <section class="view" id="view-exam">
+      <div class="page-header">
+        <h2>🎯 اختبرني</h2>
+        <p>أسئلة قصيرة من المادة لتتأكد من فهمك</p>
+      </div>
+      <div class="exam-wrap" id="examWrap"></div>
+    </section>
+
+    <!-- ---------- ABOUT VIEW ---------- -->
+    <section class="view" id="view-about">
+      <div class="page-header">
+        <h2>ℹ️ عن المادة</h2>
+        <p>نبذة عن مصدر المحتوى وطريقة عمل المساعد</p>
+      </div>
+      <div class="about-wrap">
+        <p>هذا المساعد مبني على مادة "اللاهوت والعقيدة" الخاصة بمهرجان الأسرات الجامعية (مسرتي فيك 2026)، ويغطي موضوعات خلقة الإنسان، سقوطه، فساد طبيعته، ومواصفات الفادي وعمل الفداء والخلاص.</p>
+        <div class="card">
+          <h3>كيف يجاوب رفيق المادة؟</h3>
+          <ul>
+            <li>يبحث في قاعدة معرفة مبنية من المادة نفسها.</li>
+            <li>لو السؤال موجود في المادة، يشرحه ببساطة مع الإشارة للجزء المرتبط.</li>
+            <li>لو السؤال مش موجود، يقولك بصراحة بدل ما يخترع إجابة.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>المراجع</h3>
+          <ul>
+            <li>كتاب عقيدة الفداء – نيافة الأنبا بيشوي، نيافة الأنبا موسى</li>
+            <li>كتاب كاتيكيزم الكنيسة القبطية الأرثوذكسية</li>
+            <li>سلسلة تبسيط الإيمان – نيافة الأنبا بيشوي</li>
+            <li>كتاب الله والإنسان – قداسة البابا شنودة الثالث</li>
+            <li>كتاب عقائدنا المسيحية الأرثوذكسية</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- SEARCH OVERLAY -->
+<div class="search-overlay" id="searchOverlay">
+  <div class="search-box">
+    <div class="search-input-row">
+      <span>🔍</span>
+      <input type="text" id="searchInput" placeholder="ابحث عن موضوع في المادة..." aria-label="بحث">
+      <button class="icon-btn" id="closeSearch" aria-label="إغلاق البحث">✕</button>
+    </div>
+    <div class="search-results" id="searchResults"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============================================================
+   KNOWLEDGE BASE
+   All content derived from: "اللاهوت والعقيدة" — مهرجان مسرتي فيك 2026
+   ============================================================ */
+const knowledgeBase = [
+  {
+    id: "creation",
+    topic: "خلق الإنسان",
+    icon: "🌿",
+    keywords: ["خلق الانسان","خلقة الانسان","كيف خلق الله الانسان","اليوم السادس","نفخ نسمة حياة","صورة الله ومثاله","مميزات الانسان"],
+    shortDesc: "كيف ولماذا خلق الله الإنسان مميزاً عن باقي الخليقة",
+    content: {
+      main: "خلق الله الإنسان في اليوم السادس بعد أن أعدّ له كل شيء، وكان الإنسان مميزاً دون سائر المخلوقات في طريقة خلقته وفي طبيعته أيضاً. فهو الكائن الوحيد الذي خلقه الله بنفخ نسمة حياة في أنفه (تك 2: 7)، وهو أيضاً الكائن الوحيد الذي خُلق على صورة الله ومثاله (تك 1: 26).",
+      simple: "الإنسان مش زي باقي المخلوقات؛ ربنا خلقه بطريقة خاصة (نفخة حياة) وبطبيعة خاصة (على صورته ومثاله).",
+      material: "بسبب أن الإنسان مخلوق على صورة الله ومثاله، فهو يتميز عن باقي المخلوقات الأرضية بأنه: كائن عاقل له روح، له حرية الإرادة، سيقوم من الموت بعد موته، خالد، وسيُحاسب."
+    },
+    related: ["fall"]
+  },
+  {
+    id: "fall",
+    topic: "سقوط الإنسان",
+    icon: "🍂",
+    keywords: ["سقوط الانسان","وصية الله لادم وحواء","كسر الوصية","الحية والشيطان","اكل ادم وحواء من الشجرة","خطية ادم"],
+    shortDesc: "وصية الله لآدم وحواء، وكيف كُسرت هذه الوصية",
+    content: {
+      main: "أوصى الله آدم وحواء في جنة عدن ألا يأكلا من شجرة معرفة الخير والشر (تك 2: 15-17). لكن الشيطان، متلبساً بالحية، شكك حواء في كلام الله، فأكلت من الثمرة ونظرت للشجرة بشهوة، وأعطت أيضاً لآدم فأكل معها.",
+      simple: "ربنا حذّر آدم وحواء من أكل ثمرة معينة، والشيطان خدعهم بالشك والكذب، فكسروا الوصية.",
+      material: "الشيطان لجأ إلى تشكيك حواء في مقصد الله تجاه الإنسان، وأوجدت كلمات الشيطان قبولاً عند حواء، وهكذا استطاع الشيطان أن يزعزع إيمانها ونظرتها تجاه الله."
+    },
+    related: ["fall-consequences","corruption"]
+  },
+  {
+    id: "fall-consequences",
+    topic: "نتائج السقوط",
+    icon: "⚖️",
+    keywords: ["نتائج سقوط الانسان","نتائج السقوط","عقوبة الموت","الموت الروحي","الموت الادبي","الموت الجسدي","الموت الابدي","اضرار السقوط"],
+    shortDesc: "أنواع عقوبة الموت التي نتجت عن سقوط الإنسان",
+    content: {
+      main: "أول نتائج السقوط هي عقوبة الموت، وهي حكم الله الإلهي على الإنسان الخاطئ (تك 2: 17). وللموت أربعة أنواع: الموت الروحي (انفصال العلاقة بين الإنسان والله)، الموت الأدبي (فقدان صورة الله وكرامته)، الموت الجسدي (انفصال الروح عن الجسد)، والموت الأبدي (أخطر الأنواع، إذ يبقى فيه الإنسان في الموت إلى ما لا نهاية).",
+      simple: "لما آدم وحواء أخطآ، النتيجة كانت الموت بأنواعه الأربعة، مش بس موت الجسد.",
+      material: "الموت الروحي حدث بمجرد أن أكل آدم وحواء من الثمرة المحرمة، وهو يعني الانفصال عن الله، وبدل الصداقة سعياً إلى الاختباء من ذعر في وجهه."
+    },
+    related: ["corruption","original-sin"]
+  },
+  {
+    id: "corruption",
+    topic: "فساد الطبيعة البشرية",
+    icon: "🥀",
+    keywords: ["فساد الطبيعة البشرية","فساد الجنس البشري","تشوه صورة الله","الصراع بين الروح والجسد","تعب الجسد","تعب النفس"],
+    shortDesc: "كيف أثّر السقوط على طبيعة الإنسان نفسها",
+    content: {
+      main: "بالسقوط فسدت الطبيعة البشرية وصار هذا الفساد للجنس البشري كله (رو 3: 12). ومن مظاهر فساد الطبيعة: تشوّه صورة الله المقدسة التي خُلق عليها الإنسان، والصراع بين الروح والجسد، وتعب الجسد (العمل بعرق الجبين)، وتعب النفس (بدأت أمراض النفس تظهر مثل الخوف، الغضب، الغيرة، والعنف).",
+      simple: "بعد السقوط، طبيعة الإنسان نفسها اتأثرت: جسده تعب، ونفسه بقت عرضة لأمراض زي الخوف والغضب والغيرة.",
+      material: "يقول القديس أثناسيوس الرسولي: 'ولكن البشر، إذ رفضوا الأمور الأبدية، وبمشورة الشيطان تحولوا إلى أمور الفساد، صاروا السبب في فساد أنفسهم'."
+    },
+    related: ["original-sin","fall-consequences"]
+  },
+  {
+    id: "original-sin",
+    topic: "الخطية الأصلية",
+    icon: "🌱",
+    keywords: ["الخطية الاصلية","وراثة الخطية","توريث الخطية","هل الله يظلم البشر","خطية ادم وحواء ورثتها البشرية"],
+    shortDesc: "كيف انتقلت عقوبة خطية آدم وحواء إلى الجنس البشري كله",
+    content: {
+      main: "آدم وحواء كانا في الجنة يمثلان نفسيهما فقط، لكن لما سقطا شمل الحكم البشرية كلها لأن جميع البشر المولودين منهما صاروا مستوجبين الموت من حيث أن أبواهما ولدوا في حالة الخطية. وقد ولد الجنس البشري كله من آدم وحواء وهما في حالة الخطية، فسرى الحكم إلى جميع ذريتهما.",
+      simple: "الخطية ما فضلتش عند آدم وحواء بس، لأنهم لما اتطردوا من الجنة، كل نسلهم اتولد في نفس الحالة اللي هما كانوا فيها.",
+      material: "الله لم يظلم البشر في هذا الحكم، لأنه كما شمل الحكم بالموت جميع ذرية آدم، كذلك كان سيشملهم الحكم بالحياة لو ثبت آدم في طاعة الله ولم يعص وصيته، والدليل على ذلك ما قاله الله لآدم وحواء عند خلقتهما."
+    },
+    related: ["fall-consequences","redeemer-qualities"]
+  },
+  {
+    id: "redeemer-qualities",
+    topic: "صفات الفادي",
+    icon: "✨",
+    keywords: ["صفات الفادي","مواصفات الفادي","شروط الفادي","لازم يكون الفادي ايه","مين ينفع يفدي الانسان"],
+    shortDesc: "الشروط الخمسة الواجب توافرها فيمن يفدي الإنسان",
+    content: {
+      main: "لكي يفدي شخصٌ الإنسانَ نيابة عنه، لا بد أن تتوفر فيه خمس صفات: 1) أن يكون إنساناً، لأن الذي أخطأ في حق الله كان إنساناً. 2) أن يكون غير محدود، لأنه لا بد من كفارة غير محدودة تكفي لحمل ورفع خطايا كل البشر من آدم إلى آخر الدهور. 3) أن يكون قدوساً بلا خطية، لأنه إذا كان الفادي خاطئاً فكيف يستطيع أن يفدي غيره؟ 4) أن يقبل أن يموت بإرادته، وينتصر على الموت. 5) أن يكون خالقاً، حتى يمكنه تجديد طبيعة الإنسان مرة أخرى.",
+      simple: "الفادي لازم يكون إنسان، وفي نفس الوقت غير محدود، وبلا خطية، وقادر إنه يموت بإرادته وينتصر على الموت، وكمان خالق يقدر يجدد طبيعة الإنسان.",
+      material: "يؤكد نيافة الحبر الجليل الأنبا موسى أسقف عام الشباب: 'يجب أن يكون الفادي غير محدود، لأن عقاب آدم غير محدود وأبدي لأن خطيئته موجهة نحو الله غير المحدود'."
+    },
+    related: ["redeemer-divinity","divine-redemption"]
+  },
+  {
+    id: "redeemer-divinity",
+    topic: "لاهوت الفادي",
+    icon: "👑",
+    keywords: ["لاهوت الفادي","هل يمكن ان يكون الفادي انسان","هل يمكن ان يكون الفادي ملاك","من يمكن ان يكون الفادي","الحل الوحيد الاوحد"],
+    shortDesc: "لماذا لا يمكن أن يكون الفادي إنساناً عادياً أو ملاكاً",
+    content: {
+      main: "لا يمكن أن يكون الفادي هو الإنسان نفسه، لأن حكم الموت هو على البشر جميعاً، والكتاب يقول: 'الجميع زاغوا وفسدوا معاً، ليس من يعمل صلاحاً ليس ولا واحد' (رو 3: 12). كذلك لا يمكن أن يكون ملاكاً أو رئيس ملائكة، لأن الملاك ليس إنساناً وهو أيضاً محدود وغير معصوم من الخطأ. إذن الحل الوحيد والأوحد أن يكون الفادي هو الله بذاته، فهو وحده غير المحدود، وهو وحده الذي بلا خطية، وهو وحده الخالق.",
+      simple: "مفيش إنسان عادي ولا حتى ملاك يقدر يفدي الإنسان، لأن الاتنين محدودين وناقصين. الحل الوحيد أن يكون الفادي هو الله نفسه.",
+      material: "الحل الوحيد أن يتجسد الله ويأخذ جسداً إنسانياً، ويقبل في هذا الجسد حكم الموت بدلاً من الإنسان، وهذا هو سر ما أقنوم الله الكلمة المتجسد."
+    },
+    related: ["divine-redemption","incarnation"]
+  },
+  {
+    id: "divine-redemption",
+    topic: "الفداء الإلهي",
+    icon: "🕊️",
+    keywords: ["الفداء الالهي","الله افتدى الانسان","شهادة العهد القديم عن الفداء","شهادة العهد الجديد عن الفداء","تفرد الله بالفداء"],
+    shortDesc: "الأدلة الكتابية على أن الله وحده هو من افتدى الإنسان",
+    content: {
+      main: "افتدى الله الإنسان أي قبل حكم الموت عنه وأعطاه حياة أبدية. هذا الفكر يؤكده الكتاب المقدس عبر كل أسفاره. من العهد القديم: 'فديت نفسي من العبور إلى الحفرة' (أي 33: 28)، 'الرب فادي نفوس عبيده' (مز 34: 22). ومن العهد الجديد قال زكريا الكاهن عن الله: 'مبارك الرب إله إسرائيل، لأنه افتقد وصنع فداء لشعبه' (لو 1: 68).",
+      simple: "من العهد القديم للعهد الجديد، الكتاب المقدس بيأكد إن الله نفسه هو اللي فدى الإنسان، مفيش حد تاني اشترك معاه في العمل ده.",
+      material: "قال القديس يوحنا الرسول عن الله: 'ويطهرنا من كل إثم... وهو كفارة لخطايانا، ليس لخطايانا فقط بل لخطايا كل العالم أيضاً' (1يو 1: 9، 2: 2)."
+    },
+    related: ["incarnation","redemption-prophecies"]
+  },
+  {
+    id: "redemption-prophecies",
+    topic: "نبوات العهد القديم",
+    icon: "📜",
+    keywords: ["نبوات الفداء","نبوات العهد القديم عن المسيح","نبوة الوعد بالفداء","نبوة بيعه بثلاثين من الفضة","نبوة صلبه بالمسامير","نبوة الظلمة على الارض"],
+    shortDesc: "نبوات العهد القديم التي تحققت في حادثة الفداء",
+    content: {
+      main: "هيأ الله الأذهان لحدث الفداء عبر نبوات كثيرة في العهد القديم. منها: الوعد بالفداء ('هو يسحق رأسك وأنت تسحقين عقبه' تك 3: 15)، بيعه بثلاثين من الفضة (زك 11: 12)، صلبه بالمسامير ('ثقبوا يدي ورجلي' مز 22: 16)، والظلمة على الأرض (عا 8: 9). وكل هذه النبوات تحققت بالتفصيل كما جاء في العهد الجديد.",
+      simple: "قبل ما المسيح ييجي بمئات السنين، أنبياء العهد القديم كانوا بيتنبأوا بتفاصيل دقيقة عن الفداء، وكل التفاصيل دي اتحققت فعلاً.",
+      material: "بعد أن أعد الله خلقة الإنسان وسقوطه، أعدّ للبشر إعداداً طويلاً بخطة إلهية محكمة، لهذا جاء الكتاب المقدس ليعلن عن هذا الأمر بكل وضوح فلا يخلو سفر من أسفار الكتاب إلا ويخبر عن صلب المسيح وفدائه للبشرية."
+    },
+    related: ["ot-figures","redemption-symbols"]
+  },
+  {
+    id: "ot-figures",
+    topic: "شخصيات من العهد القديم",
+    icon: "🕯️",
+    keywords: ["شخصيات العهد القديم","هابيل","نوح","ملكي صادق","اسحق","يوسف الطاهر","يشوع بن نون","ايوب البار","يونان النبي"],
+    shortDesc: "شخصيات في العهد القديم رمزت لبعض أوجه ذبيحة المسيح",
+    content: {
+      main: "عاشت في العهد القديم شخصيات كانت ترمز لبعض أوجه ذبيحة المسيح على الصليب، منها: هابيل الصديق (قُتل دون ذنب اقترفه، رمزاً للمسيح الذي حسده اليهود)، نوح البار (الرأس الجديد للجنس البشري)، ملكي صادق (رمزاً للمسيح رئيس الكهنة الأزلي)، إسحق المحبوب (أطاع أباه حتى الموت، وحمل الحطب على كتفه)، يوسف الطاهر (بيع بالفضة، وصار سبباً في خلاص العالم من المجاعة)، يشوع بن نون (قاد شعبه لأرض الموعد)، أيوب البار (اجتاز التجربة وانتصر)، ويونان النبي (مكث ثلاثة أيام في بطن الحوت، رمزاً لثلاثة أيام المسيح في القبر).",
+      simple: "ناس كتير في العهد القديم، بقصتهم أو بموقف حصلهم، كانوا بيرمزوا لحاجة هتحصل مع المسيح بعد كده.",
+      material: "إسحق الابن المحبوب الذي أطاع أباه وخرج حاملاً الحطب على كتفه، ورجع حياً، كان رمزاً للسيد المسيح الابن الحبيب الذي أطاع حتى الموت، وخرج حاملاً خشبة الصليب، وقام حياً."
+    },
+    related: ["redemption-symbols","ot-sacrifices"]
+  },
+  {
+    id: "redemption-symbols",
+    topic: "رموز الفداء",
+    icon: "🌳",
+    keywords: ["رموز الفداء","شجرة الحياة","عصا موسى","صخرة موسى","الحية النحاسية","رموز العهد القديم"],
+    shortDesc: "أشياء وأحداث في العهد القديم رمزت للفداء",
+    content: {
+      main: "يوجد في العهد القديم رموز كانت تشير للفداء، منها: شجرة الحياة (رمزاً لذبيحة المسيح التي من يأكل جسده ويشرب دمه يحيا إلى الأبد)، عصا موسى (رمزاً لخشبة الصليب)، صخرة موسى التي ضُربت وخرج منها ماء (رمزاً للمسيح الذي طُعن بالحربة فخرج دم وماء)، وموسى وهو رافع يديه على شكل صليب فينتصر الشعب على عماليق، والحية النحاسية التي كل من نظر إليها يُشفى (رمزاً لصليب المسيح والنجاة به من الموت).",
+      simple: "حاجات كتير في العهد القديم، زي شجرة أو عصا أو حية نحاسية، كانت كلها بترمز لحاجة هتحصل على الصليب بعد كده.",
+      material: "قال بولس الرسول عن صخرة موسى: 'لأنهم كانوا يشربون من صخرة روحية تابعتهم، والصخرة كانت المسيح' (1كو 10: 4)."
+    },
+    related: ["ot-sacrifices","ot-figures"]
+  },
+  {
+    id: "ot-sacrifices",
+    topic: "ذبائح العهد القديم",
+    icon: "🔥",
+    keywords: ["ذبائح العهد القديم","مقارنة ذبيحة المسيح بذبائح العهد القديم","ذبائح ضعيفة","ذبيحة المسيح مرة واحدة"],
+    shortDesc: "الفرق بين ذبائح العهد القديم وذبيحة المسيح الواحدة",
+    content: {
+      main: "كانت ذبائح العهد القديم تتكرر كل يوم إشارة إلى ضعفها وعدم نفعها الدائم، وكانت عاجزة عن أن تطهر الجسد والنفس والروح. أما ذبيحة المسيح فكانت واحدة فقط، لكنها ذات جوانب وأوجه متعددة تكفي لتغطية كل جوانب ذبيحة المسيح. يقول الكتاب: 'نحن مقدَّسون بتقديم جسد يسوع المسيح مرة واحدة' (عب 10: 10).",
+      simple: "ذبائح العهد القديم كانت بتتعمل كل يوم من غير ما تحل المشكلة نهائي، لكن ذبيحة المسيح اتعملت مرة واحدة وكفت للأبد.",
+      material: "وهكذا كانت ذبائح العهد القديم بطقوسها المتنوعة تشهد جميعاً لذبيحة السيد المسيح على الصليب، وهكذا هيأ الله أذهان البشر للفداء العظيم من خلال النبوات والشخصيات والرموز والذبائح."
+    },
+    related: ["incarnation","redemption-blessings"]
+  },
+  {
+    id: "incarnation",
+    topic: "تجسد ابن الله الكلمة",
+    icon: "🌟",
+    keywords: ["تجسد ابن الله الكلمة","كيف تم فداء الانسان","تجسد المسيح","ولادة المسيح من العذراء","اقنوم الابن اخذ جسدا"],
+    shortDesc: "كيف تجسد ابن الله ليتمم عمل الفداء",
+    content: {
+      main: "في ملء الزمان، وبعد أن أعدّ الله الأذهان بالنبوات والذبائح والرموز والشخصيات لفكرة الفداء بالدم، جاء أقنوم الابن وتجسد من الروح القدس ومن العذراء مريم، فولدت يسوع المسيح ابن الله الكلمة بالحقيقة الذي شابهنا في كل شيء ماعدا الخطية. وهكذا جاء أقنوم الابن بذاته متجسداً من أجل إتمام الفداء والخلاص للإنسان.",
+      simple: "بعد كل الإعداد الطويل بالنبوات والرموز، ربنا نفسه، أقنوم الابن، تجسد وصار إنساناً حقيقياً من مريم العذراء عشان يفدي الإنسان.",
+      material: "كان لابد من التجسد ليكون له جسد قابلاً للموت، فالفادي كان لازم يكون إنساناً حقيقياً، وهذا ما تحقق بتجسد ابن الله."
+    },
+    related: ["redeemer-savior","redemption-fulfilled"]
+  },
+  {
+    id: "redeemer-savior",
+    topic: "المسيح الفادي والمخلص",
+    icon: "🤍",
+    keywords: ["المسيح اعلن انه الفادي","المسيح اعلن انه المخلص","ابن الانسان لم ياتي ليخدم بل ليخدم"],
+    shortDesc: "الآيات التي أعلن فيها المسيح نفسه أنه الفادي والمخلص",
+    content: {
+      main: "أعلن السيد المسيح أثناء خدمته مرات عديدة أنه الفادي والمخلص. فقال: 'ابن الإنسان لم يأتِ ليُخدَم بل ليَخدِم، وليبذل نفسه فدية عن كثيرين' (مت 20: 28)، وقال: 'أنا هو الراعي الصالح، والراعي الصالح يبذل نفسه عن الخراف' (يو 10: 11). كما قال أيضاً: 'لأن ابن الإنسان لم يأتِ ليدين العالم، بل ليخلص به العالم' (يو 3: 17).",
+      simple: "المسيح نفسه قال بوضوح، أكتر من مرة، إنه جاي عشان يفدي ويخلّص الناس، مش عشان يدينهم.",
+      material: "قال السيد المسيح: 'أنا هو الباب. إن دخل بي أحد فيَخلُص' (يو 10: 9)، وهنا يعلن المسيح أنه هو الطريق الوحيد للخلاص فلا خلاص إلا به."
+    },
+    related: ["redemption-fulfilled","incarnation"]
+  },
+  {
+    id: "redemption-fulfilled",
+    topic: "قد أكمل",
+    icon: "✝️",
+    keywords: ["قد اكمل","صلب المسيح","قيامة المسيح","انتصار المسيح على الموت","المسيح اسلم روحه على الصليب"],
+    shortDesc: "كيف أتم المسيح الفداء على الصليب وانتصر على الموت",
+    content: {
+      main: "نتيجة خدمة السيد المسيح الفعالة، التف حوله الشعب، مما أثار غضب اليهود، فقبضوا عليه وحكموا عليه بالصلب. وبعد أن احتمل الآلام الشديدة، صرخ بصوت عظيم قائلاً: 'قد أكمل' (يو 19: 30)، ثم أسلم روحه بإرادته. وبموته وقيامته أبطل المسيح الموت وانتصر عليه وأنار الحياة، كما يقول الرسول: 'الذي أبطل الموت وأنار الحياة والخلود' (2تي 1: 10).",
+      simple: "المسيح احتمل كل الآلام بإرادته، وقال 'قد أكمل' يعني الفداء اتم فعلاً، وبعدين انتصر على الموت وأنار الحياة للبشرية كلها.",
+      material: "وهكذا قدّم المسيح نفسه بإرادته ذبيحة لأجلنا: 'لأن فِصحَنا أيضاً المسيح قد ذُبح لأجلنا' (1كو 5: 7)."
+    },
+    related: ["redemption-blessings","salvation-plan"]
+  },
+  {
+    id: "redemption-blessings",
+    topic: "بركات الفداء",
+    icon: "🎁",
+    keywords: ["بركات الفداء","فوائد الفداء","التبرير وغفران الخطايا","الافتداء من لعنة الناموس","الانتصار على الشيطان","الصلح بين السمائيين والارضيين"],
+    shortDesc: "الثمار الست العظيمة التي حققها فداء المسيح",
+    content: {
+      main: "للفداء بركات كثيرة، منها: أولاً الفداء من حكم الموت، إذ مات ابن الله الكلمة عنا. ثانياً التبرير وغفران الخطايا. ثالثاً الافتداء من لعنة الناموس ('المسيح افتدانا من لعنة الناموس' غل 3: 13). رابعاً الانتصار على الشيطان وإبطال سلطان الخطية. خامساً فتح الطريق للملكوت والحياة الأبدية. سادساً عمل الصلح بين السمائيين والأرضيين بدم صليبه ('صولحنا مع الله بموت ابنه' رو 5: 10).",
+      simple: "فداء المسيح مكسبنا حاجات كتير: خلاص من الموت، غفران الخطايا، تحرر من لعنة الناموس، انتصار على الشيطان، وطريق مفتوح للحياة الأبدية.",
+      material: "يقول القديس أوغسطينوس مرنماً لهذه النعم في اعترافاته: 'كم أحببتنا أيها الآب الصالح، الذي لم تشفق على ابنك الوحيد، بل بذلته من أجلنا نحن الأشرار... كم أحببتنا!'"
+    },
+    related: ["redemption-fulfilled","salvation-plan"]
+  },
+  {
+    id: "salvation-plan",
+    topic: "عمل الخلاص",
+    icon: "🕊️",
+    keywords: ["تدبير الخلاص","عمل الخلاص","اسرار الكنيسة","المعمودية والميرون","الروح القدس والخلاص"],
+    shortDesc: "كيف دبّر الله خلاص الإنسان عبر تاريخ البشرية وأسرار الكنيسة",
+    content: {
+      main: "دبّر الله خلاص الإنسان قبل أن يُخطئ، بل قبل أن يخلق الإنسان أصلاً، ودبّر فهم الإنسان لهذه الأمور اللاهوتية بتعليم طويل عن الذبائح والمحرقات وممارسة الإنسان لتقديمها. ودبرت البشرية بنبوءات كثيرة عن ولادة الرب من العذراء وعن صلبه وموته وعن قيامته ومجيئه للبشر وصعوده. وكما دبر الله الفداء، دبر كل أسرار الكنيسة كوسائط حكيمة ننال بها الخلاص العظيم بعمل روحه القدوس، مثل المعمودية والميرون والتوبة والأفخارستيا.",
+      simple: "خلاص الإنسان مش حاجة حصلت فجأة؛ ربنا دبرها من الأول، من قبل ما الإنسان يتخلق، وكمّلها بأسرار الكنيسة اللي بنعيشها لغاية النهاردة.",
+      material: "والله الذي دبّر أمور الخلق، دبّر أيضاً علم الخلاص. وبتدبيره الحكيم لم يتركنا يتامى، بل أرسل لنا الروح القدس، وأعطانا مواهب روحه المتعددة، ورسم لنا الرعاة والمعلمين."
+    },
+    related: ["restoring-image"]
+  },
+  {
+    id: "restoring-image",
+    topic: "استرداد صورة الله فينا",
+    icon: "🔆",
+    keywords: ["استرداد صورة الله فينا","كيف نسترد صورة الله","خاتمة المادة","صورة الله في الانسان"],
+    shortDesc: "كيف يستطيع الإنسان أن يسترد صورة الله فيه بعد أن أفسدها",
+    content: {
+      main: "يليق بنا أن نتطلع إلى عطية الله لنا، أي صورته فينا، ولا نستهين بها. فنزل الرب إلينا وحقق لنا خلاص الصورة بتقديم ذاته ذبيحة عنا. وقد أكد هذا السيد المسيح بقوله: 'أعطوا ما لقيصر لقيصر وما لله لله' (مت 22: 21)، ومعناها أن نترك صورة الله الترابية الفانية عنا لنتعمم بصورة الإنسان السماوي، فعندئذ نعطي ما لله لله.",
+      simple: "بعد كل ما تعلمناه عن الفداء، ربنا بيدعونا نرجّع صورته فينا اللي اتفسدت بالخطية، عن طريق حياتنا مع المسيح.",
+      material: "يقول مار يعقوب السروجي: 'لو فسدت الصورة البهية الموجودة على النفس، سترذل من قبل الله ولن تُقبل. الرب الذي صوّر صورته العظمى، ليدافع حنانه عنا في اليوم الأخير، وينجينا'."
+    },
+    related: ["salvation-plan","corruption"]
+  }
+];
+
+const topicPageOrder = [
+  "creation","fall","fall-consequences","redeemer-qualities","redeemer-divinity",
+  "redemption-prophecies","redemption-symbols","incarnation","redeemer-savior",
+  "redemption-fulfilled","redemption-blessings","salvation-plan"
+];
+
+const suggestedQuestions = [
+  "ما هي نتائج سقوط الإنسان؟",
+  "ما هي صفات الفادي؟",
+  "كيف تم فداء الإنسان؟",
+  "ما هي بركات الفداء؟",
+  "ما معنى تجسد ابن الله الكلمة؟"
+];
+
+/* ============================================================
+   ARABIC NORMALIZATION + MATCHING
+   ============================================================ */
+function normalizeArabic(str){
+  if(!str) return "";
+  return str
+    .replace(/[\u064B-\u0652\u0670\u0640]/g,"")      // remove tashkeel + tatweel
+    .replace(/[إأآا]/g,"ا")
+    .replace(/ى/g,"ي")
+    .replace(/ة/g,"ه")
+    .replace(/ؤ/g,"و")
+    .replace(/ئ/g,"ي")
+    .replace(/[^\u0600-\u06FF\sA-Za-z0-9]/g," ")       // remove punctuation
+    .replace(/\s+/g," ")
+    .trim()
+    .toLowerCase();
+}
+
+// Strip common leading Arabic prefixes (ال، و، ف، ب، ل، لل) so tokens match
+// their root form more often — this is what lets the assistant "understand"
+// a question even if phrased with different grammatical prefixes.
+function stemToken(t){
+  let s = t;
+  const prefixes = ["وال","فال","بال","كال","لل","ال","و","ف","ب","ل","ك"];
+  for(const p of prefixes){
+    if(s.length > p.length + 2 && s.startsWith(p)){
+      s = s.slice(p.length);
+      break;
+    }
+  }
+  return s;
+}
+
+function tokenize(str){
+  return normalizeArabic(str).split(" ").filter(Boolean);
+}
+
+function stemmedTokens(str){
+  return tokenize(str).map(stemToken);
+}
+
+function scoreEntry(entry, queryTokens, queryStemmed, queryNorm){
+  let score = 0;
+  const topicNorm = normalizeArabic(entry.topic);
+  if(queryNorm.includes(topicNorm)) score += 14;
+
+  entry.keywords.forEach(kw=>{
+    const kwNorm = normalizeArabic(kw);
+    if(queryNorm.includes(kwNorm)) score += 9;
+    const kwTokens = kwNorm.split(" ").filter(Boolean).map(stemToken);
+    let overlap = 0;
+    kwTokens.forEach(t=>{ if(t.length>1 && queryStemmed.includes(t)) overlap++; });
+    if(kwTokens.length>0) score += (overlap/kwTokens.length) * 6;
+  });
+
+  const topicTokens = topicNorm.split(" ").filter(Boolean).map(stemToken);
+  let topicOverlap = 0;
+  topicTokens.forEach(t=>{ if(t.length>1 && queryStemmed.includes(t)) topicOverlap++; });
+  score += topicOverlap * 3.5;
+
+  return score;
+}
+
+// Returns the ranked list of {entry, score} for a query, best first.
+function rankMatches(query){
+  const queryNorm = normalizeArabic(query);
+  const queryTokens = tokenize(query);
+  const queryStemmed = stemmedTokens(query);
+  return knowledgeBase
+    .map(entry => ({ entry, score: scoreEntry(entry, queryTokens, queryStemmed, queryNorm) }))
+    .sort((a,b)=> b.score - a.score);
+}
+
+function findBestMatch(query){
+  const ranked = rankMatches(query);
+  const top = ranked[0];
+  return (top && top.score >= 3.5) ? top.entry : null;
+}
+
+// When no confident single match is found, suggest the closest topics
+// instead of a flat "I don't know" — this reflects a deeper reading of
+// the material rather than a strict keyword-only lookup.
+function suggestClosestTopics(query, max){
+  const ranked = rankMatches(query).filter(r => r.score > 0);
+  return ranked.slice(0, max || 3).map(r => r.entry);
+}
+
+/* ============================================================
+   OPTIONAL EXTERNAL AI HOOK (not used by default)
+   ============================================================ */
+async function askExternalAI(question){
+  // OPTIONAL AI API INTEGRATION
+  // If you later add a backend/API key, call it here and return the text.
+  // The app works fully offline via the local knowledge base without this.
+  return null;
+}
+
+/* ============================================================
+   STATE
+   ============================================================ */
+let favorites = [];      // {id, topic, text}
+let likedState = {};      // msgId -> 'like' | 'dislike'
+let favedState = {};      // msgId -> true
+let msgCounter = 0;
+let examState = { started:false, index:0, score:0, locked:false, count:20 };
+let workingExamQuestions = [];
+
+function shuffleArray(arr){
+  const a = arr.slice();
+  for(let i=a.length-1; i>0; i--){
+    const j = Math.floor(Math.random() * (i+1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+/* ============================================================
+   DOM READY
+   ============================================================ */
+document.addEventListener("DOMContentLoaded", () => {
+  renderHomeChips();
+  renderWelcomeSuggestions();
+  renderQuickBar();
+  renderTopics();
+  renderFavorites();
+  renderAbout();
+  setupNav();
+  setupChat();
+  setupTheme();
+  setupSidebarMobile();
+  setupSearch();
+  setupExam();
+});
+
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+function setupNav(){
+  document.querySelectorAll(".nav-item").forEach(btn=>{
+    btn.addEventListener("click", ()=> switchView(btn.dataset.view));
+  });
+  document.getElementById("startChatBtn").addEventListener("click", ()=> switchView("chat"));
+}
+
+function switchView(name){
+  document.querySelectorAll(".view").forEach(v=>v.classList.remove("active"));
+  document.getElementById("view-"+name).classList.add("active");
+  document.querySelectorAll(".nav-item").forEach(b=>{
+    b.classList.toggle("active", b.dataset.view === name);
+  });
+  closeMobileSidebar();
+  if(name === "chat"){
+    setTimeout(()=> document.getElementById("chatInput").focus(), 300);
+  }
+}
+
+/* ============================================================
+   MOBILE SIDEBAR
+   ============================================================ */
+function setupSidebarMobile(){
+  const sidebar = document.getElementById("sidebar");
+  const overlay = document.getElementById("sidebarOverlay");
+  document.getElementById("menuBtn").addEventListener("click", ()=>{
+    sidebar.classList.add("open");
+    overlay.classList.add("show");
+  });
+  document.getElementById("sidebarClose").addEventListener("click", closeMobileSidebar);
+  overlay.addEventListener("click", closeMobileSidebar);
+  document.getElementById("topSearchBtn").addEventListener("click", openSearch);
+}
+function closeMobileSidebar(){
+  document.getElementById("sidebar").classList.remove("open");
+  document.getElementById("sidebarOverlay").classList.remove("show");
+}
+
+/* ============================================================
+   THEME TOGGLE
+   ============================================================ */
+function setupTheme(){
+  const toggle = document.getElementById("themeToggle");
+  const label = document.getElementById("themeLabel");
+  function apply(theme){
+    document.documentElement.setAttribute("data-theme", theme);
+    label.textContent = theme === "light" ? "☀️ الوضع الفاتح" : "🌙 الوضع الداكن";
+  }
+  apply("dark");
+  toggle.addEventListener("click", ()=>{
+    const cur = document.documentElement.getAttribute("data-theme");
+    apply(cur === "light" ? "dark" : "light");
+  });
+  toggle.addEventListener("keydown", (e)=>{
+    if(e.key === "Enter" || e.key === " "){ e.preventDefault(); toggle.click(); }
+  });
+}
+
+/* ============================================================
+   HOME
+   ============================================================ */
+function renderHomeChips(){
+  const wrap = document.getElementById("homeQuickChips");
+  wrap.innerHTML = suggestedQuestions.map(q=>
+    `<button class="chip" data-q="${escapeHtml(q)}">${escapeHtml(q)}</button>`
+  ).join("");
+  wrap.querySelectorAll(".chip").forEach(c=>{
+    c.addEventListener("click", ()=>{
+      switchView("chat");
+      setTimeout(()=> sendMessage(c.dataset.q), 150);
+    });
+  });
+}
+
+/* ============================================================
+   CHAT
+   ============================================================ */
+function renderWelcomeSuggestions(){
+  const grid = document.getElementById("suggestGrid");
+  grid.innerHTML = suggestedQuestions.map(q=>
+    `<button class="suggest-card" data-q="${escapeHtml(q)}">${escapeHtml(q)}</button>`
+  ).join("");
+  grid.querySelectorAll(".suggest-card").forEach(c=>{
+    c.addEventListener("click", ()=> sendMessage(c.dataset.q));
+  });
+}
+
+function renderQuickBar(){
+  const bar = document.getElementById("quickBar");
+  bar.innerHTML = suggestedQuestions.map(q=>
+    `<button class="quick-pill" data-q="${escapeHtml(q)}">${escapeHtml(q)}</button>`
+  ).join("");
+  bar.querySelectorAll(".quick-pill").forEach(c=>{
+    c.addEventListener("click", ()=> sendMessage(c.dataset.q));
+  });
+}
+
+function setupChat(){
+  const input = document.getElementById("chatInput");
+  const sendBtn = document.getElementById("sendBtn");
+
+  sendBtn.addEventListener("click", ()=>{
+    const val = input.value.trim();
+    if(val){ sendMessage(val); input.value=""; autoResize(input); }
+  });
+
+  input.addEventListener("keydown", (e)=>{
+    if(e.key === "Enter" && !e.shiftKey){
+      e.preventDefault();
+      const val = input.value.trim();
+      if(val){ sendMessage(val); input.value=""; autoResize(input); }
+    }
+  });
+  input.addEventListener("input", ()=> autoResize(input));
+
+  document.getElementById("clearChatBtn").addEventListener("click", clearChat);
+  document.getElementById("micBtn").addEventListener("click", ()=>{
+    showToast("الميكروفون تجريبي في هذه النسخة 🎤");
+  });
+  document.getElementById("searchBtn").addEventListener("click", openSearch);
+}
+
+function autoResize(el){
+  el.style.height = "auto";
+  el.style.height = Math.min(el.scrollHeight, 120) + "px";
+}
+
+function clearChat(){
+  const body = document.getElementById("chatBody");
+  body.innerHTML = `
+    <div class="welcome" id="welcomeScreen">
+      <div class="welcome-icon">👋</div>
+      <h2>أهلاً بيك</h2>
+      <p>أنا رفيق المادة. اسألني عن أي نقطة في اللاهوت والعقيدة، وهساعدك تفهمها خطوة خطوة.</p>
+      <div class="suggest-grid" id="suggestGrid"></div>
+    </div>`;
+  renderWelcomeSuggestions();
+  showToast("تم مسح المحادثة");
+}
+
+function sendMessage(text){
+  const welcome = document.getElementById("welcomeScreen");
+  if(welcome) welcome.remove();
+
+  appendUserMessage(text);
+  const typingId = appendTyping();
+
+  const delay = 650 + Math.random()*500;
+  setTimeout(()=>{
+    removeTyping(typingId);
+    const match = findBestMatch(text);
+    appendBotMessage(match, text);
+  }, delay);
+}
+
+function askTopic(topic){
+  switchView("chat");
+  setTimeout(()=> sendMessage("ما هو موضوع " + topic + "؟"), 150);
+}
+
+function appendUserMessage(text){
+  const body = document.getElementById("chatBody");
+  const div = document.createElement("div");
+  div.className = "msg user";
+  div.innerHTML = `
+    <div class="msg-avatar">🧑</div>
+    <div class="bubble">${escapeHtml(text)}</div>`;
+  body.appendChild(div);
+  scrollChatToBottom();
+}
+
+function appendTyping(){
+  const id = "typing-" + (++msgCounter);
+  const body = document.getElementById("chatBody");
+  const div = document.createElement("div");
+  div.className = "msg bot";
+  div.id = id;
+  div.innerHTML = `
+    <div class="msg-avatar">🤍</div>
+    <div class="bubble"><div class="typing"><span></span><span></span><span></span></div></div>`;
+  body.appendChild(div);
+  scrollChatToBottom();
+  return id;
+}
+function removeTyping(id){
+  const el = document.getElementById(id);
+  if(el) el.remove();
+}
+
+function appendBotMessage(entry, originalQuestion){
+  const body = document.getElementById("chatBody");
+  const id = "msg-" + (++msgCounter);
+  const div = document.createElement("div");
+  div.className = "msg bot";
+  div.id = id;
+
+  let html;
+  let plainTextForCopy;
+
+  if(entry){
+    html = `
+      <h4>📌 الإجابة</h4>
+      <p>${escapeHtml(entry.content.main)}</p>
+      <h4>💡 ببساطة</h4>
+      <p>${escapeHtml(entry.content.simple)}</p>
+      <h4>📖 نص المادة الحرفي</h4>
+      <p>${escapeHtml(entry.content.material)}</p>
+      <span class="ref-tag">راجع جزء: ${escapeHtml(entry.topic)}</span>
+    `;
+    plainTextForCopy = `${entry.content.main}\n\nببساطة: ${entry.content.simple}\n\nنص المادة الحرفي: ${entry.content.material}`;
+  } else {
+    const suggestions = suggestClosestTopics(originalQuestion, 3);
+    const fallback = "السؤال ده مش ظاهر بشكل حرفي بهذه الصيغة في المادة اللي عندي، فمش هفتي عليك 😄";
+    if(suggestions.length){
+      html = `
+        <p>${escapeHtml(fallback)}</p>
+        <p style="margin-top:8px;color:var(--text-2);font-size:.85rem;">أقرب أجزاء المادة لسؤالك:</p>
+        <div class="suggest-suggestions" style="display:flex;flex-direction:column;gap:6px;margin-top:6px;">
+          ${suggestions.map(s=>`<button class="mini-btn suggest-topic-btn" data-topic="${escapeHtml(s.topic)}" style="text-align:right;">${s.icon} ${escapeHtml(s.topic)}</button>`).join("")}
+        </div>`;
+      plainTextForCopy = fallback + "\nأقرب أجزاء المادة: " + suggestions.map(s=>s.topic).join("، ");
+    } else {
+      html = `<p>${escapeHtml(fallback)}</p><p style="margin-top:6px;">لو تحب ابعتلي الجزء المرتبط بالسؤال من المادة وأنا أشرحهولك بنص المادة نفسه.</p>`;
+      plainTextForCopy = fallback;
+    }
+  }
+
+  div.innerHTML = `
+    <div class="msg-avatar">🤍</div>
+    <div class="bubble-wrap" style="display:flex;flex-direction:column;">
+      <div class="bubble">${html}</div>
+      <div class="msg-actions">
+        <button class="mini-btn" data-action="copy" title="نسخ الإجابة">📋 نسخ</button>
+        <button class="mini-btn" data-action="like" title="إعجاب">👍</button>
+        <button class="mini-btn" data-action="dislike" title="عدم إعجاب">👎</button>
+        ${entry ? `<button class="mini-btn" data-action="fav" title="إضافة للمفضلة">⭐ حفظ</button>` : ""}
+      </div>
+    </div>`;
+
+  div.dataset.copyText = plainTextForCopy;
+  div.dataset.topic = entry ? entry.topic : "";
+
+  body.appendChild(div);
+  wireMessageActions(div);
+  div.querySelectorAll(".suggest-topic-btn").forEach(btn=>{
+    btn.addEventListener("click", ()=> askTopic(btn.dataset.topic));
+  });
+  scrollChatToBottom();
+
+  if(entry && entry.related && entry.related.length){
+    // no auto-expansion — keep answers concise as instructed
+  }
+}
+
+function wireMessageActions(div){
+  const id = div.id;
+  div.querySelectorAll(".mini-btn").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      const action = btn.dataset.action;
+      if(action === "copy"){
+        copyText(div.dataset.copyText);
+      } else if(action === "like"){
+        likedState[id] = likedState[id] === "like" ? null : "like";
+        updateLikeButtons(div);
+      } else if(action === "dislike"){
+        likedState[id] = likedState[id] === "dislike" ? null : "dislike";
+        updateLikeButtons(div);
+      } else if(action === "fav"){
+        toggleFavorite(div);
+      }
+    });
+  });
+}
+
+function updateLikeButtons(div){
+  const likeBtn = div.querySelector('[data-action="like"]');
+  const dislikeBtn = div.querySelector('[data-action="dislike"]');
+  likeBtn.classList.toggle("liked", likedState[div.id] === "like");
+  dislikeBtn.classList.toggle("disliked", likedState[div.id] === "dislike");
+}
+
+function toggleFavorite(div){
+  const id = div.id;
+  const favBtn = div.querySelector('[data-action="fav"]');
+  const exists = favorites.find(f=>f.id === id);
+  if(exists){
+    favorites = favorites.filter(f=>f.id !== id);
+    favBtn.classList.remove("faved");
+    favBtn.textContent = "⭐ حفظ";
+    showToast("تم الحذف من المفضلة");
+  } else {
+    favorites.push({ id, topic: div.dataset.topic, text: div.dataset.copyText });
+    favBtn.classList.add("faved");
+    favBtn.textContent = "⭐ محفوظ";
+    showToast("تم الحفظ في المفضلة");
+  }
+  renderFavorites();
+}
+
+function copyText(text){
+  navigator.clipboard?.writeText(text).then(()=>{
+    showToast("تم نسخ الإجابة ✅");
+  }).catch(()=>{
+    showToast("تعذر النسخ، حاول يدوياً");
+  });
+}
+
+function scrollChatToBottom(){
+  const body = document.getElementById("chatBody");
+  requestAnimationFrame(()=>{ body.scrollTop = body.scrollHeight; });
+}
+
+/* ============================================================
+   TOPICS PAGE
+   ============================================================ */
+function renderTopics(){
+  const grid = document.getElementById("topicsGrid");
+  grid.innerHTML = topicPageOrder.map(id=>{
+    const e = knowledgeBase.find(k=>k.id===id);
+    if(!e) return "";
+    return `
+      <div class="topic-card">
+        <div class="topic-icon">${e.icon}</div>
+        <h3>${escapeHtml(e.topic)}</h3>
+        <p>${escapeHtml(e.shortDesc)}</p>
+        <button class="topic-link" data-q="${escapeHtml(e.topic)}">اسأل عن الموضوع ←</button>
+      </div>`;
+  }).join("");
+  grid.querySelectorAll(".topic-link").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      switchView("chat");
+      setTimeout(()=> sendMessage("ما هو موضوع " + btn.dataset.q + "؟"), 150);
+    });
+  });
+}
+
+/* ============================================================
+   FAVORITES PAGE
+   ============================================================ */
+function renderFavorites(){
+  const list = document.getElementById("favList");
+  if(favorites.length === 0){
+    list.innerHTML = `
+      <div class="empty-state">
+        <div class="ico">⭐</div>
+        <p>لسه مفيش إجابات محفوظة. اضغط "حفظ" تحت أي إجابة في المحادثة عشان تلاقيها هنا.</p>
+      </div>`;
+    return;
+  }
+  list.innerHTML = favorites.map(f=>`
+    <div class="fav-item">
+      <h4>${escapeHtml(f.topic || "إجابة محفوظة")}</h4>
+      <p>${escapeHtml(f.text)}</p>
+      <button class="fav-remove" data-id="${f.id}">🗑️ إزالة من المفضلة</button>
+    </div>
+  `).join("");
+  list.querySelectorAll(".fav-remove").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      favorites = favorites.filter(f=>f.id !== btn.dataset.id);
+      const msgDiv = document.getElementById(btn.dataset.id);
+      if(msgDiv){
+        const favBtn = msgDiv.querySelector('[data-action="fav"]');
+        if(favBtn){ favBtn.classList.remove("faved"); favBtn.textContent = "⭐ حفظ"; }
+      }
+      renderFavorites();
+    });
+  });
+}
+
+/* ============================================================
+   ABOUT (static content already in HTML — placeholder for future dynamic use)
+   ============================================================ */
+function renderAbout(){ /* content is static in markup */ }
+
+/* ============================================================
+   SEARCH
+   ============================================================ */
+function setupSearch(){
+  const overlay = document.getElementById("searchOverlay");
+  const input = document.getElementById("searchInput");
+  document.getElementById("closeSearch").addEventListener("click", closeSearch);
+  overlay.addEventListener("click", (e)=>{ if(e.target === overlay) closeSearch(); });
+  document.addEventListener("keydown", (e)=>{
+    if(e.key === "Escape") closeSearch();
+  });
+  input.addEventListener("input", ()=> renderSearchResults(input.value));
+  renderSearchResults("");
+}
+function openSearch(){
+  document.getElementById("searchOverlay").classList.add("show");
+  setTimeout(()=> document.getElementById("searchInput").focus(), 100);
+}
+function closeSearch(){
+  document.getElementById("searchOverlay").classList.remove("show");
+}
+function renderSearchResults(query){
+  const results = document.getElementById("searchResults");
+  const q = normalizeArabic(query);
+  let list = knowledgeBase;
+  if(q){
+    list = knowledgeBase.filter(e=>{
+      const inTopic = normalizeArabic(e.topic).includes(q);
+      const inKw = e.keywords.some(k=>normalizeArabic(k).includes(q));
+      return inTopic || inKw;
+    });
+  }
+  if(list.length === 0){
+    results.innerHTML = `<div class="search-empty">مفيش نتائج مطابقة، جرب كلمة تانية.</div>`;
+    return;
+  }
+  results.innerHTML = list.map(e=>`
+    <button class="search-result" data-id="${e.id}">
+      <h5>${e.icon} ${escapeHtml(e.topic)}</h5>
+      <p>${escapeHtml(e.shortDesc)}</p>
+    </button>
+  `).join("");
+  results.querySelectorAll(".search-result").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      const entry = knowledgeBase.find(k=>k.id === btn.dataset.id);
+      closeSearch();
+      switchView("chat");
+      setTimeout(()=> sendMessage("ما هو موضوع " + entry.topic + "؟"), 150);
+    });
+  });
+}
+
+/* ============================================================
+   EXAM MODE
+   ============================================================ */
+const examQuestions = [
+  {
+    q: "في أي يوم خلق الله الإنسان بحسب المادة؟",
+    options: ["اليوم الخامس", "اليوم السادس", "اليوم السابع", "اليوم الأول"],
+    correct: 1,
+    explain: "خلق الله الإنسان في اليوم السادس بعد أن أعدّ له كل شيء، وكان هذا مميزاً له دون سائر المخلوقات."
+  },
+  {
+    q: "ما هو الكائن الوحيد الذي نفخ الله فيه نسمة حياة في أنفه بحسب سفر التكوين؟",
+    options: ["الإنسان", "الملائكة", "الحيوانات", "الطيور"],
+    correct: 0,
+    explain: "\"وَجَبَلَ الرَّبُّ الإِلَهُ آدَمَ تُرَاباً مِنَ الأَرْضِ وَنَفَخَ فِي أَنْفِهِ نَسَمَةَ حَيَاةٍ. فَصَارَ آدَمُ نَفْساً حَيَّةً\" (تك 2: 7)."
+  },
+  {
+    q: "أي آية تؤكد أن الإنسان خُلق على صورة الله ومثاله؟",
+    options: ["تك 1: 26", "تك 2: 7", "تك 3: 15", "تك 2: 17"],
+    correct: 0,
+    explain: "\"وَقَالَ اللهُ: نَعْمَلُ الإِنْسَانَ عَلَى صُورَتِنَا كَشَبَهِنَا\" (تك 1: 26)."
+  },
+  {
+    q: "بم تميز الإنسان في طريقة خلقته وفي طبيعته عن باقي المخلوقات بحسب المادة؟",
+    options: ["نُفخت فيه نسمة حياة، وخُلق على صورة الله ومثاله", "خُلق من ماء فقط", "خُلق قبل باقي الخليقة", "لم يتميز بشيء"],
+    correct: 0,
+    explain: "الإنسان مميّز في طريقة خلقته (نفخة الحياة) ومميّز في طبيعته (الخلق على صورة الله ومثاله)."
+  },
+  {
+    q: "أي مما يلي ليس من مميزات الإنسان كالكائن الذي مُيّز بهذا كله؟",
+    options: ["كائن عاقل له روح", "له حرية الإرادة", "سيقوم من الموت بعد موته", "سيفنى للأبد بلا رجاء قيامة"],
+    correct: 3,
+    explain: "الإنسان هو الكائن الوحيد الذي سيقوم من الموت بعد موته وهو خالد وسيُحاسب، فلا يفنى للأبد بلا رجاء."
+  },
+  {
+    q: "وصية الله لآدم وحواء في جنة عدن كانت بخصوص أي شجرة؟",
+    options: ["شجرة الحياة", "شجرة معرفة الخير والشر", "شجرة التين", "لم تحدد شجرة بعينها"],
+    correct: 1,
+    explain: "\"وَأَمَّا شَجَرَةُ مَعْرِفَةِ الخَيْرِ وَالشَّرِّ فَلاَ تَأْكُلْ مِنْهَا\" (تك 2: 17)."
+  },
+  {
+    q: "من الذي تلبّس بالحية ليغوي حواء بحسب المادة؟",
+    options: ["آدم", "الشيطان", "ملاك", "لا أحد"],
+    correct: 1,
+    explain: "تقدم الشيطان إلى حواء بدهاء وسألها، وسواء دخلها الشيطان وتكلم من خلالها أو أخذ شكلها فقط، كان الشيطان هو الذي يحاربها."
+  },
+  {
+    q: "بم سألت الحية حواء بحسب تك 3: 1؟",
+    options: ["\"أحقّاً قال الله لا تأكلا من كل شجر الجنة؟\"", "\"هل تحبين الله؟\"", "\"أين آدم؟\"", "\"من خلقك؟\""],
+    correct: 0,
+    explain: "\"أَحَقًّا قَالَ اللهُ: لاَ تَأْكُلاَ مِنْ كُلِّ شَجَرِ الْجَنَّةِ؟\" (تك 3: 1)."
+  },
+  {
+    q: "ماذا وعد الشيطان حواء بحسب تك 3: 4-5 إن أكلت من الشجرة؟",
+    options: ["\"لن تموتا موتاً... وتكونان كالله عارفين الخير والشر\"", "\"ستموتان فوراً\"", "\"سيُطردان من الجنة حالاً\"", "\"سيُعاقب آدم وحده\""],
+    correct: 0,
+    explain: "\"لَنْ تَمُوتَا. بَلِ اللهُ عَالِمٌ أَنَّهُ يَوْمَ تَأْكُلاَنِ مِنْهُ تَنْفَتِحُ أَعْيُنُكُمَا وَتَكُونَانِ كَالله عَارِفَيْنِ الخَيْرَ وَالشَّرَّ\" (تك 3: 4-5)."
+  },
+  {
+    q: "ماذا فعلت حواء بعدما نظرت للشجرة واقتنعت بكلام الحية؟",
+    options: ["أكلت من الثمرة وأعطت آدم فأكل معها", "رفضت الأكل", "سألت الله أولاً", "هربت من الجنة"],
+    correct: 0,
+    explain: "\"فَأَخَذَتْ مِنْ ثَمَرِهِ وَأَكَلَتْ وَأَعْطَتْ رَجُلَهَا أَيْضاً مَعَهَا فَأَكَلَ\" (تك 3: 6)."
+  },
+  {
+    q: "بأي أسلوب بدأ الخطأ في الحوار بين حواء والشيطان بحسب المادة؟",
+    options: ["بفتح باب الحوار مع الشيطان أصلاً", "بالصلاة إلى الله", "بسؤال آدم أولاً", "بالهروب من الشيطان"],
+    correct: 0,
+    explain: "بحسب المادة، بدأت حواء الخطأ في الكلام مع الشيطان بمجرد أن فتحت باب الحوار معه."
+  },
+  {
+    q: "ما هو أول نتائج سقوط الإنسان بحسب المادة؟",
+    options: ["عقوبة الموت", "فقدان الفردوس فقط", "المرض", "الجوع"],
+    correct: 0,
+    explain: "الموت هو الحكم الإلهي على الإنسان الخاطئ، وقد أعلن الله هذا الحكم مسبقاً: \"يَوْمَ تَأْكُلُ مِنْهَا مَوْتاً تَمُوتُ\" (تك 2: 17)."
+  },
+  {
+    q: "كم نوعاً للموت نتج عن سقوط الإنسان بحسب المادة؟",
+    options: ["اثنان", "ثلاثة", "أربعة", "خمسة"],
+    correct: 2,
+    explain: "أنواع الموت الأربعة هي: الموت الروحي، والموت الأدبي، والموت الجسدي، والموت الأبدي."
+  },
+  {
+    q: "ما هو الموت الروحي بحسب المادة؟",
+    options: ["الانفصال عن الله", "انفصال الروح عن الجسد", "فقدان الكرامة والسلطان", "البقاء في الموت للأبد"],
+    correct: 0,
+    explain: "الموت الروحي حدث بمجرد أن أكل آدم وحواء من الثمرة المحرمة، وهو يعني الانفصال عن الله؛ لأنه لا شركة للظلمة مع النور."
+  },
+  {
+    q: "ما هو الموت الأدبي بحسب المادة؟",
+    options: ["فقدان الإنسان صورته وكرامته وسلطانه على الخليقة وطرده من الجنة", "انفصال الروح عن الجسد", "الانفصال عن الله فقط", "العمل بعرق الجبين فقط"],
+    correct: 0,
+    explain: "بهذا الموت فقد الإنسان صورة الله وكرامته وهيبته وسلطانه على باقي الخليقة، وطُرد من الجنة إلى الأرض التي أصبحت تُنبت له شوكاً وحسكاً."
+  },
+  {
+    q: "ما هو الموت الجسدي بحسب المادة؟",
+    options: ["انفصال الروح عن الجسد وتحلل الجسد تنفيذاً للحكم الإلهي", "فقدان الكرامة فقط", "الانفصال عن الله", "اشتياق حواء لرجلها"],
+    correct: 0,
+    explain: "\"لأَنَّكَ تُرَابٌ وَإِلَى تُرَابٍ تَعُودُ\" (تك 3: 19)؛ بهذا الموت تنفصل الروح عن الجسد ويتحلل الجسد تنفيذاً للحكم الإلهي."
+  },
+  {
+    q: "ما هو أخطر أنواع الموت بحسب المادة؟",
+    options: ["الموت الروحي", "الموت الجسدي", "الموت الأبدي", "الموت الأدبي"],
+    correct: 2,
+    explain: "الموت الأبدي هو أخطر نوع من الموت، إذ يبقى فيه الإنسان في الموت إلى ما لا نهاية."
+  },
+  {
+    q: "بحسب تك 3: 19 إلى ماذا يعود جسد الإنسان بعد الموت الجسدي؟",
+    options: ["إلى تراب", "إلى نور", "إلى ماء", "إلى رماد"],
+    correct: 0,
+    explain: "\"لأَنَّكَ تُرَابٌ وَإِلَى تُرَابٍ تَعُودُ\" (تك 3: 19)."
+  },
+  {
+    q: "ماذا حدث لحواء كعقوبة إضافية بحسب تك 3: 16؟",
+    options: ["تكثير أتعاب الحبل والولادة واشتياقها لرجلها وسيادته عليها", "فقدان الكلام", "العمى", "الطرد من الجنة فقط"],
+    correct: 0,
+    explain: "\"تَكْثِيراً أُكَثِّرُ أَتْعَابَ حَبَلِكِ. بِالْوَجَعِ تَلِدِينَ أَوْلاَداً. وَإِلَى رَجُلِكِ يَكُونُ اشْتِيَاقُكِ وَهُوَ يَسُودُ عَلَيْكِ\" (تك 3: 16)."
+  },
+  {
+    q: "بحسب رو 3: 12 كيف وصف الكتاب حال الجنس البشري بعد السقوط؟",
+    options: ["\"الجميع زاغوا وفسدوا معاً\"", "\"الجميع أبرار\"", "\"لا خطية على أحد\"", "\"الكل صالحون\""],
+    correct: 0,
+    explain: "\"الْجَمِيعُ زَاغُوا وَفَسَدُوا مَعاً. لَيْسَ مَنْ يَعْمَلُ صَلاَحاً لَيْسَ وَلاَ وَاحِدٌ\" (رو 3: 12)."
+  },
+  {
+    q: "من مظاهر فساد الطبيعة البشرية التي ذكرتها المادة؟",
+    options: ["تشوّه صورة الله، والصراع بين الروح والجسد، وتعب الجسد والنفس", "زيادة الحكمة فقط", "عدم وجود أي تغيير في الطبيعة", "زيادة القداسة"],
+    correct: 0,
+    explain: "من مظاهر الفساد: تشوّه الصورة المقدسة، والصراع بين الروح والجسد، وتعب الجسد، وتعب النفس بأمراضها كالخوف والغضب والغيرة."
+  },
+  {
+    q: "من قائل: \"البشر إذ رفضوا الأمور الأبدية، وبمشورة الشيطان تحولوا إلى أمور الفساد، صاروا السبب في فساد أنفسهم\"؟",
+    options: ["القديس أثناسيوس الرسولي", "البابا شنودة الثالث", "الأنبا موسى أسقف عام الشباب", "مار يعقوب السروجي"],
+    correct: 0,
+    explain: "هذا قول القديس أثناسيوس الرسولي كما ورد في المادة عن فساد الطبيعة البشرية."
+  },
+  {
+    q: "بحسب المادة، ماذا حدث للروح البشرية بعد السقوط؟",
+    options: ["هبطت إلى المستوى الجسدي فأصبح من السهل أن تخطئ", "ارتقت فوق مستوى الجسد", "لم يتغير شيء فيها", "زادت قوتها وقداستها"],
+    correct: 0,
+    explain: "\"الروح هبطت بالبشرية إلى المستوى الجسدي... فأصبح من السهل أن تخطئ وانحدرت إلى مستويات مؤسفة وتوارثت ألواناً من الفساد\"."
+  },
+  {
+    q: "كيف وصفت المادة \"تعب الجسد\" بعد السقوط؟",
+    options: ["صار آدم يأكل خبزه بعرق جبينه ويتعب في العمل", "اختفى تعب الجسد بعد السقوط", "صار الجسد لا يتعب أبداً", "لم يتغير تعب الجسد إطلاقاً"],
+    correct: 0,
+    explain: "\"بِالتَّعَبِ تَأْكُلُ مِنْهَا كُلَّ أَيَّامِ حَيَاتِكَ... بِعَرَقِ وَجْهِكَ تَأْكُلُ خُبْزاً\" (تك 3: 17-19)."
+  },
+  {
+    q: "أي من الأمراض النفسية التالية ذكرتها المادة كمظهر من مظاهر فساد الطبيعة؟",
+    options: ["الخوف والغضب والغيرة والعنف", "الفرح والسلام", "الصبر واللطف", "الإيمان والرجاء"],
+    correct: 0,
+    explain: "بدأت أمراض النفس تظهر كمظهر من مظاهر فساد الطبيعة البشرية، كالخوف والغضب والغيرة، بل والقتل كما حدث لقايين حين قتل أخاه هابيل."
+  },
+  {
+    q: "في الجنة، كان آدم وحواء يمثلان:",
+    options: ["نفسيهما فقط", "كل البشرية منذ البداية", "الملائكة", "لا أحد"],
+    correct: 0,
+    explain: "\"كان آدم وحواء في الجنة لا يمثلان نفسيهما فقط\" - بل بعد السقوط شمل الحكم البشرية كلها."
+  },
+  {
+    q: "لماذا صار كل المولودين من آدم وحواء مستوجبين الموت بحسب المادة؟",
+    options: ["لأن أبواهم ولدوهم وهما في حالة الخطية بعد الطرد من الجنة", "لأنهم أخطأوا بأنفسهم في الجنة", "لأن الله ظلمهم بلا سبب", "لأنهم لم يولدوا أصلاً"],
+    correct: 0,
+    explain: "ولد الجنس البشري كله من آدم وحواء وهما في حالة الخطية، فسرى الحكم إلى جميع ذريتهما."
+  },
+  {
+    q: "بحسب رو 5: 12 كيف دخلت الخطية إلى العالم؟",
+    options: ["بإنسان واحد دخلت الخطية إلى العالم وبالخطية الموت", "بالشيطان مباشرة دون إنسان", "بكل إنسان يخطئ بمفرده فقط", "لم تدخل الخطية إلى العالم"],
+    correct: 0,
+    explain: "\"مِنْ أَجْلِ ذَلِكَ كَأَنَّمَا بِإِنْسَانٍ وَاحِدٍ دَخَلَتِ الخَطِيَّةُ إِلَى الْعَالَمِ وَبِالْخَطِيَّةِ الْمَوْتُ، وَهَكَذَا اجْتَازَ الْمَوْتُ إِلَى جَمِيعِ النَّاسِ إِذْ أَخْطَأَ الْجَمِيعُ\" (رو 5: 12)."
+  },
+  {
+    q: "هل ظلم الله البشر في حكم الموت الذي شمل كل ذرية آدم بحسب المادة؟",
+    options: ["لا، لأنه كما شملهم الحكم بالموت كان سيشملهم الحكم بالحياة لو ثبت آدم في الطاعة", "نعم ظلمهم الله بلا مبرر", "لا رأي للمادة في هذا الأمر", "نعم، لأنهم لم يخطئوا شخصياً"],
+    correct: 0,
+    explain: "لم يظلم الله البشر في هذا الحكم؛ فكما شمل الحكم بالموت جميع ذرية آدم، كذلك كان سيشملهم الحكم بالحياة لو ثبت آدم في طاعة الله."
+  },
+  {
+    q: "ماذا قال الله لآدم وحواء عند خلقتهما بحسب تك 1: 28؟",
+    options: ["\"أثمروا واكثروا واملأوا الأرض وأخضعوها وتسلطوا\"", "\"لا تأكلا من الشجرة\"", "\"اخرجا من الجنة الآن\"", "\"ستموتان اليوم\""],
+    correct: 0,
+    explain: "\"اثْمِرُوا وَاكْثُرُوا وَامْلأُوا الأَرْضَ وَاخْضَعُوهَا وَتَسَلَّطُوا عَلَى سَمَكِ الْبَحْرِ وَعَلَى طَيْرِ السَّمَاءِ وَعَلَى كُلِّ حَيَوَانٍ يَدِبُّ عَلَى الأَرْضِ\" (تك 1: 28)."
+  },
+  {
+    q: "بحسب 1كو 15: 21-22 كيف يموت جميع الناس؟",
+    options: ["كما في آدم يموت الجميع", "بخطاياهم الشخصية فقط بلا علاقة بآدم", "بلا سبب معروف", "بسبب الشيطان فقط"],
+    correct: 0,
+    explain: "\"لأَنَّهُ إِذِ الْمَوْتُ بِإِنْسَانٍ، بِإِنْسَانٍ أَيْضاً قِيَامَةُ الأَمْوَاتِ. لأَنَّهُ كَمَا فِي آدَمَ يَمُوتُ الْجَمِيعُ هَكَذَا فِي الْمَسِيحِ سَيُحْيَا الْجَمِيعُ\" (1كو 15: 21-22)."
+  },
+  {
+    q: "كم صفة يجب أن تتوفر في الفادي بحسب المادة؟",
+    options: ["ثلاث", "أربع", "خمس", "ست"],
+    correct: 2,
+    explain: "المادة تذكر خمس صفات: أن يكون إنساناً، وغير محدود، وقدوساً بلا خطية، ويقبل أن يموت بإرادته وينتصر على الموت، وأن يكون خالقاً."
+  },
+  {
+    q: "لماذا يجب أن يكون الفادي إنساناً بحسب المادة؟",
+    options: ["لأن الذي أخطأ في حق الله كان إنساناً", "لأن الله يحب الإنسان فقط دون سواه", "لأن الملائكة رفضت مهمة الفداء", "لا سبب محدد في المادة"],
+    correct: 0,
+    explain: "يجب أن يكون الفادي إنساناً؛ لأن الذي أخطأ في حق الله كان إنساناً."
+  },
+  {
+    q: "لماذا يجب أن يكون الفادي غير محدود بحسب المادة؟",
+    options: ["لأنه لابد من كفارة غير محدودة تكفي لخطايا كل البشر من آدم إلى آخر الدهور", "لأن الله يحب الكثرة فقط", "لأن الإنسان محدود دائماً", "لا داعي لذلك"],
+    correct: 0,
+    explain: "لابد من كفارة غير محدودة تكفي لحمل ورفع خطايا كل البشر في جميع الأجيال، من آدم إلى آخر الدهور، لهذا لم تكن الذبائح تكفي لفاعليتها المحدودة."
+  },
+  {
+    q: "لماذا يجب أن يكون الفادي قدوساً بلا خطية بحسب المادة؟",
+    options: ["لأنه إذا كان خاطئاً فكيف يستطيع أن يفدي غيره؟ أليس أعمى يقود أعمى؟", "لأن القداسة شرط شكلي فقط", "ليس هناك سبب واضح في المادة", "لأن الله يحب القديسين فقط"],
+    correct: 0,
+    explain: "\"لأنه إذا كان الفادي خاطئاً فكيف يستطيع أن يفدي غيره؟ أليس أعمى يقود أعمى غيره؟ أليس أعمى يسقطان كلاهما في حفرة؟\""
+  },
+  {
+    q: "ماذا يعني أن يقبل الفادي أن يموت بإرادته وينتصر على الموت؟",
+    options: ["أن يحمل العقوبة عن البشر ويهزم الموت لا أن يبقى تحته إلى النهاية", "أن يهرب من الموت كلياً", "أن يتجنب كل ألم", "أن يترك البشر يموتون فقط"],
+    correct: 0,
+    explain: "هذا بالطبع يمكّنه من أن يحمل العقوبة ويموت عن البشر، والأهم أن لا يبقى في الموت إلى النهاية، وإلا يكون الموت قد انتصر عليه."
+  },
+  {
+    q: "لماذا يجب أن يكون الفادي خالقاً بحسب المادة؟",
+    options: ["لأنه يمكنه تجديد طبيعة الإنسان مرة أخرى", "لأنه يحب الخليقة فقط", "لا داعٍ لذلك في نظر المادة", "لأن الخالق أقوى من غيره فقط"],
+    correct: 0,
+    explain: "يوضح هذا نيافة الأنبا موسى أسقف عام الشباب إذ يقول: \"يجب أن يكون الفادي خالقاً، يمكنه تجديد طبيعة الإنسان مرة أخرى\"."
+  },
+  {
+    q: "من الذي أكد أن عقاب آدم غير محدود وأبدي لأن خطيئته موجهة نحو الله غير المحدود؟",
+    options: ["نيافة الحبر الجليل الأنبا موسى أسقف عام الشباب", "القديس أثناسيوس الرسولي", "البابا شنودة الثالث", "مار يعقوب السروجي"],
+    correct: 0,
+    explain: "يؤكد نيافة الحبر الجليل الأنبا موسى أسقف عام الشباب: \"يجب أن يكون الفادي غير محدود، لأن عقاب آدم غير محدود وأبدي لأن خطيئته موجهة نحو الله غير المحدود\"."
+  },
+  {
+    q: "أي مما يلي ليست من صفات الفادي المطلوبة بحسب المادة؟",
+    options: ["أن يكون محدوداً", "أن يكون إنساناً", "أن يكون قدوساً بلا خطية", "أن يكون خالقاً"],
+    correct: 0,
+    explain: "على العكس، يجب أن يكون الفادي غير محدود، لا محدوداً، حتى تكفي كفارته لخطايا كل البشر عبر الأجيال."
+  },
+  {
+    q: "هل يمكن أن يكون الفادي هو الإنسان نفسه بحسب المادة؟",
+    options: ["لا، لأن حكم الموت هو على البشر جميعاً وقد أخطأ الجميع", "نعم أي إنسان بار يصلح لذلك", "نعم فقط الأنبياء يصلحون لذلك", "المادة لم تحسم هذا الأمر"],
+    correct: 0,
+    explain: "لا يمكن أن يكون الفادي هو الإنسان نفسه؛ لأن حكم الموت هو على البشر جميعاً، والكتاب يقول: \"الجميع زاغوا وفسدوا معاً\" (رو 3: 12)."
+  },
+  {
+    q: "لماذا لا يمكن أن يكون الفادي ملاكاً أو رئيس ملائكة بحسب المادة؟",
+    options: ["لأن الملاك ليس إنساناً وهو محدود وغير معصوم من الخطأ", "لأن الملائكة لا تحب البشر", "لأن الملائكة غير موجودة أصلاً", "لا سبب واضح في المادة"],
+    correct: 0,
+    explain: "لا يمكن لملاك أو لرئيس ملائكة أن يقوم بالفداء للأسباب الآتية: الملاك ليس إنساناً، والذي كان يجب أن يموت يجب أن يكون إنساناً؛ والملاك محدود وأيضاً غير معصوم من الخطأ."
+  },
+  {
+    q: "ما الدليل الكتابي المذكور في المادة على أن الملائكة غير معصومة من الخطأ؟",
+    options: ["سقطة رئيس الملائكة القديم (الشيطان)", "خطية آدم وحواء", "طوفان نوح", "بيع يوسف بالفضة"],
+    correct: 0,
+    explain: "بدليل سقطة رئيس الملائكة القديم، إذن لا يمكن لملاك أو لرئيس ملائكة أن يفدي الإنسان."
+  },
+  {
+    q: "بحسب المادة، من هو الحل الوحيد والأوحد ليكون الفادي؟",
+    options: ["الله بذاته", "إنسان بار جداً", "رئيس الملائكة ميخائيل", "أحد الأنبياء الكبار"],
+    correct: 0,
+    explain: "الحل الوحيد والأوحد أن يكون الفادي والله بذاته .. نعم فهو الوحيد الذي تنطبق عليه الشروط جميعها."
+  },
+  {
+    q: "ما سر تجسد أقنوم الابن بحسب المادة؟",
+    options: ["أن يأخذ جسداً إنسانياً ويقبل فيه حكم الموت بدلاً من الإنسان", "أن يعيش على الأرض فقط دون هدف محدد", "أن يعلّم الناس الشريعة فقط", "أن يبني هيكلاً جديداً في أورشليم"],
+    correct: 0,
+    explain: "إذن الحل الوحيد هو أن يتجسد الله ويأخذ جسداً إنسانياً، ويقبل في هذا الجسد حكم الموت بدلاً من الإنسان، وهذا هو سر ما أقنوم الله الكلمة المتجسد."
+  },
+  {
+    q: "ماذا يعني أن الله افتدى الإنسان بحسب المادة؟",
+    options: ["أن الله قبل حكم الموت عن الإنسان وأعطاه حياة أبدية", "أن الله ترك الإنسان يموت بلا رجاء", "أن الله عاقب الإنسان أكثر من استحقاقه", "أن الله تجاهل خطية الإنسان كلياً"],
+    correct: 0,
+    explain: "الله افتدى الإنسان أي قبل حكم الموت عنه وأعطاه حياة أبدية."
+  },
+  {
+    q: "في سفر أيوب، من قيل عنه أنه \"فدى نفسي من العبور إلى الحفرة\"؟",
+    options: ["أيوب", "موسى", "داود", "إشعياء"],
+    correct: 0,
+    explain: "\"فَدَى نَفْسِي مِنَ الْعُبُورِ إِلَى الحُفْرَةِ فَتَرَى حَيَاتِي النُّورَ\" (أي 33: 28)."
+  },
+  {
+    q: "بحسب مز 34: 22 من هو فادي نفوس عبيده؟",
+    options: ["الرب", "الملائكة", "الكهنة", "الأنبياء"],
+    correct: 0,
+    explain: "\"الرَّبُّ فَادِي نُفُوسَ عَبِيدِهِ\" (مز 34: 22)."
+  },
+  {
+    q: "من الذي قال عن الله: \"مبارك الرب إله إسرائيل، لأنه افتقد وصنع فداء لشعبه\"؟",
+    options: ["زكريا الكاهن", "العذراء مريم", "يوحنا المعمدان", "بولس الرسول"],
+    correct: 0,
+    explain: "قال زكريا الكاهن عندما أعلن له الله أن ابنه سيعد الطريق أمام السيد المسيح: \"مُبَارَكٌ الرَّبُّ إِلهُ إِسْرَائِيلَ، لأَنَّهُ افْتَقَدَ وَصَنَعَ فِدَاءً لِشَعْبِهِ\" (لو 1: 68)."
+  },
+  {
+    q: "بحسب 1يو 2: 2 لخطايا من كانت كفارة المسيح؟",
+    options: ["لخطايانا فقط وأيضاً لخطايا كل العالم", "لخطايا اليهود فقط", "لخطايا الرسل فقط", "لم تكن كفارة لأحد"],
+    correct: 0,
+    explain: "\"وَهُوَ كَفَّارَةٌ لِخَطَايَانَا. لَيْسَ لِخَطَايَانَا فَقَطْ بَلْ لِخَطَايَا كُلِّ الْعَالَمِ أَيْضاً\" (1يو 2: 2)."
+  },
+  {
+    q: "أين وردت أول نبوة عن الفداء \"هو يسحق رأسك وأنت تسحقين عقبه\"؟",
+    options: ["تك 3: 15", "تك 1: 26", "تك 2: 7", "خر 14"],
+    correct: 0,
+    explain: "\"وَأَضَعُ عَدَاوَةً بَيْنَكَ وَبَيْنَ الْمَرْأَةِ وَبَيْنَ نَسْلِكَ وَنَسْلِهَا. هُوَ يَسْحَقُ رَأْسَكَ وَأَنْتَ تَسْحَقِينَ عَقِبَهُ\" (تك 3: 15)."
+  },
+  {
+    q: "بكم من الفضة تنبأ سفر زكريا ببيع السيد المسيح؟",
+    options: ["عشرة", "عشرون", "ثلاثون", "مائة"],
+    correct: 2,
+    explain: "\"فَوَزَنُوا أُجْرَتِي ثَلاَثِينَ مِنَ الْفِضَّةِ\" (زك 11: 12)، وتحقق هذا في بيعه بثلاثين من الفضة (مت 26: 15)."
+  },
+  {
+    q: "أي سفر تنبأ بثقب اليدين والرجلين إشارة إلى الصلب بالمسامير؟",
+    options: ["سفر المزامير", "سفر التكوين", "سفر الخروج", "سفر يشوع"],
+    correct: 0,
+    explain: "\"ثَقَبُوا يَدَيَّ وَرِجْلَيَّ\" (مز 22: 16)."
+  },
+  {
+    q: "أي نبوة تحدثت عن الظلمة التي ستحل على الأرض؟",
+    options: ["عاموس 8: 9", "تكوين 3: 15", "زكريا 11: 12", "مزمور 22: 16"],
+    correct: 0,
+    explain: "\"وَيَكُونُ فِي ذَلِكَ الْيَوْمِ يَقُولُ السَّيِّدُ الرَّبُّ: أَنِّي أُغَيِّبُ الشَّمْسَ فِي الظُّهْرِ وَأُقْتِمُ الأَرْضَ فِي يَوْمِ نُورٍ\" (عا 8: 9)."
+  },
+  {
+    q: "أين تحقق في العهد الجديد بيع السيد المسيح بثلاثين من الفضة؟",
+    options: ["مت 26: 15", "يو 19: 30", "لو 1: 68", "1كو 5: 7"],
+    correct: 0,
+    explain: "\"وَقَالَ: مَاذَا تُرِيدُونَ أَنْ تُعْطُونِي وَأَنَا أُسَلِّمُهُ إِلَيْكُمْ؟ فَجَعَلُوا لَهُ ثَلاَثِينَ مِنَ الْفِضَّةِ\" (مت 26: 15)."
+  },
+  {
+    q: "بحسب المادة، هل يخلو أي سفر من أسفار الكتاب المقدس من الإشارة إلى صلب المسيح وفدائه؟",
+    options: ["لا يخلو أي سفر منها", "نعم أغلب الأسفار تخلو منها", "فقط الأناجيل الأربعة تتحدث عنها", "فقط رسائل بولس تتحدث عنها"],
+    correct: 0,
+    explain: "\"لهذا جاء الكتاب المقدس ليعلن عن هذا الأمر بكل وضوح فلا يخلو سفر من أسفار الكتاب إلا ويخبر عن صلب المسيح وفدائه للبشرية\"."
+  },
+  {
+    q: "من الشخصية التي قُتلت دون ذنب اقترفته، فكانت رمزاً للمسيح المرفوض من اليهود؟",
+    options: ["هابيل الصديق", "نوح البار", "ملكي صادق", "يشوع بن نون"],
+    correct: 0,
+    explain: "هابيل الصديق سفك دمه بيد أخيه دون ذنب اقترفه، فكان رمزاً للسيد المسيح الذي حسده اليهود وأسلموه للموت دون ذنب فعله."
+  },
+  {
+    q: "من هو \"الأول للخليقة الجديدة\" الذي كان رمزاً لرأس الخليقة الجديدة أي السيد المسيح؟",
+    options: ["نوح البار", "إسحق المحبوب", "يوسف الطاهر", "أيوب البار"],
+    correct: 0,
+    explain: "نوح البار هو الأول للخليقة الجديدة والذي بواسطته تم الإبقاء على الجنس البشري، وكان رمزاً للسيد المسيح رأس الخليقة الجديدة الذي به صار الخلاص لكل البشرية."
+  },
+  {
+    q: "من الكاهن الذي كان رمزاً للمسيح رئيس الكهنة الأزلي، وهو بلا نسب معروف؟",
+    options: ["ملكي صادق", "هارون", "صموئيل", "إيليا"],
+    correct: 0,
+    explain: "ملكي صادق ملك البر والسلام الكاهن الذي بلا نسب، وغير معروفة بداية أيامه ولا نهايتها، كان رمزاً للسيد المسيح ملك البر والسلام، رئيس الكهنة الأزلي الأبدي."
+  },
+  {
+    q: "من الذي أطاع أباه وخرج حاملاً الحطب على كتفه ثم رجع حياً، رمزاً للمسيح الذي أطاع حتى الموت؟",
+    options: ["إسحق المحبوب", "يوسف الطاهر", "يشوع بن نون", "يونان النبي"],
+    correct: 0,
+    explain: "إسحق الابن المحبوب الذي أطاع أباه وخرج حاملاً الحطب على كتفه ورجع حياً، كان رمزاً للسيد المسيح الابن الحبيب الذي أطاع حتى الموت، وخرج حاملاً خشبة الصليب، وقام حياً."
+  },
+  {
+    q: "من الذي بيع بالفضة وصار سبباً في خلاص العالم من المجاعة، رمزاً للسيد المسيح؟",
+    options: ["يوسف الطاهر", "إسحق المحبوب", "هابيل الصديق", "أيوب البار"],
+    correct: 0,
+    explain: "يوسف الطاهر باعوه إخوته بالفضة، وصار سبباً في خلاص العالم من المجاعة، وكان رمزاً للسيد المسيح الذي بيع بلا خطية، وقام حياً، وصار خلاصاً للعالم كله."
+  },
+  {
+    q: "من الذي قاد شعبه للدخول إلى أرض الموعد، رمزاً ليسوع المخلص الأعظم؟",
+    options: ["يشوع بن نون", "موسى النبي", "نوح البار", "ملكي صادق"],
+    correct: 0,
+    explain: "يشوع بن نون النبي والقائد العظيم والذي اسمه يعني المخلص، وهو الذي قاد شعبه للدخول إلى أرض الموعد، كان رمزاً ليسوع المخلص الأعظم القائد الذي قاد شعبه إلى الدخول في أورشليم السمائية."
+  },
+  {
+    q: "من الذي اجتاز الألم والتجربة من الشيطان وخرج سليماً منتصراً، رمزاً للسيد المسيح رجل الآلام؟",
+    options: ["أيوب البار", "إسحق المحبوب", "يوسف الطاهر", "يونان النبي"],
+    correct: 0,
+    explain: "أيوب البار رجل الألم والتجربة المشتكى عليه من الشيطان، والذي اجتاز المعصرة وخرج سليماً صحيحاً كان رمزاً صحيحاً للسيد المسيح رجل البر."
+  },
+  {
+    q: "من مكث في بطن الحوت ثلاثة أيام وثلاث ليال، رمزاً للسيد المسيح الذي وُضع في القبر ثلاثة أيام؟",
+    options: ["يونان النبي", "يشوع بن نون", "أيوب البار", "ملكي صادق"],
+    correct: 0,
+    explain: "يونان النبي الذي مكث في بطن الحوت ثلاثة أيام وثلاث ليال، وخرج حياً، كان رمزاً للسيد المسيح الذي وُضع في القبر ثلاثة أيام وقام حياً."
+  },
+  {
+    q: "ماذا كانت شجرة الحياة في سفر التكوين رمزاً له؟",
+    options: ["الناموس", "ذبيحة المسيح", "الخطية الأصلية", "الفداء بالمال"],
+    correct: 1,
+    explain: "شجرة الحياة التي من يأكل منها يحيا إلى الأبد كانت رمزاً إلى ذبيحة المسيح التي من يأكل جسده ويشرب دمه يحيا إلى الأبد."
+  },
+  {
+    q: "صخرة موسى التي ضربها بالعصا وخرج منها ماء، كانت رمزاً لـ؟",
+    options: ["المسيح الذي طُعن بالحربة في جنبه فخرج دم وماء", "الناموس", "الكنيسة", "جبل سيناء"],
+    correct: 0,
+    explain: "صخرة موسى التي ضرب بها العصا وجرى منها ماء فشرب الشعب ونجا من الموت، كانت رمزاً لصخرة المسيح التي طُعن بالحربة في جنبه فخرج منه دم وماء."
+  },
+  {
+    q: "بحسب 1كو 10: 4 ماذا قال بولس الرسول عن الصخرة الروحية؟",
+    options: ["\"الصخرة كانت المسيح\"", "\"الصخرة كانت موسى\"", "\"الصخرة كانت الناموس\"", "\"الصخرة كانت الكنيسة\""],
+    correct: 0,
+    explain: "\"لأَنَّهُمْ كَانُوا يَشْرَبُونَ مِنْ صَخْرَةٍ رُوحِيَّةٍ تَابِعَتِهِمْ، وَالصَّخْرَةُ كَانَتِ الْمَسِيحَ\" (1كو 10: 4)."
+  },
+  {
+    q: "ماذا كانت الحية النحاسية رمزاً له بحسب المادة؟",
+    options: ["صليب المسيح والنجاة من الموت به", "الخطية فقط", "الشيطان", "الناموس"],
+    correct: 0,
+    explain: "الحية النحاسية كانت رمزاً للصليب، فكل من لدغ من الحية النحاسية ونظر إلى الحية النحاسية يُشفى ويحيا، وهكذا كانت الحياة والنجاة بصليب السيد المسيح."
+  },
+  {
+    q: "متى انتصر شعب إسرائيل على عماليق بحسب سفر الخروج؟",
+    options: ["عندما رفع موسى يديه على شكل صليب", "عندما هرب الشعب من المعركة", "عندما صلى هارون منفرداً", "عندما نزل المطر"],
+    correct: 0,
+    explain: "\"وَكَانَ إِذَا رَفَعَ مُوسَى يَدَهُ أَنَّ إِسْرَائِيلَ يَغْلِبُ، وَإِذَا خَفَضَ يَدَهُ أَنَّ عَمَالِيقَ يَغْلِبُ\" (خر 17: 11)."
+  },
+  {
+    q: "لماذا كانت ذبائح العهد القديم تتكرر كل يوم بحسب المادة؟",
+    options: ["إشارة إلى ضعفها وعدم نفعها الدائم", "لأن الله يحب التكرار", "لعدم وجود عدد كافٍ من الحيوانات", "لا سبب مذكور في المادة"],
+    correct: 0,
+    explain: "كانت الذبائح تتكرر كل يوم إشارة إلى ضعفها وعدم نفعها الدائم."
+  },
+  {
+    q: "بحسب عب 10: 10 كم مرة قُدّمت ذبيحة جسد يسوع المسيح؟",
+    options: ["مرة واحدة", "كل يوم", "كل أسبوع", "كل سنة"],
+    correct: 0,
+    explain: "\"نَحْنُ مُقَدَّسُونَ بِتَقْدِيمِ جَسَدِ يَسُوعَ الْمَسِيحِ مَرَّةً وَاحِدَةً\" (عب 10: 10)."
+  },
+  {
+    q: "هل كانت ذبائح العهد القديم قادرة أن تطهر الجسد والنفس والروح معاً بحسب المادة؟",
+    options: ["لا، كانت عاجزة عن ذلك", "نعم كانت كافية تماماً", "نعم لكن للنفس فقط", "المادة لم تحدد ذلك"],
+    correct: 0,
+    explain: "كانت الذبائح عاجزة عن أن تطهر الجسد والنفس والروح، على عكس ذبيحة المسيح الواحدة الكافية لكل هذا."
+  },
+  {
+    q: "بحسب عب 9: 13-14 بمَ يُقارَن دم الثيران والتيوس؟",
+    options: ["بدم المسيح الذي يطهر الضمير من الأعمال الميتة", "بدم الحيوانات فقط بلا مقارنة", "بماء الطهارة فقط", "لا مقارنة مذكورة"],
+    correct: 0,
+    explain: "\"إِنْ كَانَ دَمُ ثِيرَانٍ وَتُيُوسٍ... يُقَدِّسُ إِلَى طَهَارَةِ الْجَسَدِ، فَكَمْ بِالْحَرِيِّ دَمُ الْمَسِيحِ... يُطَهِّرُ ضَمَائِرَكُمْ مِنْ أَعْمَالٍ مَيِّتَةٍ\" (عب 9: 13-14)."
+  },
+  {
+    q: "من أي شخصين تجسد ابن الله بحسب المادة؟",
+    options: ["من الروح القدس ومن العذراء مريم", "من يوسف النجار ومريم", "من الملاك جبرائيل ومريم", "من الآب مباشرة"],
+    correct: 0,
+    explain: "في ملء الزمان، جاء أقنوم الابن وتجسد من الروح القدس ومن العذراء مريم، فولدت يسوع المسيح ابن الله الكلمة بالحقيقة."
+  },
+  {
+    q: "ما الغرض من إعداد الله الطويل للبشرية بالنبوات والذبائح والرموز بحسب المادة؟",
+    options: ["تهيئة أذهان البشر لفكرة الفداء بالدم", "تعليم الشريعة فقط", "بناء الهيكل فقط", "توحيد اللغة بين الشعوب"],
+    correct: 0,
+    explain: "بعد أن أعد الله الأذهان بالنبوات والذبائح والرموز والشخصيات لفكرة الفداء بالدم، جاء أقنوم الابن وتجسد من أجل إتمام الفداء والخلاص للإنسان."
+  },
+  {
+    q: "هل شابه المسيح المتجسد البشر في كل شيء ما عدا الخطية بحسب المادة؟",
+    options: ["نعم", "لا، شابههم في كل شيء بلا استثناء", "لا، لم يشبههم إطلاقاً", "المادة لم تذكر ذلك"],
+    correct: 0,
+    explain: "وُلد يسوع المسيح ابن الله الكلمة بالحقيقة الذي شابهنا في كل شيء ماعدا الخطية."
+  },
+  {
+    q: "لماذا كان لابد من التجسد بحسب المادة؟",
+    options: ["ليكون للفادي جسد قابل للموت", "ليتعلم الله من البشر", "ليصبح الله محدوداً مثل الإنسان", "لا سبب لاهوتي واضح"],
+    correct: 0,
+    explain: "كان لابد من التجسد ليكون له جسد قابلاً للموت، فالفادي كان لازم يكون إنساناً حقيقياً، وهذا ما تحقق بتجسد ابن الله."
+  },
+  {
+    q: "بحسب مت 20: 28 لماذا جاء ابن الإنسان؟",
+    options: ["ليخدم ويبذل نفسه فدية عن كثيرين", "ليُخدَم من الناس", "ليدين العالم فقط", "ليملك على الأرض سياسياً"],
+    correct: 0,
+    explain: "\"ابْنُ الإِنْسَانِ لَمْ يَأْتِ لِيُخْدَمَ بَلْ لِيَخْدِمَ وَلِيَبْذِلَ نَفْسَهُ فِدْيَةً عَنْ كَثِيرِينَ\" (مت 20: 28)."
+  },
+  {
+    q: "بحسب يو 10: 11 بمن وصف السيد المسيح نفسه؟",
+    options: ["الراعي الصالح الذي يبذل نفسه عن الخراف", "الملك العظيم فقط", "المعلم فقط", "الابن الضال"],
+    correct: 0,
+    explain: "\"أَنَا هُوَ الرَّاعِي الصَّالِحُ، وَالرَّاعِي الصَّالِحُ يَبْذِلُ نَفْسَهُ عَنِ الخِرَافِ\" (يو 10: 11)."
+  },
+  {
+    q: "بحسب يو 3: 17 ما هدف مجيء ابن الله إلى العالم؟",
+    options: ["ليخلص العالم لا ليدينه", "ليدين العالم فقط", "ليحكم العالم سياسياً", "ليبني الهيكل من جديد"],
+    correct: 0,
+    explain: "\"لأَنَّهُ لَمْ يُرْسِلِ اللهُ ابْنَهُ إِلَى الْعَالَمِ لِيَدِينَ الْعَالَمَ، بَلْ لِيَخْلُصَ بِهِ الْعَالَمُ\" (يو 3: 17)."
+  },
+  {
+    q: "بحسب يو 10: 9 بماذا وصف المسيح نفسه كطريق وحيد للخلاص؟",
+    options: ["الباب الذي إن دخل به أحد فيَخلُص", "الراعي فقط", "النور فقط", "الحق فقط"],
+    correct: 0,
+    explain: "\"أَنَا هُوَ الْبَابُ. إِنْ دَخَلَ بِي أَحَدٌ فَيَخْلُصُ\" (يو 10: 9)، وهنا يعلن المسيح أنه الطريق الوحيد للخلاص فلا خلاص إلا به."
+  },
+  {
+    q: "ماذا صرخ المسيح بصوت عظيم على الصليب معلناً إتمام الفداء؟",
+    options: ["\"قد أكمل\"", "\"إلى الأبد\"", "\"أبتِ اغفر لهم\"", "\"ها هي أمك\""],
+    correct: 0,
+    explain: "صرخ السيد المسيح بصوت عظيم قائلاً: \"قَدْ أُكْمِلَ\" (يو 19: 30) معلناً إتمام عمل الفداء بالكامل."
+  },
+  {
+    q: "ما الذي أثار غضب اليهود ضد المسيح بحسب المادة؟",
+    options: ["التفاف الشعب حوله نتيجة خدمته الفعالة", "رفضه دفع الضرائب", "تعليمه في الهيكل فقط", "شفاؤه للمرضى فقط"],
+    correct: 0,
+    explain: "نتيجة لخدمة السيد المسيح الفعالة، التف الشعب حوله، مما أثار غضب اليهود وحقدهم فبدأوا يدبرون لقتله."
+  },
+  {
+    q: "كيف أسلم المسيح روحه على الصليب بحسب المادة؟",
+    options: ["بإرادته", "رغماً عنه", "بعد إغماء طويل", "لم يُذكر ذلك في المادة"],
+    correct: 0,
+    explain: "\"وَنَكَّسَ رَأْسَهُ وَأَسْلَمَ الرُّوحَ\" (يو 19: 30)؛ وهكذا قدّم المسيح نفسه بإرادته ذبيحة لأجلنا."
+  },
+  {
+    q: "بحسب 2تي 1: 10 ماذا فعل المسيح بموته وقيامته؟",
+    options: ["أبطل الموت وأنار الحياة والخلود", "أبطل الناموس فقط", "بنى الكنيسة فقط", "غيّر الشريعة فقط"],
+    correct: 0,
+    explain: "\"مُخَلِّصِنَا يَسُوعَ الْمَسِيحِ الَّذِي أَبْطَلَ الْمَوْتَ وَأَنَارَ الْحَيَاةَ وَالخُلُودَ\" (2تي 1: 10)."
+  },
+  {
+    q: "بحسب 1كو 5: 7 بماذا شُبّه المسيح كذبيحة؟",
+    options: ["بفصحنا الذي ذُبح لأجلنا", "بخروف الفصح اليهودي فقط بلا علاقة بالمسيح", "بكاهن فقط", "بملك فقط"],
+    correct: 0,
+    explain: "\"لأَنَّ فِصْحَنَا أَيْضاً الْمَسِيحَ قَدْ ذُبِحَ لأَجْلِنَا\" (1كو 5: 7)."
+  },
+  {
+    q: "كم بركة رئيسية للفداء ذكرتها المادة؟",
+    options: ["أربع", "خمس", "ست", "سبع"],
+    correct: 2,
+    explain: "ذكرت المادة ست بركات: الفداء من حكم الموت، والتبرير وغفران الخطايا، والافتداء من لعنة الناموس، والانتصار على الشيطان، وفتح الطريق للحياة الأبدية، وعمل الصلح بين السمائيين والأرضيين."
+  },
+  {
+    q: "ما هي أول بركات الفداء بحسب المادة؟",
+    options: ["الفداء من حكم الموت", "التبرير وغفران الخطايا", "الافتداء من لعنة الناموس", "الانتصار على الشيطان"],
+    correct: 0,
+    explain: "أولاً: الفداء من حكم الموت، إذ مات ابن الله الكلمة عنّا."
+  },
+  {
+    q: "بحسب غل 3: 13 من ماذا افتدانا المسيح؟",
+    options: ["لعنة الناموس", "الموت الجسدي فقط", "المرض", "الفقر"],
+    correct: 0,
+    explain: "\"الْمَسِيحُ افْتَدَانَا مِنْ لَعْنَةِ النَّامُوسِ\" (غل 3: 13)."
+  },
+  {
+    q: "ما هي البركة الرابعة للفداء بحسب المادة؟",
+    options: ["الانتصار على الشيطان وإبطال سلطان الخطية", "التبرير وغفران الخطايا", "فتح الطريق للملكوت والحياة الأبدية", "عمل الصلح بين السمائيين والأرضيين"],
+    correct: 0,
+    explain: "رابعاً: الانتصار على الشيطان وإبطال سلطان الخطية."
+  },
+  {
+    q: "بحسب رو 5: 10 كيف صولحنا مع الله؟",
+    options: ["بموت ابنه", "بأعمالنا الصالحة", "بالذبائح الحيوانية", "بالصوم فقط"],
+    correct: 0,
+    explain: "\"صُولِحْنَا مَعَ اللهِ بِمَوْتِ ابْنِهِ\" (رو 5: 10)."
+  },
+  {
+    q: "من الذي رنّم لنعم الفداء في اعترافاته قائلاً: \"كم أحببتنا أيها الآب الصالح... كم أحببتنا\"؟",
+    options: ["القديس أوغسطينوس", "القديس أثناسيوس", "الأنبا موسى أسقف عام الشباب", "مار يعقوب السروجي"],
+    correct: 0,
+    explain: "لكل هذه النعم ترنم القديس أوغسطينوس بعمل الفداء في اعترافاته قائلاً: \"كم أحببتنا أيها الآب الصالح، الذي لم تشفق على ابنك الوحيد... كم أحببتنا!\""
+  },
+  {
+    q: "أي مما يلي ليس من بركات الفداء بحسب المادة؟",
+    options: ["بقاء الإنسان تحت لعنة الناموس", "التبرير وغفران الخطايا", "فتح الطريق للملكوت والحياة الأبدية", "الانتصار على الشيطان"],
+    correct: 0,
+    explain: "على العكس، من بركات الفداء الافتداء من لعنة الناموس وليس البقاء تحتها: \"المسيح افتدانا من لعنة الناموس\" (غل 3: 13)."
+  },
+  {
+    q: "متى دبّر الله خلاص الإنسان بحسب المادة؟",
+    options: ["قبل أن يخطئ الإنسان بل قبل أن يُخلق أصلاً", "بعد السقوط مباشرة فقط", "بعد الطوفان فقط", "بعد تجسد المسيح فقط"],
+    correct: 0,
+    explain: "دبّر الله خلاص الإنسان قبل أن يُخطئ، بل قبل أن يخلق الإنسان أصلاً، ودبّر فهم الإنسان لهذه الأمور اللاهوتية بتعليم طويل."
+  },
+  {
+    q: "من خلال ماذا دبّر الله فهم الإنسان لأمور الفداء اللاهوتية بحسب المادة؟",
+    options: ["الذبائح والمحرقات وممارسة الإنسان لتقديمها", "الحروب فقط", "الهجرة فقط", "العلم الطبيعي فقط"],
+    correct: 0,
+    explain: "دبّر الله فهم الإنسان لهذه الأمور اللاهوتية بتعليم طويل عن الذبائح والمحرقات وممارسة الإنسان لتقديمها."
+  },
+  {
+    q: "كيف أكمل الله تدبير الخلاص بعد الفداء بحسب المادة؟",
+    options: ["بأسرار الكنيسة مثل المعمودية والميرون والتوبة والأفخارستيا", "بترك الإنسان بلا وسائط للنعمة", "بإرسال أنبياء جدد فقط", "بتغيير الناموس فقط"],
+    correct: 0,
+    explain: "كما دبر الله الفداء، دبر كل أسرار الكنيسة كوسائط حكيمة ننال بها الخلاص العظيم بعمل روحه القدوس، مثل المعمودية والميرون والتوبة والأفخارستيا."
+  },
+  {
+    q: "من الذي أرسله الله ليكمل تدبيره ويعطي مواهب متعددة ويرسم الرعاة والمعلمين بحسب المادة؟",
+    options: ["الروح القدس", "ملاك خاص", "نبي جديد", "لا أحد مذكور"],
+    correct: 0,
+    explain: "بتدبيره الحكيم لم يتركنا الله يتامى، بل أرسل لنا الروح القدس، وأعطانا مواهب روحه المتعددة، ورسم لنا الرعاة والمعلمين."
+  },
+  {
+    q: "ماذا يليق بالإنسان أن يفعل تجاه عطية صورة الله فيه بحسب خاتمة المادة؟",
+    options: ["أن يتطلع إليها ولا يستهين بها", "أن يتجاهلها كلياً", "أن يحاول تدميرها بنفسه", "لا شيء مذكور في المادة"],
+    correct: 0,
+    explain: "يليق بنا أن نتطلع إلى عطية الله لنا، أي صورته فينا، ولا نستهين بها."
+  },
+  {
+    q: "بأي آية أوضح المسيح معنى استرداد صورة الله فينا بحسب المادة؟",
+    options: ["\"أعطوا ما لقيصر لقيصر وما لله لله\" (مت 22: 21)", "\"لا تسرقوا\"", "\"أحبوا أعداءكم\"", "\"طوبى للودعاء\""],
+    correct: 0,
+    explain: "أكد هذا السيد المسيح بقوله: \"أَعْطُوا مَا لِقَيْصَرَ لِقَيْصَرَ وَمَا للهِ للهِ\" (مت 22: 21)، ومعناها أن نترك صورة الله الترابية الفانية لنتعمم بصورة الإنسان السماوي."
+  },
+  {
+    q: "من قال: \"لو فسدت الصورة البهية الموجودة على النفس، سترذل من قبل الله ولن تُقبل\"؟",
+    options: ["مار يعقوب السروجي", "القديس أثناسيوس", "القديس أوغسطينوس", "الأنبا موسى"],
+    correct: 0,
+    explain: "يقول مار يعقوب السروجي: \"لو فسدت الصورة البهية الموجودة على النفس، سترذل من قبل الله ولن تُقبل. الرب الذي صوّر صورته العظمى، ليدافع حنانه عنا في اليوم الأخير، وينجينا\"."
+  },
+  {
+    q: "كيف يسترد الإنسان صورة الله فيه بحسب خاتمة المادة؟",
+    options: ["بحياته مع المسيح بعد أن حقق له خلاص الصورة بتقديم ذاته ذبيحة عنا", "بالأعمال الصالحة فقط دون المسيح", "بالتجاهل الكامل للخطية دون توبة", "لا طريقة محددة في المادة"],
+    correct: 0,
+    explain: "نزل الرب إلينا وحقق لنا خلاص الصورة بتقديم ذاته ذبيحة عنا، فنعطي ما لله لله بحياتنا معه."
+  }
+];
+
+function setupExam(){
+  renderExamStart();
+}
+
+function renderExamStart(){
+  const prevCount = examState && examState.count ? examState.count : 20;
+  examState = { started:false, index:0, score:0, locked:false, count:prevCount };
+  const wrap = document.getElementById("examWrap");
+  const options = [10, 20, 50, examQuestions.length];
+  wrap.innerHTML = `
+    <div class="start-exam-box">
+      <div class="ico">🎯</div>
+      <h3>جاهز تختبر نفسك؟</h3>
+      <p>بنك الأسئلة فيه ${examQuestions.length} سؤال يغطي كل نقاط المادة. اختار عدد الأسئلة اللي عاوز تتمرن عليها (بترجع عشوائية في كل مرة):</p>
+      <div class="exam-count-options" style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:14px 0;">
+        ${options.map(n=>`<button class="mini-btn exam-count-btn" data-n="${n}" style="${n===prevCount?'box-shadow:inset 0 0 0 1px var(--gold);color:var(--gold);':''}">${n===examQuestions.length ? `الكل (${n})` : n}</button>`).join("")}
+      </div>
+      <button class="home-cta" id="beginExamBtn">ابدأ الاختبار</button>
+    </div>`;
+  wrap.querySelectorAll(".exam-count-btn").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      examState.count = parseInt(btn.dataset.n);
+      wrap.querySelectorAll(".exam-count-btn").forEach(b=>b.style.cssText="");
+      btn.style.cssText = "box-shadow:inset 0 0 0 1px var(--gold);color:var(--gold);";
+    });
+  });
+  document.getElementById("beginExamBtn").addEventListener("click", ()=>{
+    const n = Math.min(examState.count || 20, examQuestions.length);
+    workingExamQuestions = shuffleArray(examQuestions).slice(0, n);
+    examState.started = true;
+    renderExamQuestion();
+  });
+}
+
+function renderExamQuestion(){
+  const wrap = document.getElementById("examWrap");
+  const total = workingExamQuestions.length;
+  const idx = examState.index;
+
+  if(idx >= total){
+    wrap.innerHTML = `
+      <div class="exam-card exam-done">
+        <div style="font-size:2.2rem;">🏆</div>
+        <h3 style="font-family:var(--font-display);margin:12px 0 4px;">انتهى الاختبار</h3>
+        <div class="big">${examState.score} / ${total}</div>
+        <p style="color:var(--text-2);margin-top:10px;">${examScoreMessage(examState.score, total)}</p>
+        <button class="home-cta" id="restartExamBtn" style="margin-top:22px;">إعادة الاختبار</button>
+      </div>`;
+    document.getElementById("restartExamBtn").addEventListener("click", renderExamStart);
+    return;
+  }
+
+  const q = workingExamQuestions[idx];
+  examState.locked = false;
+  wrap.innerHTML = `
+    <div class="exam-progress">
+      <span class="exam-score">النتيجة: ${examState.score} / ${total}</span>
+      <div class="progress-track"><div class="progress-fill" style="width:${(idx/total)*100}%"></div></div>
+      <span style="font-size:.8rem;color:var(--text-2);">${idx+1}/${total}</span>
+    </div>
+    <div class="exam-card">
+      <h3>${escapeHtml(q.q)}</h3>
+      <div class="exam-options" id="examOptions">
+        ${q.options.map((opt,i)=>`
+          <button class="exam-opt" data-i="${i}">
+            <span class="lbl">${["أ","ب","ج","د"][i]}</span>
+            <span>${escapeHtml(opt)}</span>
+          </button>`).join("")}
+      </div>
+      <div class="exam-explain" id="examExplain">${escapeHtml(q.explain)}</div>
+      <button class="exam-next" id="examNextBtn">${idx === total-1 ? "عرض النتيجة" : "السؤال التالي ←"}</button>
+    </div>`;
+
+  document.querySelectorAll("#examOptions .exam-opt").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      if(examState.locked) return;
+      examState.locked = true;
+      const chosen = parseInt(btn.dataset.i);
+      document.querySelectorAll("#examOptions .exam-opt").forEach(b=>b.classList.add("locked"));
+      if(chosen === q.correct){
+        btn.classList.add("correct");
+        examState.score++;
+      } else {
+        btn.classList.add("wrong");
+        document.querySelector(`#examOptions .exam-opt[data-i="${q.correct}"]`).classList.add("correct");
+      }
+      document.getElementById("examExplain").classList.add("show");
+      document.getElementById("examNextBtn").classList.add("show");
+    });
+  });
+
+  document.getElementById("examNextBtn").addEventListener("click", ()=>{
+    examState.index++;
+    renderExamQuestion();
+  });
+}
+
+function examScoreMessage(score, total){
+  const pct = score/total;
+  if(pct === 1) return "ممتاز جداً! فاهم المادة فهم كويس أوي 🌟";
+  if(pct >= 0.7) return "أحسنت! فاهم أغلب النقاط، راجع اللي فاتك وهتكون تمام.";
+  if(pct >= 0.4) return "بداية كويسة، جرب ترجع للموضوعات وتراجع تاني.";
+  return "محتاج تراجع المادة من الأول، رفيق المادة موجود يساعدك في أي وقت 🤍";
+}
+
+/* ============================================================
+   TOAST
+   ============================================================ */
+let toastTimer = null;
+function showToast(msg){
+  const toast = document.getElementById("toast");
+  toast.textContent = msg;
+  toast.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=> toast.classList.remove("show"), 2400);
+}
+
+/* ============================================================
+   UTIL
+   ============================================================ */
+function escapeHtml(str){
+  const div = document.createElement("div");
+  div.textContent = str;
+  return div.innerHTML;
+}
+</script>
+</body>
+</html>
